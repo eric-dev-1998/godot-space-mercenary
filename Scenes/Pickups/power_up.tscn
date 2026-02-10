@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhosvf465txj5"]
+
+[ext_resource type="Texture2D" uid="uid://cmpu4d0i0q6nv" path="res://Sprites/UI/Powerup_Health.png" id="1_kfesr"]
+[ext_resource type="Script" uid="uid://lcbucvln8gw5" path="res://Scripts/Interactables/Power_up.gd" id="1_y8eq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8eq8"]
+size = Vector2(8, 8)
+
+[node name="PowerUp" type="Node2D"]
+script = ExtResource("1_y8eq8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_kfesr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_y8eq8")

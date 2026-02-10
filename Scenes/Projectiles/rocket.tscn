@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://ds3uhlc8haxup"]
+
+[ext_resource type="Texture2D" uid="uid://dmjvcey2p1w1s" path="res://Sprites/Blasts/Rocket_0.png" id="1_pdoir"]
+[ext_resource type="Script" uid="uid://cjtwq3h02nfav" path="res://Scripts/Interactables/Obstacle.gd" id="1_yn3xn"]
+[ext_resource type="Texture2D" uid="uid://c0et2qlebvyjq" path="res://Sprites/Blasts/Rocket_1.png" id="2_mnbpj"]
+[ext_resource type="Texture2D" uid="uid://dcprcu6eka1ir" path="res://Sprites/Blasts/Rocket_2.png" id="3_l5w55"]
+[ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="5_yn3xn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iah1m"]
+size = Vector2(6, 8)
+
+[sub_resource type="Animation" id="Animation_egi7t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_pdoir")]
+}
+
+[sub_resource type="Animation" id="Animation_yn3xn"]
+resource_name = "anim_rocket_idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_pdoir"), ExtResource("2_mnbpj"), ExtResource("3_l5w55"), ExtResource("1_pdoir")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_que6p"]
+_data = {
+&"RESET": SubResource("Animation_egi7t"),
+&"anim_rocket_idle": SubResource("Animation_yn3xn")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_egi7t"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Rocket" type="Node2D"]
+script = ExtResource("1_yn3xn")
+health = 1
+is_rocket = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, -1)
+texture = ExtResource("1_pdoir")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_iah1m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_que6p")
+}
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_egi7t")
+emitting = false
+amount = 1
+texture = ExtResource("5_yn3xn")
+one_shot = true
+gravity = Vector2(0, 0)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(1, 1, 0, 1)
+anim_speed_min = 3.0
+anim_speed_max = 3.0

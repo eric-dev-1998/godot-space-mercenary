@@ -1,0 +1,183 @@
+[gd_scene load_steps=19 format=3 uid="uid://dcu7hxoxusa78"]
+
+[ext_resource type="Script" uid="uid://bxpwrxrsecwn1" path="res://Scripts/UI/MainTitle.gd" id="1_kajcq"]
+[ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="1_wy0tr"]
+[ext_resource type="Texture2D" uid="uid://dh1lp4d1oko3r" path="res://Sprites/Spaceships/Player/Idle_0.png" id="2_okbhr"]
+[ext_resource type="Texture2D" uid="uid://ddg717nvpjqvd" path="res://Sprites/Spaceships/Player/Idle_1.png" id="3_kajcq"]
+[ext_resource type="Texture2D" uid="uid://dugjo3ljah6yr" path="res://Sprites/Spaceships/Player/Idle_2.png" id="4_ihcp8"]
+[ext_resource type="Texture2D" uid="uid://csx64yml225rw" path="res://Sprites/Spaceships/Player/Idle_3.png" id="5_vtiwe"]
+[ext_resource type="Texture2D" uid="uid://b4xwgxtf5csae" path="res://Sprites/Spaceships/Player/Idle_4.png" id="6_duq3r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wjgkq"]
+font = ExtResource("1_wy0tr")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_sbtst"]
+font = ExtResource("1_wy0tr")
+font_color = Color(0.399804, 0.618523, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_faei1"]
+font = ExtResource("1_wy0tr")
+font_size = 8
+
+[sub_resource type="Animation" id="Animation_rsx44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_okbhr")]
+}
+
+[sub_resource type="Animation" id="Animation_n1bjw"]
+resource_name = "icon_idle"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_okbhr"), ExtResource("3_kajcq"), ExtResource("4_ihcp8"), ExtResource("5_vtiwe"), ExtResource("6_duq3r"), ExtResource("2_okbhr")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2r4o7"]
+_data = {
+&"RESET": SubResource("Animation_rsx44"),
+&"icon_idle": SubResource("Animation_n1bjw")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kajcq"]
+animation = &"icon_idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ihcp8"]
+graph_offset = Vector2(31.4803, 89.3477)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_kajcq")
+nodes/Animation/position = Vector2(91.6667, 133.333)
+node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="Animation" id="Animation_kajcq"]
+resource_name = "anim_main_title_fade"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ihcp8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtiwe"]
+_data = {
+&"RESET": SubResource("Animation_ihcp8"),
+&"anim_main_title_fade": SubResource("Animation_kajcq")
+}
+
+[node name="MainTitle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kajcq")
+
+[node name="Title" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 140.0
+offset_bottom = 72.0
+
+[node name="Space" type="Label" parent="Title"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 24.0
+text = "Space"
+label_settings = SubResource("LabelSettings_wjgkq")
+
+[node name="Pilot" type="Label" parent="Title"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 26.0
+offset_right = 80.0
+offset_bottom = 49.0
+text = "Pilot"
+label_settings = SubResource("LabelSettings_sbtst")
+
+[node name="Start" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 60.0
+offset_top = 112.0
+offset_right = 100.0
+offset_bottom = 120.0
+text = "Start"
+label_settings = SubResource("LabelSettings_faei1")
+
+[node name="Exit" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 60.0
+offset_top = 128.0
+offset_right = 100.0
+offset_bottom = 136.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_faei1")
+
+[node name="Icon" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 56.0
+offset_top = 108.0
+offset_right = 72.0
+offset_bottom = 124.0
+rotation = 1.5708
+texture = ExtResource("2_okbhr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Icon"]
+libraries = {
+&"": SubResource("AnimationLibrary_2r4o7")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Icon/AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_ihcp8")
+anim_player = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vtiwe")
+}

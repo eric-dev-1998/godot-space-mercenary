@@ -1,0 +1,159 @@
+[gd_scene load_steps=17 format=3 uid="uid://d2bujb5jqoybv"]
+
+[ext_resource type="Script" uid="uid://by44l814q4xmu" path="res://Scripts/Interactables/Enemy.gd" id="1_b0aq1"]
+[ext_resource type="Texture2D" uid="uid://doh5kekgho5ht" path="res://Sprites/Asteroids/WIngCreature_0.png" id="2_o4ebf"]
+[ext_resource type="Texture2D" uid="uid://bstuvwxb76r5e" path="res://Sprites/Asteroids/WingCreature_1.png" id="3_1erwc"]
+[ext_resource type="Texture2D" uid="uid://rnj38lsntxdk" path="res://Sprites/Asteroids/Wing_Creature_2.png" id="4_r51ou"]
+[ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="5_s5qky"]
+[ext_resource type="AudioStream" uid="uid://c7ymk23yyf2x4" path="res://SFX/Explosion2.wav" id="6_o4ebf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3jpl"]
+size = Vector2(14, 13)
+
+[sub_resource type="Animation" id="Animation_v7ib3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_o4ebf")]
+}
+
+[sub_resource type="Animation" id="Animation_wd2aj"]
+resource_name = "anim_creature_idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_o4ebf"), ExtResource("3_1erwc"), ExtResource("2_o4ebf"), ExtResource("4_r51ou"), ExtResource("2_o4ebf")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3y00g"]
+_data = {
+&"RESET": SubResource("Animation_v7ib3"),
+&"anim_creature_idle": SubResource("Animation_wd2aj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ay2da"]
+animation = &"anim_creature_idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_x00gn"]
+graph_offset = Vector2(-104.171, 70.7558)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ay2da")
+nodes/Animation/position = Vector2(44.4444, 144.444)
+node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b0aq1"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_pnln5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.740591, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_pddu7"]
+offsets = PackedFloat32Array(0, 0.72827, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.729412, 0.729412, 0.729412, 1, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3u4ym"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Creature" type="Node2D"]
+script = ExtResource("1_b0aq1")
+health = 10
+healthToShowDamage = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("2_o4ebf")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_p3jpl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3y00g")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_x00gn")
+anim_player = NodePath("..")
+
+[node name="FX" type="Node2D" parent="."]
+
+[node name="Damage" type="CPUParticles2D" parent="FX"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_b0aq1")
+emitting = false
+amount = 3
+texture = ExtResource("5_s5qky")
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector2(0, 0)
+color = Color(0.852312, 0.900945, 1, 1)
+anim_speed_max = 4.0
+
+[node name="Explosion_Bits" type="CPUParticles2D" parent="FX"]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 40.0
+scale_amount_curve = SubResource("Curve_pnln5")
+color = Color(0.768098, 0.768098, 0.768098, 1)
+color_ramp = SubResource("Gradient_pddu7")
+
+[node name="Explosion" type="CPUParticles2D" parent="FX"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_3u4ym")
+emitting = false
+amount = 10
+texture = ExtResource("5_s5qky")
+one_shot = true
+explosiveness = 1.0
+randomness = 0.69
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+color = Color(0.317647, 0.729412, 1, 1)
+anim_speed_min = 1.0
+anim_speed_max = 4.0
+
+[node name="SFX_Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_o4ebf")

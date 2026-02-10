@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://h7r34iexkpr3"]
+
+[ext_resource type="Script" uid="uid://wdyrfj6bm3he" path="res://Scripts/FX/Hit.gd" id="1_bv1p3"]
+[ext_resource type="Texture2D" uid="uid://btn5bomdfm1cn" path="res://Sprites/FX/Hit_0.png" id="1_srhd7"]
+[ext_resource type="Texture2D" uid="uid://ciob3e3src6n6" path="res://Sprites/FX/Hit_1.png" id="2_8c3uj"]
+[ext_resource type="Texture2D" uid="uid://j04v7px76hxc" path="res://Sprites/FX/Hit_2.png" id="3_pbmu7"]
+[ext_resource type="Texture2D" uid="uid://bdvwojdfkpntg" path="res://Sprites/FX/Hit_3.png" id="4_8rqlv"]
+[ext_resource type="Texture2D" uid="uid://dtwruxmy6kdtn" path="res://Sprites/FX/Hit_4.png" id="5_bv1p3"]
+[ext_resource type="AudioStream" uid="uid://ogr8su188bp2" path="res://SFX/LMhit2.wav" id="6_8c3uj"]
+[ext_resource type="AudioStream" uid="uid://d4iw8qxqybe6p" path="res://SFX/Lazerreflectobject.wav" id="7_8rqlv"]
+[ext_resource type="AudioStream" uid="uid://ddcod8qdsrocu" path="res://SFX/Smallhit.wav" id="9_bv1p3"]
+
+[sub_resource type="Animation" id="Animation_b7vfy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_srhd7")]
+}
+
+[sub_resource type="Animation" id="Animation_m7ski"]
+resource_name = "anim_fx_hit"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_srhd7"), ExtResource("2_8c3uj"), ExtResource("3_pbmu7"), ExtResource("4_8rqlv"), ExtResource("5_bv1p3")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5yei0"]
+_data = {
+&"RESET": SubResource("Animation_b7vfy"),
+&"anim_fx_hit": SubResource("Animation_m7ski")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_srhd7"]
+animation = &"anim_fx_hit"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8c3uj"]
+nodes/output/position = Vector2(433.333, 108.333)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_srhd7")
+nodes/Animation/position = Vector2(150, 91.6667)
+node_connections = [&"output", 0, &"Animation"]
+
+[node name="FX_Hit" type="Node2D"]
+script = ExtResource("1_bv1p3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("1_srhd7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5yei0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_8c3uj")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Hit_Asteroid" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8c3uj")
+
+[node name="Hit_Solid" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_8rqlv")
+
+[node name="Hit_Enemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_bv1p3")

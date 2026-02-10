@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmylorna8ffbp"]
+
+[ext_resource type="Script" uid="uid://cjtwq3h02nfav" path="res://Scripts/Interactables/Obstacle.gd" id="1_i8joi"]
+[ext_resource type="Texture2D" uid="uid://3igdrev5oyht" path="res://Sprites/Spaceships/Player/damaged.png" id="1_s2r2t"]
+[ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="2_i8joi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sybdw"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i8joi"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sybdw"]
+size = Vector2(8, 8)
+
+[node name="Damaged_Spaceship" type="Node2D"]
+script = ExtResource("1_i8joi")
+rotate = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 6.2831855
+texture = ExtResource("1_s2r2t")
+
+[node name="Bits" type="CPUParticles2D" parent="."]
+amount = 16
+lifetime = 5.0
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+color = Color(0.40268716, 0.40268716, 0.40268716, 1)
+
+[node name="Fire" type="CPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_sybdw")
+position = Vector2(0, 4)
+amount = 16
+texture = ExtResource("2_i8joi")
+lifetime = 5.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+color = Color(0.6245279, 0.62452793, 0.62452775, 1)
+anim_speed_min = 4.0
+anim_speed_max = 6.0
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_i8joi")
+emitting = false
+amount = 10
+texture = ExtResource("2_i8joi")
+one_shot = true
+explosiveness = 1.0
+randomness = 0.69
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+color = Color(0.690196, 0.717647, 0.231373, 1)
+anim_speed_min = 1.0
+anim_speed_max = 4.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_sybdw")

@@ -1,0 +1,261 @@
+[gd_scene load_steps=21 format=3 uid="uid://g1m355ciuu27"]
+
+[ext_resource type="Script" uid="uid://b6ng1pmc41fo3" path="res://Scripts/Interactables/Boss.gd" id="1_5afma"]
+[ext_resource type="Texture2D" uid="uid://dqk246o5q1fkk" path="res://Sprites/Spaceships/Boss/Boss_Armored.png" id="1_p1f3m"]
+[ext_resource type="Texture2D" uid="uid://dw5rqw3sg80ak" path="res://Sprites/Spaceships/Boss/Boss_Shield.png" id="2_5afma"]
+[ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="4_lufdo"]
+[ext_resource type="Texture2D" uid="uid://bcv4du4xam3g" path="res://Sprites/Spaceships/Boss/Piece_of_Glass.png" id="5_5e2h8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdynt"]
+radius = 37.0135
+
+[sub_resource type="Animation" id="Animation_5e2h8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lufdo"]
+resource_name = "anim_boss_bubble_hit"
+length = 0.267
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.153116, 0.109789, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrsbc"]
+_data = {
+&"RESET": SubResource("Animation_5e2h8"),
+&"anim_boss_bubble_hit": SubResource("Animation_lufdo")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lufdo"]
+radius = 63.0079
+
+[sub_resource type="Animation" id="Animation_s7hs0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nrsbc"]
+resource_name = "anim_boss_bubble_damage"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vr26e"]
+_data = {
+&"RESET": SubResource("Animation_s7hs0"),
+&"anim_boss_bubble_damage": SubResource("Animation_nrsbc")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nrsbc"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s7hs0"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_vr26e"]
+_limits = [0.0, 1.0, 0.000599138, 1.0]
+_data = [Vector2(0.000599138, 0), 0.0, 0.0, 0, 0, Vector2(0.148267, 1), 0.0, 0.0, 0, 0, Vector2(0.27202, 0), 0.0, 0.0, 0, 0, Vector2(0.378123, 1), 0.0, 0.0, 0, 0, Vector2(0.52251, 0), 0.0, 0.0, 0, 0, Vector2(0.634501, 1), 0.0, 0.0, 0, 0, Vector2(0.767098, 0), 0.0, 0.0, 0, 0, Vector2(0.867302, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="Gradient" id="Gradient_djiw6"]
+offsets = PackedFloat32Array(0, 0.892188, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_djiw6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bubble:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vr26e"]
+resource_name = "anim_boss_hide"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bubble:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12bcj"]
+_data = {
+&"RESET": SubResource("Animation_djiw6"),
+&"anim_boss_hide": SubResource("Animation_vr26e")
+}
+
+[node name="Boss" type="Node2D"]
+script = ExtResource("1_5afma")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_p1f3m")
+
+[node name="Area2D" type="Area2D" parent="Body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
+shape = SubResource("CircleShape2D_fdynt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
+libraries = {
+&"": SubResource("AnimationLibrary_nrsbc")
+}
+
+[node name="Bubble" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_5afma")
+
+[node name="Area2D" type="Area2D" parent="Bubble"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble/Area2D"]
+shape = SubResource("CircleShape2D_lufdo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bubble"]
+libraries = {
+&"": SubResource("AnimationLibrary_vr26e")
+}
+
+[node name="FX" type="Node2D" parent="."]
+
+[node name="Particles_End_FIre" type="CPUParticles2D" parent="FX"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_nrsbc")
+emitting = false
+texture = ExtResource("4_lufdo")
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 40.0
+gravity = Vector2(0, 0)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(1, 0.709804, 0, 1)
+anim_speed_min = 1.0
+anim_speed_max = 2.0
+
+[node name="Particles_Damage" type="CPUParticles2D" parent="FX"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_s7hs0")
+emitting = false
+amount = 2
+texture = ExtResource("4_lufdo")
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 40.0
+gravity = Vector2(0, 0)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+anim_speed_min = 1.0
+anim_speed_max = 2.0
+
+[node name="Particles_ShieldBreak" type="CPUParticles2D" parent="FX"]
+emitting = false
+amount = 32
+texture = ExtResource("5_5e2h8")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.92
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+split_scale = true
+scale_curve_x = SubResource("Curve_vr26e")
+scale_curve_y = null
+color_ramp = SubResource("Gradient_djiw6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_12bcj")
+}

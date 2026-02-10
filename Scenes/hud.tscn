@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://dtaatqnvdg2ri"]
+
+[ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="1_6fbih"]
+[ext_resource type="Texture2D" uid="uid://cgp4qrp7n1sqn" path="res://Sprites/UI/Health_Bar_Left.png" id="1_bjfho"]
+[ext_resource type="Texture2D" uid="uid://dkpvk7ojpjpa6" path="res://Sprites/UI/Health_Bar_Middle.png" id="2_6fbih"]
+[ext_resource type="Texture2D" uid="uid://b46gecs37ruvl" path="res://Sprites/UI/Health_Bar_Right.png" id="3_t1xeu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_36asn"]
+font = ExtResource("1_6fbih")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_6fbih"]
+font = ExtResource("1_6fbih")
+font_size = 8
+
+[sub_resource type="Animation" id="Animation_8jye8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_36asn"]
+resource_name = "anim_hud_hide"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6fbih"]
+resource_name = "anim_hud_hide_snap"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t1xeu"]
+resource_name = "anim_hud_show"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_43w4t"]
+_data = {
+&"RESET": SubResource("Animation_8jye8"),
+&"anim_hud_hide": SubResource("Animation_36asn"),
+&"anim_hud_hide_snap": SubResource("Animation_6fbih"),
+&"anim_hud_show": SubResource("Animation_t1xeu")
+}
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 16.0
+
+[node name="Label" type="Label" parent="Health"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 16.0
+text = "Health:"
+label_settings = SubResource("LabelSettings_36asn")
+vertical_alignment = 2
+
+[node name="Fill" type="ColorRect" parent="Health"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 24.0
+color = Color(0, 0.980392, 0.372549, 1)
+
+[node name="Frame" type="Control" parent="Health"]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 24.0
+
+[node name="Left" type="TextureRect" parent="Health/Frame"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("1_bjfho")
+
+[node name="Middle_0" type="TextureRect" parent="Health/Frame"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_right = 16.0
+offset_bottom = 8.0
+texture = ExtResource("2_6fbih")
+
+[node name="Middle_1" type="TextureRect" parent="Health/Frame"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_right = 24.0
+offset_bottom = 8.0
+texture = ExtResource("2_6fbih")
+
+[node name="Middle_2" type="TextureRect" parent="Health/Frame"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_right = 32.0
+offset_bottom = 8.0
+texture = ExtResource("3_t1xeu")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 28.0
+offset_right = 40.0
+offset_bottom = 36.0
+text = "000"
+label_settings = SubResource("LabelSettings_6fbih")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_43w4t")
+}

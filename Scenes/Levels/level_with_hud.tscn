@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://02vg7yan6xfm"]
+
+[ext_resource type="PackedScene" uid="uid://dtygi44u6gmph" path="res://Scenes/Levels/test_level.tscn" id="1_gdlwk"]
+[ext_resource type="PackedScene" uid="uid://dtaatqnvdg2ri" path="res://Scenes/hud.tscn" id="2_kwg22"]
+
+[node name="Main" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Test_Level" parent="World" instance=ExtResource("1_gdlwk")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("2_kwg22")]

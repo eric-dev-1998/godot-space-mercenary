@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
+[application]
+
+config/name="Spaceships2D"
+run/main_scene="uid://cl5fymo801kcj"
+config/features=PackedStringArray("4.6", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameInput="*res://Scripts/Globals/InputManager.gd"
+_GameData="*res://Scripts/Globals/GameData.gd"
+
+[display]
+
+window/size/viewport_width=160
+window/size/viewport_height=160
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Spaceships2D"
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/": "red",
+"res://Scripts/": "teal"
+}
+
+[rendering]
+
+renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

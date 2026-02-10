@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cskfvva8w1qny"]
+
+[ext_resource type="Script" uid="uid://cjtwq3h02nfav" path="res://Scripts/Interactables/Obstacle.gd" id="1_dxjb8"]
+[ext_resource type="Texture2D" uid="uid://e5ufcm8iin2k" path="res://Sprites/Asteroids/Asteroid_Big.png" id="2_h487x"]
+[ext_resource type="Texture2D" uid="uid://mabtrqf1d014" path="res://Sprites/Asteroids/Asteroid_Bit.png" id="3_phr33"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvwob"]
+radius = 15.7143
+
+[sub_resource type="Curve" id="Curve_bsxqm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.324343, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Asteroid" type="Node2D"]
+script = ExtResource("1_dxjb8")
+health = 2
+solid = true
+rotate = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_h487x")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CircleShape2D_wvwob")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 10
+texture = ExtResource("3_phr33")
+one_shot = true
+explosiveness = 1.0
+use_fixed_seed = true
+seed = 851078381
+lifetime_randomness = 0.21
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 25.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_bsxqm")

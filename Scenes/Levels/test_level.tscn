@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://dtygi44u6gmph"]
+
+[ext_resource type="Texture2D" uid="uid://b1d3mnqa1o0j4" path="res://Sprites/Backgrounds/Stars_Full.png" id="1_7t06c"]
+[ext_resource type="Texture2D" uid="uid://clauak45fxmyc" path="res://Sprites/Backgrounds/Stars_Particles.png" id="2_2ytpj"]
+[ext_resource type="PackedScene" uid="uid://bbrpb1q5y2f3m" path="res://Scenes/Scene_Player.tscn" id="3_db73o"]
+[ext_resource type="PackedScene" uid="uid://dvk2owd63rg41" path="res://Scenes/Obstacles/obstacle_asteroid.tscn" id="4_db73o"]
+[ext_resource type="Script" uid="uid://ckhmgj0mtfh5v" path="res://Scripts/Levels/LevelContent.gd" id="4_npfmg"]
+[ext_resource type="PackedScene" uid="uid://bbwcareavf6af" path="res://Scenes/Enemies/enemy_0.tscn" id="6_k8g1k"]
+[ext_resource type="PackedScene" uid="uid://ds3uhlc8haxup" path="res://Scenes/Projectiles/rocket.tscn" id="6_l7ek2"]
+[ext_resource type="PackedScene" uid="uid://dhosvf465txj5" path="res://Scenes/Pickups/power_up.tscn" id="7_l7ek2"]
+
+[node name="Test_Level" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Bgnd_Stars" type="Sprite2D" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0.752941)
+texture_filter = 1
+texture = ExtResource("1_7t06c")
+
+[node name="Bgnd_Particles" type="Sprite2D" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0.752941)
+texture_filter = 1
+texture = ExtResource("2_2ytpj")
+
+[node name="Player" parent="Camera2D" instance=ExtResource("3_db73o")]
+position = Vector2(0, 57)
+
+[node name="Stage_0" type="Node2D" parent="."]
+position = Vector2(0, -72)
+script = ExtResource("4_npfmg")
+move = true
+
+[node name="Obstacles" type="Node2D" parent="Stage_0"]
+position = Vector2(0, -197)
+
+[node name="Asteroid" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(-46, -228)
+health = 3
+rotate = true
+
+[node name="Asteroid2" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(-15, -210)
+health = 3
+rotate = true
+
+[node name="Asteroid3" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(0, -227)
+health = 3
+rotate = true
+
+[node name="Asteroid4" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(59, -206)
+health = 3
+rotate = true
+
+[node name="Asteroid5" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(27, -148)
+health = 3
+rotate = true
+
+[node name="Asteroid6" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(-6, -114)
+health = 3
+rotate = true
+
+[node name="Asteroid7" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(-30, -167)
+health = 3
+rotate = true
+
+[node name="Asteroid8" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(-54, -88)
+health = 3
+rotate = true
+
+[node name="Asteroid9" parent="Stage_0/Obstacles" instance=ExtResource("4_db73o")]
+position = Vector2(67, -77)
+health = 3
+rotate = true
+
+[node name="Rocket" parent="Stage_0/Obstacles" instance=ExtResource("6_l7ek2")]
+position = Vector2(0, -58)
+
+[node name="Rocket2" parent="Stage_0/Obstacles" instance=ExtResource("6_l7ek2")]
+position = Vector2(31, -58)
+
+[node name="Rocket3" parent="Stage_0/Obstacles" instance=ExtResource("6_l7ek2")]
+position = Vector2(-40, -58)
+
+[node name="PowerUp" parent="Stage_0/Obstacles" instance=ExtResource("7_l7ek2")]
+position = Vector2(-46, 68)
+type = 2
+
+[node name="PowerUp2" parent="Stage_0/Obstacles" instance=ExtResource("7_l7ek2")]
+position = Vector2(37, 176)
+type = 2
+
+[node name="PowerUp3" parent="Stage_0/Obstacles" instance=ExtResource("7_l7ek2")]
+position = Vector2(-24, -340)
+
+[node name="PowerUp4" parent="Stage_0/Obstacles" instance=ExtResource("7_l7ek2")]
+position = Vector2(46, -314)
+
+[node name="Enemies" type="Node2D" parent="Stage_0"]
+position = Vector2(0, -179)
+
+[node name="Enemy_0" parent="Stage_0/Enemies" instance=ExtResource("6_k8g1k")]
+position = Vector2(22, -291)

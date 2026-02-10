@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbwcareavf6af"]
+
+[ext_resource type="Script" uid="uid://by44l814q4xmu" path="res://Scripts/Interactables/Enemy.gd" id="1_ic2bp"]
+[ext_resource type="Texture2D" uid="uid://bowyg3sufflhy" path="res://Sprites/Spaceships/Enemy_0/Idle_0.png" id="1_r8fo4"]
+[ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="7_pdk6h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o3cx"]
+size = Vector2(8, 8)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_480vk"]
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_kmm73"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.740591, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_fti37"]
+offsets = PackedFloat32Array(0, 0.72827, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.729412, 0.729412, 0.729412, 1, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pdk6h"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Enemy_0" type="Node2D"]
+script = ExtResource("1_ic2bp")
+singleShotSpeed = 1.0
+maxAmmo = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, -1)
+texture = ExtResource("1_r8fo4")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1, -1)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_1o3cx")
+
+[node name="FX" type="Node2D" parent="."]
+
+[node name="Damage" type="CPUParticles2D" parent="FX"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_480vk")
+emitting = false
+amount = 3
+texture = ExtResource("7_pdk6h")
+emission_shape = 1
+emission_sphere_radius = 8.0
+gravity = Vector2(0, 0)
+anim_speed_max = 4.0
+
+[node name="Explosion_Bits" type="CPUParticles2D" parent="FX"]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 40.0
+scale_amount_curve = SubResource("Curve_kmm73")
+color = Color(0.768098, 0.768098, 0.768098, 1)
+color_ramp = SubResource("Gradient_fti37")
+
+[node name="Explosion" type="CPUParticles2D" parent="FX"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_pdk6h")
+emitting = false
+amount = 10
+texture = ExtResource("7_pdk6h")
+one_shot = true
+explosiveness = 1.0
+randomness = 0.69
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+color = Color(0.690196, 0.717647, 0.231373, 1)
+anim_speed_min = 1.0
+anim_speed_max = 4.0

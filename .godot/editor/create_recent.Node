@@ -1,0 +1,14 @@
+CollisionShape2D
+Area2D
+AnimationPlayer
+CPUParticles2D
+Sprite2D
+AudioStreamPlayer2D
+Node2D
+AudioListener2D
+AnimationTree
+Label
+Camera2D
+Node
+Control
+CanvasLayer

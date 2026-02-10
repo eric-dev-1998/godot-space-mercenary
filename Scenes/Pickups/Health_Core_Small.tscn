@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfo77wwa3t7wp"]
+
+[ext_resource type="Script" uid="uid://lcbucvln8gw5" path="res://Scripts/Interactables/Power_up.gd" id="1_2sc8s"]
+[ext_resource type="Texture2D" uid="uid://b646ky2wdecd2" path="res://Sprites/UI/health_core_0.png" id="2_hjtjj"]
+[ext_resource type="AudioStream" uid="uid://cbnuysb8xpqak" path="res://SFX/Ring2.wav" id="3_hjtjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8eq8"]
+size = Vector2(8, 8)
+
+[node name="HealthCore_Small" type="Node2D"]
+script = ExtResource("1_2sc8s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_hjtjj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_y8eq8")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hjtjj")

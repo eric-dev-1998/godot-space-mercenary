@@ -1,0 +1,34 @@
+Titulo: (Pendiente)
+
+Sinopsis:
+	En una glaxia remota, hubo en un pasado no muy lejano, un gran laboratorio espacial en el que se
+	realiza una gran variedad de experimentos que han contribuido en gran medida a los avances tecnologicos. 
+	Dicho laboratorio lleva de nombre: <nombre pendiente>.
+	Este laboratorio acaba de ser destuido y se encuentra custodiado por un grupo de bandidos, tu objeivo
+	es liberar los restos del laboratorio de las manos de esos bandidos.
+
+Campo de asteroides:
+	- Asteroide gigante.
+	- Meteoro gigante.
+	- Ser hostil.
+	
+	Parte 1: Entrando al campo de asteroides.
+	Al principio no hay muchos asteroides, solo avanza mientras
+	los esquiva o los destruye para hacer puntos.
+
+	Parte 2: Unos seres desconocidos:
+	Unos seres hostiles aparecen de entre los asteroides, debe
+	a partir de ese punto debe esquivar o acabar con ellos para
+	hacer puntos.
+	
+	Parte 3: Asteroides gigantes:
+	Esos seres hostiles dejan de aparecer pero ahora debe pasar
+	a traves del campo de asteroides gigantes.
+	
+	Parte 4: El meteoro:
+	Un meteoro enorme aparece y deberas pasar atraves de sus
+	mientras te defiendes de los seres hostiles que lo habitan
+	
+	Parte 5: Entrando al campo de batalla.
+	Al final ves una nave destruida y se muestra el campo de batalla.
+	

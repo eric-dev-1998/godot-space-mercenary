@@ -1,0 +1,372 @@
+[gd_scene load_steps=32 format=3 uid="uid://cuex2h5spnft5"]
+
+[ext_resource type="Script" uid="uid://c7qqjtwpl4w2s" path="res://Scripts/UI/LevelSelector.gd" id="1_inlox"]
+[ext_resource type="Texture2D" uid="uid://dgd45qltem6lp" path="res://Sprites/Dialogues/AsteroidField.png" id="1_s0bea"]
+[ext_resource type="Texture2D" uid="uid://dl2i67mer0nbf" path="res://Sprites/FX/HitParticle.png" id="2_0hppw"]
+[ext_resource type="Texture2D" uid="uid://b1d3mnqa1o0j4" path="res://Sprites/Backgrounds/Stars_Full.png" id="2_ufpwq"]
+[ext_resource type="Texture2D" uid="uid://clauak45fxmyc" path="res://Sprites/Backgrounds/Stars_Particles.png" id="3_0hppw"]
+[ext_resource type="Texture2D" uid="uid://jx3s8qmbrc68" path="res://Sprites/Dialogues/LAB_Destroyed.png" id="3_inlox"]
+[ext_resource type="Texture2D" uid="uid://dfl8mofr7rjp7" path="res://Sprites/UI/Arrow_Left.png" id="7_56p52"]
+[ext_resource type="Texture2D" uid="uid://bbohp7rggpspy" path="res://Sprites/UI/Arrow_Right.png" id="8_trxpt"]
+[ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="9_uhjcu"]
+[ext_resource type="PackedScene" uid="uid://rffesr1hh60q" path="res://Scenes/UI/screen_fx.tscn" id="10_trxpt"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_inlox"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_ufpwq"]
+offsets = PackedFloat32Array(0, 0.812468, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1, 0, 0.627451, 0.937255, 0)
+
+[sub_resource type="Gradient" id="Gradient_0hppw"]
+offsets = PackedFloat32Array(0, 0.812468, 1)
+colors = PackedColorArray(0, 0.850724, 0, 1, 0, 0.85098, 0, 1, 0, 0.627451, 0.937255, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t4xus"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Animation" id="Animation_trxpt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_56p52"]
+resource_name = "anim_arrow_left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 64), Vector2(4, 64), Vector2(0, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhjcu"]
+_data = {
+&"RESET": SubResource("Animation_trxpt"),
+&"anim_arrow_left": SubResource("Animation_56p52")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56p52"]
+animation = &"anim_arrow_left"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_trxpt"]
+graph_offset = Vector2(-130.973, 81.9946)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_56p52")
+nodes/Animation/position = Vector2(75, 141.667)
+node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="Animation" id="Animation_lrgdr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_uhjcu"]
+resource_name = "anim_arrow_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(128, 64), Vector2(124, 64), Vector2(128, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hhrk"]
+_data = {
+&"RESET": SubResource("Animation_lrgdr"),
+&"anim_arrow_right": SubResource("Animation_uhjcu")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w4qc5"]
+animation = &"anim_arrow_right"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ng7dk"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_w4qc5")
+nodes/Animation/position = Vector2(133.333, 66.6667)
+nodes/output/position = Vector2(350, 75)
+node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lrgdr"]
+font = ExtResource("9_uhjcu")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_56p52"]
+font = ExtResource("9_uhjcu")
+font_size = 8
+
+[sub_resource type="Animation" id="Animation_w4qc5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8hhrk"]
+resource_name = "anim_level_select_label"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.278431), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ng7dk"]
+_data = {
+&"RESET": SubResource("Animation_w4qc5"),
+&"anim_level_select_label": SubResource("Animation_8hhrk")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3obiw"]
+animation = &"anim_level_select_label"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7xxgs"]
+graph_offset = Vector2(-55.1819, 83.5742)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3obiw")
+nodes/Animation/position = Vector2(25, 141.667)
+node_connections = [&"output", 0, &"Animation"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_inlox")
+
+[node name="Stages" type="Node2D" parent="."]
+
+[node name="Asteroids" type="Sprite2D" parent="Stages"]
+texture_filter = 1
+position = Vector2(80, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("1_s0bea")
+
+[node name="Battlefield" type="Node2D" parent="Stages"]
+position = Vector2(240, 80)
+
+[node name="Explosions" type="CPUParticles2D" parent="Stages/Battlefield"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_inlox")
+amount = 4
+texture = ExtResource("2_0hppw")
+emission_shape = 3
+emission_rect_extents = Vector2(32, 48)
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+anim_speed_min = 1.5
+anim_speed_max = 2.0
+
+[node name="Blasters_Right" type="CPUParticles2D" parent="Stages/Battlefield"]
+position = Vector2(24, 0)
+amount = 2
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(1, 48)
+direction = Vector2(-1, 0)
+spread = 5.53
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+color_ramp = SubResource("Gradient_ufpwq")
+
+[node name="Blasters_Left" type="CPUParticles2D" parent="Stages/Battlefield"]
+position = Vector2(-24, 0)
+amount = 2
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(1, 48)
+spread = 5.53
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+color_ramp = SubResource("Gradient_0hppw")
+
+[node name="LAB" type="Node2D" parent="Stages"]
+position = Vector2(400, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="Stages/LAB"]
+texture_filter = 1
+texture = ExtResource("3_inlox")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Stages/LAB"]
+material = SubResource("CanvasItemMaterial_t4xus")
+position = Vector2(0, -8)
+amount = 6
+texture = ExtResource("2_0hppw")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+anim_speed_min = 1.5
+anim_speed_max = 1.5
+
+[node name="Camera2D" type="Camera2D" parent="Stages"]
+position = Vector2(80, 80)
+
+[node name="Starts" type="Sprite2D" parent="Stages/Camera2D"]
+texture_filter = 1
+texture = ExtResource("2_ufpwq")
+
+[node name="Stars_Detail" type="Sprite2D" parent="Stages/Camera2D"]
+texture_filter = 1
+texture = ExtResource("3_0hppw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Arrow_Left" type="TextureRect" parent="CanvasLayer/UI"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 3.16717
+offset_top = -16.0
+offset_right = 35.1672
+offset_bottom = 16.0
+grow_vertical = 2
+texture = ExtResource("7_56p52")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Arrow_Left"]
+root_node = NodePath("AnimationTree")
+libraries = {
+&"": SubResource("AnimationLibrary_uhjcu")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Arrow_Left/AnimationPlayer"]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeBlendTree_trxpt")
+anim_player = NodePath("..")
+
+[node name="Arrow_Right" type="TextureRect" parent="CanvasLayer/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -35.1672
+offset_top = -16.0
+offset_right = -3.16714
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_trxpt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Arrow_Right"]
+libraries = {
+&"": SubResource("AnimationLibrary_8hhrk")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Arrow_Right/AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_ng7dk")
+anim_player = NodePath("..")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -48.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Asteroids field"
+label_settings = SubResource("LabelSettings_lrgdr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "Press space to
+start"
+label_settings = SubResource("LabelSettings_56p52")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Label2"]
+libraries = {
+&"": SubResource("AnimationLibrary_ng7dk")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Label2/AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_7xxgs")
+anim_player = NodePath("..")
+
+[node name="ScreenFX" parent="CanvasLayer/UI" instance=ExtResource("10_trxpt")]
+layout_mode = 1

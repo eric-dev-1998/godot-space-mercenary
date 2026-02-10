@@ -1,0 +1,11 @@
+# Godot generated files
+.import/
+.export/
+.cache/
+.mono/
+
+# Editor / OS junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

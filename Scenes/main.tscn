@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl5fymo801kcj"]
+
+[ext_resource type="Texture2D" uid="uid://b1d3mnqa1o0j4" path="res://Sprites/Backgrounds/Stars_Full.png" id="1_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://clauak45fxmyc" path="res://Sprites/Backgrounds/Stars_Particles.png" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://rffesr1hh60q" path="res://Scenes/UI/screen_fx.tscn" id="3_kry3j"]
+[ext_resource type="PackedScene" uid="uid://dcu7hxoxusa78" path="res://Scenes/UI/main_title.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://clpyr2gpodqs7" path="res://Scenes/UI/dialogue.tscn" id="5_kry3j"]
+
+[node name="Main" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Stars" type="Sprite2D" parent="World"]
+texture_filter = 1
+texture = ExtResource("1_bo1nx")
+offset = Vector2(80, 80)
+
+[node name="Stars_Detail" type="Sprite2D" parent="World"]
+texture_filter = 1
+texture = ExtResource("2_8gbba")
+offset = Vector2(80, 80)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Main_UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScreenFX" parent="CanvasLayer/Main_UI" instance=ExtResource("3_kry3j")]
+layout_mode = 1
+
+[node name="MainTitle" parent="CanvasLayer/Main_UI" instance=ExtResource("4_jjvhh")]
+layout_mode = 1
+
+[node name="Dialogue_Intro" parent="CanvasLayer/Main_UI" instance=ExtResource("5_kry3j")]
+layout_mode = 1
