@@ -20,17 +20,20 @@
 [ext_resource type="AudioStream" uid="uid://cemqa6icdj3v0" path="res://SFX/Shieldlow.wav" id="14_5igmg"]
 [ext_resource type="AudioStream" uid="uid://b2kc5m0q57gt1" path="res://SFX/ShieldCritical.wav" id="15_7ch35"]
 [ext_resource type="AudioStream" uid="uid://4mug4m0a2cnk" path="res://SFX/Explosion5.wav" id="16_ncyfg"]
-[ext_resource type="AudioStream" uid="uid://jqsxdar8cuhb" path="res://SFX/Engine.wav" id="16_rohl2"]
 [ext_resource type="AudioStream" uid="uid://743v7xb5kk48" path="res://SFX/Hit3.wav" id="17_5igmg"]
 [ext_resource type="AudioStream" uid="uid://0oftcm4m0228" path="res://SFX/Boost.wav" id="17_h8pru"]
 [ext_resource type="AudioStream" uid="uid://cjuevxoimcln2" path="res://SFX/Explosion6.wav" id="18_7ch35"]
 [ext_resource type="AudioStream" uid="uid://bhmo68ovdcs0e" path="res://SFX/Brake.wav" id="18_h8pru"]
 [ext_resource type="AudioStream" uid="uid://bqr54abyjsusd" path="res://SFX/ItemCOllect1.wav" id="19_7ch35"]
+[ext_resource type="AudioStream" uid="uid://otl6ancs00ng" path="res://SFX/Engine.ogg" id="19_wihdv"]
 [ext_resource type="AudioStream" uid="uid://bhecflyulx7hf" path="res://SFX/Itemcollect2.wav" id="20_8a2ro"]
 [ext_resource type="AudioStream" uid="uid://d4iw8qxqybe6p" path="res://SFX/Lazerreflectobject.wav" id="22_qnj2n"]
 [ext_resource type="AudioStream" uid="uid://bhqk00prged87" path="res://SFX/Hit2.wav" id="23_30xqd"]
 [ext_resource type="PackedScene" uid="uid://bmylorna8ffbp" path="res://Scenes/Obstacles/damaged_spaceship.tscn" id="29_gi0ri"]
+[ext_resource type="PackedScene" uid="uid://dra7ry5e3bg8n" path="res://Scenes/bgm.tscn" id="29_tmhju"]
 [ext_resource type="PackedScene" uid="uid://5yox68yspxse" path="res://Scenes/Obstacles/damaged_enemy_spaceship.tscn" id="30_b0wim"]
+[ext_resource type="AudioStream" uid="uid://bpaw7ugokf2it" path="res://SFX/BGM/Meteo_intro.ogg" id="30_wihdv"]
+[ext_resource type="AudioStream" uid="uid://cdv43v04yjmex" path="res://SFX/BGM/Meteo_loop.ogg" id="31_w8tu0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi0ri"]
 size = Vector2(160, 20)
@@ -113,6 +116,7 @@ position = Vector2(82, -996)
 
 [node name="Asteroid34" parent="Level/Content/Obstacles" unique_id=1619860803 instance=ExtResource("3_upqjl")]
 position = Vector2(82, -1191)
+item = 3
 
 [node name="Asteroid35" parent="Level/Content/Obstacles" unique_id=334691574 instance=ExtResource("3_upqjl")]
 position = Vector2(115, -1208)
@@ -573,19 +577,19 @@ rotation = 1.39542
 position = Vector2(59, -1680)
 
 [node name="Damaged_Enemy_Spaceship" parent="Level/Content/Obstacles" unique_id=265901689 instance=ExtResource("30_b0wim")]
-position = Vector2(147, -5818)
+position = Vector2(147, -5733)
 
 [node name="Damaged_Enemy_Spaceship3" parent="Level/Content/Obstacles" unique_id=1714668069 instance=ExtResource("30_b0wim")]
-position = Vector2(61, -6027)
+position = Vector2(61, -5942)
 
 [node name="Damaged_Spaceship2" parent="Level/Content/Obstacles" unique_id=1773072246 instance=ExtResource("29_gi0ri")]
-position = Vector2(59, -5710)
+position = Vector2(59, -5625)
 
 [node name="Damaged_Spaceship3" parent="Level/Content/Obstacles" unique_id=71160133 instance=ExtResource("29_gi0ri")]
-position = Vector2(110, -6085)
+position = Vector2(110, -6000)
 
 [node name="Damaged_Spaceship4" parent="Level/Content/Obstacles" unique_id=2075605622 instance=ExtResource("29_gi0ri")]
-position = Vector2(46, -6157)
+position = Vector2(46, -6072)
 
 [node name="Pickups" type="Node2D" parent="Level/Content" unique_id=465475543]
 
@@ -639,7 +643,7 @@ maxAmmo = 2
 position = Vector2(80, -3978)
 
 [node name="Exit" type="Area2D" parent="Level/Content" unique_id=815151646]
-position = Vector2(80, -5586)
+position = Vector2(80, -5501)
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("12_b0wim")
@@ -699,7 +703,8 @@ stream = ExtResource("15_7ch35")
 stream = ExtResource("15_7ch35")
 
 [node name="Engine_Idle" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1354007018]
-stream = ExtResource("16_rohl2")
+stream = ExtResource("19_wihdv")
+volume_db = -30.0
 autoplay = true
 
 [node name="Engine_Boost" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=197152348]
@@ -732,6 +737,10 @@ stream = ExtResource("19_7ch35")
 
 [node name="Upgrade" type="AudioStreamPlayer2D" parent="SFX/Collectables" unique_id=1386776441]
 stream = ExtResource("20_8a2ro")
+
+[node name="BGM" parent="." unique_id=1888672289 instance=ExtResource("29_tmhju")]
+introAudio = ExtResource("30_wihdv")
+loopAudio = ExtResource("31_w8tu0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1329905867]
 

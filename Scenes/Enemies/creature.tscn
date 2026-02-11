@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2bujb5jqoybv"]
+[gd_scene format=3 uid="uid://d2bujb5jqoybv"]
 
 [ext_resource type="Script" uid="uid://by44l814q4xmu" path="res://Scripts/Interactables/Enemy.gd" id="1_b0aq1"]
 [ext_resource type="Texture2D" uid="uid://doh5kekgho5ht" path="res://Sprites/Asteroids/WIngCreature_0.png" id="2_o4ebf"]
@@ -79,37 +79,36 @@ particles_anim_h_frames = 10
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[node name="Creature" type="Node2D"]
+[node name="Creature" type="Node2D" unique_id=886237777]
 script = ExtResource("1_b0aq1")
 health = 10
 healthToShowDamage = 4
+power = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=739464114]
 z_index = 1
 texture_filter = 1
 texture = ExtResource("2_o4ebf")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=505441929]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2025862025]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_p3jpl")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3y00g")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=479011457]
+libraries/ = SubResource("AnimationLibrary_3y00g")
 
-[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=1714075798]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeBlendTree_x00gn")
 anim_player = NodePath("..")
 
-[node name="FX" type="Node2D" parent="."]
+[node name="FX" type="Node2D" parent="." unique_id=1737715369]
 
-[node name="Damage" type="CPUParticles2D" parent="FX"]
+[node name="Damage" type="CPUParticles2D" parent="FX" unique_id=289293898]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_b0aq1")
 emitting = false
@@ -121,7 +120,7 @@ gravity = Vector2(0, 0)
 color = Color(0.852312, 0.900945, 1, 1)
 anim_speed_max = 4.0
 
-[node name="Explosion_Bits" type="CPUParticles2D" parent="FX"]
+[node name="Explosion_Bits" type="CPUParticles2D" parent="FX" unique_id=2095841821]
 emitting = false
 amount = 16
 one_shot = true
@@ -135,7 +134,7 @@ scale_amount_curve = SubResource("Curve_pnln5")
 color = Color(0.768098, 0.768098, 0.768098, 1)
 color_ramp = SubResource("Gradient_pddu7")
 
-[node name="Explosion" type="CPUParticles2D" parent="FX"]
+[node name="Explosion" type="CPUParticles2D" parent="FX" unique_id=1396083838]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_3u4ym")
 emitting = false
@@ -155,5 +154,5 @@ color = Color(0.317647, 0.729412, 1, 1)
 anim_speed_min = 1.0
 anim_speed_max = 4.0
 
-[node name="SFX_Death" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX_Death" type="AudioStreamPlayer2D" parent="." unique_id=1278102122]
 stream = ExtResource("6_o4ebf")

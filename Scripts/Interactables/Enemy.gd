@@ -60,6 +60,11 @@ func _process(delta: float) -> void:
 		var area = get_node("Area2D") as Area2D
 		area.monitorable = false
 		area.monitoring = false
+		
+	if is_out_of_screen():
+		# Clear this enemy from the scene if it exits the screen from the bottom.
+		print("Enemy cleared from scene.")
+		clear()
 
 func onHit(area: Area2D) -> void:
 	if global_position.y < 4:
@@ -175,7 +180,7 @@ func spawn_blast() -> void:
 	get_parent().add_child(blast)
 
 func is_out_of_screen() -> bool:
-	if global_position.y < 0:
+	if global_position.y > 168:
 		return true
 	else:
 		return false

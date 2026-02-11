@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://clpyr2gpodqs7"]
+[gd_scene format=3 uid="uid://clpyr2gpodqs7"]
 
 [ext_resource type="Script" uid="uid://cxxqo3cu4hu65" path="res://Scripts/UI/Dialogue.gd" id="1_d5t14"]
 [ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="1_y701c"]
@@ -107,7 +107,7 @@ _data = {
 &"anim_dialogue_fade": SubResource("Animation_y701c")
 }
 
-[node name="Dialogue" type="Control"]
+[node name="Dialogue" type="Control" unique_id=901782849]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d5t14")
 
-[node name="Text" type="Label" parent="."]
+[node name="Text" type="Label" parent="." unique_id=142136099]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -136,7 +136,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Picture" type="TextureRect" parent="."]
+[node name="Picture" type="TextureRect" parent="." unique_id=1508701917]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -150,12 +150,8 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Picture"]
-libraries = {
-&"": SubResource("AnimationLibrary_tg5y5")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Picture" unique_id=195083410]
+libraries/ = SubResource("AnimationLibrary_tg5y5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_0nvb7")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1903008591]
+libraries/ = SubResource("AnimationLibrary_0nvb7")

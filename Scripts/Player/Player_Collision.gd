@@ -41,7 +41,7 @@ func onCollisionEenter(area: Area2D) -> void:
 
 func recieveDamage(isProjectile: bool) -> void:
 	# Apply damage:
-	player.health -= 1	
+	player.health -= 2	
 	if player.health <= 0:
 		explode()
 		return

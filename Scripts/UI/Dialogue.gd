@@ -6,6 +6,8 @@ class_name DialogueSystem
 class DialogueLine:	
 	var text: String
 	var texture
+	var auto: bool = false
+	var autoTime: float = 1.0
 	
 	func _init(text: String, texture) -> void:
 		self.text = text
@@ -17,15 +19,21 @@ var picture: TextureRect
 var anim: AnimationPlayer
 var anim_picture: AnimationPlayer
 var player: Player
+var screenFx: Screen_FX
 
 # Dialogue system properties:
 var previous_pic: Texture
 var lineCounter: int = -1
 var show: bool = false
-var onEnd;
+signal onEnd
 
 # Dialogue content:
 var lines: Array
+var isAutomatic: bool = false;
+var autoDelay: float = 0
+
+func GoToLevelSelection() -> void:
+	get_tree().change_scene_to_file("res://Scenes/UI/level_selection.tscn")
 
 func _ready() -> void:
 	text = get_node("Text")
@@ -33,6 +41,7 @@ func _ready() -> void:
 	anim = get_node("AnimationPlayer")
 	anim_picture = get_node("Picture/AnimationPlayer")
 	player = get_node("/root/Main/Level/Player")
+	screenFx = get_node("/root/Main/CanvasLayer/UI/ScreenFX")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -58,6 +67,25 @@ func _input(event: InputEvent) -> void:
 func _set_dialogue(lines: Array) -> void:
 	self.lines = lines
 	show = true
+	isAutomatic = false
+	
+func set_dialogue(lines: Array, delay: float):
+	self.lines = lines
+	isAutomatic = true
+	autoDelay = 1 + delay
+	show = true
+
+func auto_dialogue_loop() -> void:
+	while show and isAutomatic:
+		await get_tree().create_timer(autoDelay).timeout
+		
+		if not show or not isAutomatic:
+			break;
+		
+		anim.play("anim_dialogue_fade")
+	endDialogue()
+	screenFx.ended.connect(GoToLevelSelection)
+	screenFx.play(Screen_FX.FX_Type.Dark_in)
 
 func show_dialogue() -> void:
 	# Start dialogue:
@@ -70,6 +98,9 @@ func show_dialogue() -> void:
 	if player != null:
 		player.movement.canMove = false
 		player.blast.canFire = false
+	
+	if isAutomatic:
+		auto_dialogue_loop()
 
 func writeNextLine() -> void:
 	# Write the next dialogue line if available:
@@ -92,5 +123,4 @@ func endDialogue() -> void:
 		player.movement.canMove = true
 		player.blast.canFire = true
 	
-	if onEnd is Callable:
-		onEnd.call()
+	emit_signal("onEnd")

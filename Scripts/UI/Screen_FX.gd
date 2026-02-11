@@ -15,6 +15,8 @@ var light: ColorRect
 var anim: AnimationPlayer
 var finished: bool = true
 
+signal ended
+
 func _ready() -> void:
 	dark = get_node("Dark")
 	light = get_node("Light")
@@ -49,3 +51,4 @@ func play(fx: FX_Type) -> void:
 func onFinish() -> void:
 	finished = true;
 	queue.remove_at(0)
+	emit_signal("ended")

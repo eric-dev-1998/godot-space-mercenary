@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtaatqnvdg2ri"]
+[gd_scene format=3 uid="uid://dtaatqnvdg2ri"]
 
 [ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="1_6fbih"]
 [ext_resource type="Texture2D" uid="uid://cgp4qrp7n1sqn" path="res://Sprites/UI/Health_Bar_Left.png" id="1_bjfho"]
@@ -84,7 +84,7 @@ _data = {
 &"anim_hud_show": SubResource("Animation_t1xeu")
 }
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" unique_id=826951429]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,12 +92,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Health" type="Control" parent="."]
+[node name="Health" type="Control" parent="." unique_id=1153056330]
 anchors_preset = 0
 offset_right = 64.0
 offset_bottom = 16.0
 
-[node name="Label" type="Label" parent="Health"]
+[node name="Label" type="Label" parent="Health" unique_id=1716075367]
 texture_filter = 1
 layout_mode = 0
 offset_left = 8.0
@@ -108,7 +108,7 @@ text = "Health:"
 label_settings = SubResource("LabelSettings_36asn")
 vertical_alignment = 2
 
-[node name="Fill" type="ColorRect" parent="Health"]
+[node name="Fill" type="ColorRect" parent="Health" unique_id=2005827658]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 16.0
@@ -116,21 +116,21 @@ offset_right = 40.0
 offset_bottom = 24.0
 color = Color(0, 0.980392, 0.372549, 1)
 
-[node name="Frame" type="Control" parent="Health"]
+[node name="Frame" type="Control" parent="Health" unique_id=1669922166]
 anchors_preset = 0
 offset_left = 8.0
 offset_top = 16.0
 offset_right = 40.0
 offset_bottom = 24.0
 
-[node name="Left" type="TextureRect" parent="Health/Frame"]
+[node name="Left" type="TextureRect" parent="Health/Frame" unique_id=1559670379]
 texture_filter = 1
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 texture = ExtResource("1_bjfho")
 
-[node name="Middle_0" type="TextureRect" parent="Health/Frame"]
+[node name="Middle_0" type="TextureRect" parent="Health/Frame" unique_id=256294221]
 texture_filter = 1
 layout_mode = 0
 offset_left = 8.0
@@ -138,7 +138,7 @@ offset_right = 16.0
 offset_bottom = 8.0
 texture = ExtResource("2_6fbih")
 
-[node name="Middle_1" type="TextureRect" parent="Health/Frame"]
+[node name="Middle_1" type="TextureRect" parent="Health/Frame" unique_id=1165130738]
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
@@ -146,7 +146,7 @@ offset_right = 24.0
 offset_bottom = 8.0
 texture = ExtResource("2_6fbih")
 
-[node name="Middle_2" type="TextureRect" parent="Health/Frame"]
+[node name="Middle_2" type="TextureRect" parent="Health/Frame" unique_id=189416307]
 texture_filter = 1
 layout_mode = 0
 offset_left = 24.0
@@ -154,7 +154,7 @@ offset_right = 32.0
 offset_bottom = 8.0
 texture = ExtResource("3_t1xeu")
 
-[node name="Score" type="Label" parent="."]
+[node name="Score" type="Label" parent="." unique_id=564863637]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 28.0
@@ -164,7 +164,5 @@ text = "000"
 label_settings = SubResource("LabelSettings_6fbih")
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_43w4t")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1536502227]
+libraries/ = SubResource("AnimationLibrary_43w4t")

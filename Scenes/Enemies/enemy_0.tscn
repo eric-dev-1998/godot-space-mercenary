@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbwcareavf6af"]
+[gd_scene format=3 uid="uid://bbwcareavf6af"]
 
 [ext_resource type="Script" uid="uid://by44l814q4xmu" path="res://Scripts/Interactables/Enemy.gd" id="1_ic2bp"]
 [ext_resource type="Texture2D" uid="uid://bowyg3sufflhy" path="res://Sprites/Spaceships/Enemy_0/Idle_0.png" id="1_r8fo4"]
@@ -28,27 +28,28 @@ particles_anim_h_frames = 10
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[node name="Enemy_0" type="Node2D"]
+[node name="Enemy_0" type="Node2D" unique_id=1720442723]
 script = ExtResource("1_ic2bp")
+power = 3
 singleShotSpeed = 1.0
 maxAmmo = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=863062688]
 texture_filter = 1
 scale = Vector2(1, -1)
 texture = ExtResource("1_r8fo4")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1046548117]
 scale = Vector2(1, -1)
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=196550960]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_1o3cx")
 
-[node name="FX" type="Node2D" parent="."]
+[node name="FX" type="Node2D" parent="." unique_id=1541381798]
 
-[node name="Damage" type="CPUParticles2D" parent="FX"]
+[node name="Damage" type="CPUParticles2D" parent="FX" unique_id=1717302385]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_480vk")
 emitting = false
@@ -59,7 +60,7 @@ emission_sphere_radius = 8.0
 gravity = Vector2(0, 0)
 anim_speed_max = 4.0
 
-[node name="Explosion_Bits" type="CPUParticles2D" parent="FX"]
+[node name="Explosion_Bits" type="CPUParticles2D" parent="FX" unique_id=986381560]
 emitting = false
 amount = 16
 one_shot = true
@@ -73,7 +74,7 @@ scale_amount_curve = SubResource("Curve_kmm73")
 color = Color(0.768098, 0.768098, 0.768098, 1)
 color_ramp = SubResource("Gradient_fti37")
 
-[node name="Explosion" type="CPUParticles2D" parent="FX"]
+[node name="Explosion" type="CPUParticles2D" parent="FX" unique_id=464280664]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_pdk6h")
 emitting = false

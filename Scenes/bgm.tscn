@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dra7ry5e3bg8n"]
+
+[ext_resource type="Script" uid="uid://4qv8kuh5ct8l" path="res://Scripts/bgm.gd" id="1_2kasm"]
+
+[node name="BGM" type="Node2D" unique_id=1888672289]
+script = ExtResource("1_2kasm")
+
+[node name="Intro" type="AudioStreamPlayer" parent="." unique_id=809954634]
+
+[node name="Loop" type="AudioStreamPlayer" parent="." unique_id=1123132795]

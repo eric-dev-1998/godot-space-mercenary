@@ -146,8 +146,8 @@ func spawnItem() -> void:
 			if spawn:
 				if item_id == 0:
 					item_node = item_health.instantiate()
-				elif item_id == 1:
-					item_node = item_upgrade.instantiate()
+				#elif item_id == 1:
+					#item_node = item_upgrade.instantiate()
 				else:
 					item_node = item_health_max.instantiate()
 				

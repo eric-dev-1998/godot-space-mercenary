@@ -5,6 +5,7 @@ var dialogue_system: DialogueSystem
 var content: LevelContent
 var sfx: Screen_FX
 var hud: AnimationPlayer
+var bgm: BGM
 
 # Properties:
 enum Level {
@@ -27,6 +28,7 @@ var dialogue_level_2: Array
 func _ready() -> void:
 	# Get screen fx manager:
 	sfx = get_node("CanvasLayer/UI/ScreenFX")
+	bgm = get_node("BGM")
 	
 	# Set intro dialogue:
 	dialogue_system = get_node("CanvasLayer/UI/Dialogue")
@@ -39,7 +41,7 @@ func _ready() -> void:
 		Level.Lab:
 			dialogue_system._set_dialogue(dialogue_level_2)
 	
-	dialogue_system.onEnd = Callable(self, "onDialogueEnd")
+	dialogue_system.onEnd.connect(onDialogueEnd)
 	
 	content = get_node("Level/Content")
 	sfx = get_node("CanvasLayer/UI/ScreenFX")
@@ -51,3 +53,5 @@ func _ready() -> void:
 func onDialogueEnd() -> void:
 	content.move = true
 	hud.play("anim_hud_show")
+	bgm.Start()
+	dialogue_system.onEnd.disconnect(onDialogueEnd)
