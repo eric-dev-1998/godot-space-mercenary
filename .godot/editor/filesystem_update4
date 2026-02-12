@@ -11,3 +11,6 @@ res://Scripts/Levels/level_sequence.gd
 res://Scripts/UI/Dialogue.gd
 res://Scripts/bgm.gd
 res://Scenes/bgm.tscn
+res://Level 2.md
+res://Scenes/Obstacles/spaceship_part_angle.tscn
+res://Scripts/UI/MainTitle.gd

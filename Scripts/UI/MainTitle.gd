@@ -61,7 +61,7 @@ func start() -> void:
 		
 		# Show intro dialogue:
 		dialogueSystem.lines = intro_dialogue
-		dialogueSystem.onEnd = Callable(self, "goToLevelSelection")
+		dialogueSystem.onEnd.connect(goToLevelSelection)
 		dialogueSystem.show_dialogue()
 		
 		anim.play("anim_main_title_fade")

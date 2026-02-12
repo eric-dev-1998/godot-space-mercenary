@@ -10,11 +10,20 @@
 	For level 2:
 		1. Design, no coding or sprite drawing yet.
 			1. [Done] Define level lore.
-			2. Define entering level dialogue.
-			3. Define level exit dialogue.
+			2. [Done] Define entering level dialogue.
+			3. [Done] Define level exit dialogue.
 			4. Design level layout.
 			5. Design level obstacles.
+				1. [Done] Spaceship parts.
+				2. [Done] Damaged spacehips.
+				3. [Done] Weak missile.
+				4. [Done] Auto aim missile.
+				5. [Done] Ally spaceship.
 			6. Design level enemies.
+				1. [Done] Enemy spaceship.
+				2. [Done] Alpha spaceship.
+				3. Mini boss.
+				4. Boss.
 		2. Graphics:
 			1. [Done] Draw obstacle sprites.
 			2. [Done] Draw enemy sprites.
@@ -49,7 +58,7 @@
 	Level 2 design stage has started.
 	
 	# Next:
-		Add BGM to level 1 before continuing with level 2.
+		1. [Done] Add BGM to level 1 before continuing with level 2.
 		
 ### 2/11/2026 16:47pm:
 	Level 1 is finished.
