@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://bp1xrgf50drbf"]
+
+[ext_resource type="Script" uid="uid://ckhmgj0mtfh5v" path="res://Scripts/Levels/LevelContent.gd" id="1_7221l"]
+[ext_resource type="Script" uid="uid://c5g4kj5mle64o" path="res://Scripts/Levels/level_sequence.gd" id="1_ijyww"]
+[ext_resource type="PackedScene" uid="uid://bbrpb1q5y2f3m" path="res://Scenes/Scene_Player.tscn" id="1_w0k26"]
+[ext_resource type="AudioStream" uid="uid://bqr5js7kb004j" path="res://SFX/Lazer1.wav" id="2_pofvk"]
+[ext_resource type="Texture2D" uid="uid://b1d3mnqa1o0j4" path="res://Sprites/Backgrounds/Stars_Full.png" id="3_d6xhv"]
+[ext_resource type="AudioStream" uid="uid://bw6vv47xf3q1f" path="res://SFX/HyperLazer.wav" id="3_gdoj4"]
+[ext_resource type="AudioStream" uid="uid://dmhnkewaivq3j" path="res://SFX/LmHit1.wav" id="4_hb0s4"]
+[ext_resource type="Texture2D" uid="uid://clauak45fxmyc" path="res://Sprites/Backgrounds/Stars_Particles.png" id="4_oocbh"]
+[ext_resource type="AudioStream" uid="uid://cjisbwqku1peb" path="res://SFX/Explosion3.wav" id="5_ujs34"]
+[ext_resource type="AudioStream" uid="uid://cemqa6icdj3v0" path="res://SFX/Shieldlow.wav" id="6_7221l"]
+[ext_resource type="AudioStream" uid="uid://b2kc5m0q57gt1" path="res://SFX/ShieldCritical.wav" id="7_ijyww"]
+[ext_resource type="AudioStream" uid="uid://otl6ancs00ng" path="res://SFX/Engine.ogg" id="8_on733"]
+[ext_resource type="AudioStream" uid="uid://0oftcm4m0228" path="res://SFX/Boost.wav" id="9_d6xhv"]
+[ext_resource type="AudioStream" uid="uid://bhmo68ovdcs0e" path="res://SFX/Brake.wav" id="10_oocbh"]
+[ext_resource type="AudioStream" uid="uid://4mug4m0a2cnk" path="res://SFX/Explosion5.wav" id="11_5a4t7"]
+[ext_resource type="AudioStream" uid="uid://743v7xb5kk48" path="res://SFX/Hit3.wav" id="12_vlbrg"]
+[ext_resource type="AudioStream" uid="uid://cjuevxoimcln2" path="res://SFX/Explosion6.wav" id="13_fr1r3"]
+[ext_resource type="AudioStream" uid="uid://d4iw8qxqybe6p" path="res://SFX/Lazerreflectobject.wav" id="14_pabi8"]
+[ext_resource type="AudioStream" uid="uid://bhqk00prged87" path="res://SFX/Hit2.wav" id="15_cjcp1"]
+[ext_resource type="AudioStream" uid="uid://bqr54abyjsusd" path="res://SFX/ItemCOllect1.wav" id="16_ixhma"]
+[ext_resource type="AudioStream" uid="uid://bhecflyulx7hf" path="res://SFX/Itemcollect2.wav" id="17_kgyv6"]
+[ext_resource type="PackedScene" uid="uid://dra7ry5e3bg8n" path="res://Scenes/bgm.tscn" id="18_3nla5"]
+[ext_resource type="AudioStream" uid="uid://bpaw7ugokf2it" path="res://SFX/BGM/Meteo_intro.ogg" id="19_h80vc"]
+[ext_resource type="AudioStream" uid="uid://cdv43v04yjmex" path="res://SFX/BGM/Meteo_loop.ogg" id="20_mcjnq"]
+[ext_resource type="PackedScene" uid="uid://clpyr2gpodqs7" path="res://Scenes/UI/dialogue.tscn" id="21_ujs34"]
+[ext_resource type="PackedScene" uid="uid://dtaatqnvdg2ri" path="res://Scenes/hud.tscn" id="22_7221l"]
+[ext_resource type="PackedScene" uid="uid://rffesr1hh60q" path="res://Scenes/UI/screen_fx.tscn" id="23_ijyww"]
+
+[node name="Main" type="Node" unique_id=1846037353]
+script = ExtResource("1_ijyww")
+
+[node name="Level" type="Node2D" parent="." unique_id=538129122]
+
+[node name="Content" type="Node2D" parent="Level" unique_id=884834167]
+script = ExtResource("1_7221l")
+
+[node name="Obstacles" type="Node2D" parent="Level/Content" unique_id=1002108075]
+
+[node name="Enemies" type="Node2D" parent="Level/Content" unique_id=256174282]
+
+[node name="Camera2D" type="Camera2D" parent="Level" unique_id=142050865]
+offset = Vector2(80, 80)
+
+[node name="Stars" type="Sprite2D" parent="Level/Camera2D" unique_id=761326050]
+z_index = -3
+texture_filter = 1
+position = Vector2(80, 80)
+texture = ExtResource("3_d6xhv")
+
+[node name="Detail" type="Sprite2D" parent="Level/Camera2D" unique_id=2084718759]
+z_index = -3
+texture_filter = 1
+position = Vector2(80, 80)
+texture = ExtResource("4_oocbh")
+
+[node name="Content" type="Node2D" parent="Level/Camera2D" unique_id=820361605]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Level/Camera2D" unique_id=530631396]
+current = true
+
+[node name="Player" parent="Level" unique_id=1963346676 instance=ExtResource("1_w0k26")]
+position = Vector2(80, 86)
+
+[node name="SFX" type="Node2D" parent="." unique_id=1230934074]
+
+[node name="Blaster" type="Node2D" parent="SFX" unique_id=2113653406]
+
+[node name="Single" type="AudioStreamPlayer2D" parent="SFX/Blaster" unique_id=1348594968]
+stream = ExtResource("2_pofvk")
+
+[node name="Hyper" type="AudioStreamPlayer2D" parent="SFX/Blaster" unique_id=1311462463]
+stream = ExtResource("3_gdoj4")
+
+[node name="Player" type="Node2D" parent="SFX" unique_id=83422373]
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1406443581]
+stream = ExtResource("4_hb0s4")
+
+[node name="Collision" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=141902369]
+stream = ExtResource("5_ujs34")
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1661271495]
+stream = ExtResource("6_7221l")
+
+[node name="Damage_Severe" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=737197182]
+stream = ExtResource("7_ijyww")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1470634538]
+stream = ExtResource("7_ijyww")
+
+[node name="Engine_Idle" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=103283205]
+stream = ExtResource("8_on733")
+volume_db = -30.0
+autoplay = true
+
+[node name="Engine_Boost" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1025212426]
+stream = ExtResource("9_d6xhv")
+
+[node name="Engine_Brake" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1626091821]
+stream = ExtResource("10_oocbh")
+
+[node name="Obstacles" type="Node2D" parent="SFX" unique_id=750425377]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="SFX/Obstacles" unique_id=1356501002]
+stream = ExtResource("11_5a4t7")
+
+[node name="Enemy_Hit" type="AudioStreamPlayer2D" parent="SFX/Obstacles" unique_id=490615915]
+stream = ExtResource("12_vlbrg")
+
+[node name="Enemy_Death" type="AudioStreamPlayer2D" parent="SFX/Obstacles" unique_id=881486871]
+stream = ExtResource("13_fr1r3")
+
+[node name="Solid" type="AudioStreamPlayer2D" parent="SFX/Obstacles" unique_id=273614376]
+stream = ExtResource("14_pabi8")
+
+[node name="Non_Solid" type="AudioStreamPlayer2D" parent="SFX/Obstacles" unique_id=844413256]
+stream = ExtResource("15_cjcp1")
+
+[node name="Collectables" type="Node2D" parent="SFX" unique_id=596683790]
+
+[node name="Health" type="AudioStreamPlayer2D" parent="SFX/Collectables" unique_id=1875220141]
+stream = ExtResource("16_ixhma")
+
+[node name="Upgrade" type="AudioStreamPlayer2D" parent="SFX/Collectables" unique_id=1577568868]
+stream = ExtResource("17_kgyv6")
+
+[node name="BGM" parent="." unique_id=1888672289 instance=ExtResource("18_3nla5")]
+introAudio = ExtResource("19_h80vc")
+loopAudio = ExtResource("20_mcjnq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1783874733]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=937041355]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dialogue" parent="CanvasLayer/UI" unique_id=901782849 instance=ExtResource("21_ujs34")]
+layout_mode = 1
+
+[node name="HUD" parent="CanvasLayer/UI" unique_id=826951429 instance=ExtResource("22_7221l")]
+layout_mode = 1
+
+[node name="ScreenFX" parent="CanvasLayer/UI" unique_id=986812208 instance=ExtResource("23_ijyww")]
+layout_mode = 1

@@ -1,16 +1,10 @@
-res://Scenes/Enemies/creature.tscn
-res://Scripts/Interactables/Enemy.gd
-res://Scenes/Levels/level_asteroids.tscn
-res://Scripts/devlog.md
-res://Scenes/Enemies/enemy_0.tscn
-res://Scripts/Player/Player_Collision.gd
-res://Scripts/Interactables/Obstacle.gd
-res://Scenes/hud.tscn
-res://Scripts/Levels/LevelExit.gd
-res://Scripts/Levels/level_sequence.gd
-res://Scripts/UI/Dialogue.gd
-res://Scripts/bgm.gd
-res://Scenes/bgm.tscn
+res://Scenes/Enemies/battlefied_boss.tscn
 res://Level 2.md
+res://Scenes/Projectiles/rocket.tscn
+res://Scripts/Interactables/Rocket.gd
+res://Scenes/rocket_lab.tscn
+res://Scripts/devlog.md
+res://Scenes/Levels/level_battlefield.tscn
+res://Scripts/Interactables/Obstacle.gd
+res://Scenes/Projectiles/blast.tscn
 res://Scenes/Obstacles/spaceship_part_angle.tscn
-res://Scripts/UI/MainTitle.gd

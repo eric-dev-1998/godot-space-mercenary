@@ -1,18 +1,14 @@
 [gd_scene format=3 uid="uid://yvmir2cff2l4"]
 
 [ext_resource type="Script" uid="uid://cjtwq3h02nfav" path="res://Scripts/Interactables/Obstacle.gd" id="1_fgw3m"]
-[ext_resource type="Texture2D" uid="uid://dhgihiewbv1bk" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_0.png" id="1_q053s"]
-[ext_resource type="Texture2D" uid="uid://ccuqh3rko0gff" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_1.png" id="2_fgw3m"]
-[ext_resource type="Texture2D" uid="uid://b8tpkmuffke50" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_2.png" id="3_r58w7"]
-[ext_resource type="Texture2D" uid="uid://c43ljo0ftbipp" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_3.png" id="4_dus4r"]
+[ext_resource type="Texture2D" uid="uid://dcw0w3rrndpui" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Flat_0.png" id="2_q053s"]
+[ext_resource type="Texture2D" uid="uid://bwfhn6816js8l" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Flat_1.png" id="3_fgw3m"]
+[ext_resource type="Texture2D" uid="uid://c2502kd410bjw" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Flat_2.png" id="4_r58w7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gvo54"]
 size = Vector2(29, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w1ue"]
-size = Vector2(9, 11)
-
-[sub_resource type="Animation" id="Animation_2t6gs"]
+[sub_resource type="Animation" id="Animation_dus4r"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -24,12 +20,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_q053s")]
+"values": [ExtResource("2_q053s")]
 }
 
-[sub_resource type="Animation" id="Animation_2w28x"]
-resource_name = "anim_spaceship_part_angle"
-length = 1.5
+[sub_resource type="Animation" id="Animation_gvo54"]
+resource_name = "anim_spaceship_part_flat_idle"
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,26 +34,17 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 1.9333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("1_q053s"), ExtResource("2_fgw3m"), ExtResource("3_r58w7"), ExtResource("4_dus4r")]
+"values": [ExtResource("2_q053s"), ExtResource("3_fgw3m"), ExtResource("2_q053s"), ExtResource("4_r58w7"), ExtResource("2_q053s")]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg4nb"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7w1ue"]
 _data = {
-&"RESET": SubResource("Animation_2t6gs"),
-&"anim_spaceship_part_angle": SubResource("Animation_2w28x")
+&"RESET": SubResource("Animation_dus4r"),
+&"anim_spaceship_part_flat_idle": SubResource("Animation_gvo54")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lmxeq"]
-animation = &"anim_spaceship_part_angle"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yl72c"]
-graph_offset = Vector2(-68.9771, 80.9416)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_lmxeq")
-nodes/Animation/position = Vector2(-25, 141.667)
-node_connections = [&"output", 0, &"Animation"]
 
 [node name="Spaceship_part_angle" type="Node2D" unique_id=2041603881]
 script = ExtResource("1_fgw3m")
@@ -65,7 +52,7 @@ solid = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=25099289]
 texture_filter = 1
-texture = ExtResource("1_q053s")
+texture = ExtResource("2_q053s")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1860593652]
 collision_mask = 2
@@ -74,14 +61,5 @@ collision_mask = 2
 position = Vector2(-1.5, 8)
 shape = SubResource("RectangleShape2D_gvo54")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1549197706]
-position = Vector2(-11.5, -4.5)
-shape = SubResource("RectangleShape2D_7w1ue")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1069495289]
-libraries/ = SubResource("AnimationLibrary_wg4nb")
-
-[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=1496788146]
-root_node = NodePath("../..")
-tree_root = SubResource("AnimationNodeBlendTree_yl72c")
-anim_player = NodePath("..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2056671375]
+libraries/ = SubResource("AnimationLibrary_7w1ue")

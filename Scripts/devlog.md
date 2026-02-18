@@ -22,8 +22,8 @@
 			6. Design level enemies.
 				1. [Done] Enemy spaceship.
 				2. [Done] Alpha spaceship.
-				3. Mini boss.
-				4. Boss.
+				3. [Done] Mini boss.
+				4. [Done] Boss.
 		2. Graphics:
 			1. [Done] Draw obstacle sprites.
 			2. [Done] Draw enemy sprites.
@@ -69,3 +69,10 @@
 	# Notes:
 		1. Fix player engine sfx, its not reaction to input.
 		2. Enemy groups should despawn when the group animation ends.
+		
+### 2/18/2026 11:51pm:
+	Missile motion logic has been coded.
+	
+	# Next:
+		1. Implement collision detection with player and other obstacles.
+		1. Begin obstacles logic implementation.

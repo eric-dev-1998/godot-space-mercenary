@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dn5d6hjl3a7ev"]
+
+[ext_resource type="Texture2D" uid="uid://dso3420dxyf8" path="res://Sprites/Spaceships/BattlefieldBoss/MechanicalBody.png" id="1_k3csp"]
+[ext_resource type="Texture2D" uid="uid://b3wjl5lqyaygb" path="res://Sprites/Spaceships/BattlefieldBoss/EyeBase.png" id="2_qa6gh"]
+[ext_resource type="Texture2D" uid="uid://c36xepe266xqp" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_0.png" id="3_en15r"]
+[ext_resource type="Texture2D" uid="uid://t30s1nvoal8d" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_1.png" id="4_hbwgm"]
+[ext_resource type="Texture2D" uid="uid://ddanj3s7e3cx0" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_2.png" id="5_33fgn"]
+[ext_resource type="Texture2D" uid="uid://p7rrwab7ksj6" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_3.png" id="6_xmja6"]
+[ext_resource type="Texture2D" uid="uid://3oq52s0kx5nd" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_4.png" id="7_yniue"]
+[ext_resource type="Texture2D" uid="uid://chcvrxxosqtro" path="res://Sprites/Spaceships/BattlefieldBoss/Eye.png" id="8_6t5as"]
+
+[sub_resource type="Animation" id="Animation_4dl8v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_en15r")]
+}
+
+[sub_resource type="Animation" id="Animation_bna7f"]
+resource_name = "anim_bfboss_slime"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_en15r"), ExtResource("4_hbwgm"), ExtResource("5_33fgn"), ExtResource("6_xmja6"), ExtResource("7_yniue"), ExtResource("6_xmja6"), ExtResource("5_33fgn"), ExtResource("4_hbwgm"), ExtResource("3_en15r")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwvik"]
+_data = {
+&"RESET": SubResource("Animation_4dl8v"),
+&"anim_bfboss_slime": SubResource("Animation_bna7f")
+}
+
+[node name="BattlefiedBoss" type="Node2D" unique_id=1279041414]
+
+[node name="MechanicalBody" type="Sprite2D" parent="." unique_id=1445277192]
+texture_filter = 1
+texture = ExtResource("1_k3csp")
+
+[node name="Eye_Base_0" type="Sprite2D" parent="." unique_id=61116494]
+texture_filter = 1
+position = Vector2(27, -59)
+texture = ExtResource("2_qa6gh")
+
+[node name="Eye_Base_1" type="Sprite2D" parent="." unique_id=1448746707]
+texture_filter = 1
+position = Vector2(-28, -59)
+texture = ExtResource("2_qa6gh")
+
+[node name="Eye_Base_2" type="Sprite2D" parent="." unique_id=285449939]
+texture_filter = 1
+position = Vector2(-1, -63)
+texture = ExtResource("2_qa6gh")
+
+[node name="SlimeBody" type="Sprite2D" parent="." unique_id=1222259918]
+texture_filter = 1
+texture = ExtResource("3_en15r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SlimeBody" unique_id=477113206]
+libraries/ = SubResource("AnimationLibrary_mwvik")
+
+[node name="Eye_0" type="Sprite2D" parent="." unique_id=1521008261]
+texture_filter = 1
+position = Vector2(27, -59)
+texture = ExtResource("8_6t5as")
+
+[node name="Eye_1" type="Sprite2D" parent="." unique_id=1114555886]
+texture_filter = 1
+position = Vector2(-28, -59)
+texture = ExtResource("8_6t5as")
+
+[node name="Eye_2" type="Sprite2D" parent="." unique_id=1179469708]
+texture_filter = 1
+position = Vector2(-1, -63)
+texture = ExtResource("8_6t5as")

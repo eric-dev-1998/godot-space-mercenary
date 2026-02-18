@@ -84,6 +84,9 @@ func hit(other: Area2D) -> void:
 				var projectileData: Projectile = area.get_parent()
 				health -= projectileData.power
 			
+			if area.get_parent() is Rocket:
+				health -= 2
+			
 			# Destroy if this obstacle runs out of health:
 			if health <= 0:
 				destroy()

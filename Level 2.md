@@ -27,6 +27,7 @@ Exit dialogue:
 1. Small missiles: These come in to a straight line.
 2. Auto aimed missiles: These aim for the player.
 3. Damaged spaceships: These will explode on contact.
+4. Spaceship parts.
 
 ###### **Level stages:**
 1. Some damaged spaceships appear followed by some beetles.

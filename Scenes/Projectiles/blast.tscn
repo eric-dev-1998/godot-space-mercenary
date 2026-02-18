@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b324ugifstl0m"]
+[gd_scene format=3 uid="uid://b324ugifstl0m"]
 
 [ext_resource type="Script" uid="uid://l5nigmr73t8y" path="res://Scripts/FX/Projectile.gd" id="2_6gs1e"]
 [ext_resource type="Texture2D" uid="uid://dp24ud5dpmuts" path="res://Sprites/Blasts/blast_single.png" id="2_uixna"]
@@ -7,21 +7,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gs1e"]
 size = Vector2(2, 2)
 
-[node name="Blast" type="Node2D"]
+[node name="Blast" type="Node2D" unique_id=910948986]
 script = ExtResource("2_6gs1e")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1378592992]
 texture_filter = 1
 texture = ExtResource("2_uixna")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=2010905401]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1947813566]
 shape = SubResource("RectangleShape2D_6gs1e")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1889184676]
 stream = ExtResource("3_uixna")
 autoplay = true
 

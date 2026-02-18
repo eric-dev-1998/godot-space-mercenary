@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://ciw51dtjfr3sm"]
+
+[ext_resource type="Texture2D" uid="uid://c5rhs4awnle60" path="res://Sprites/Spaceships/Mini boss 0/Body_Caged_0.png" id="1_1dygq"]
+[ext_resource type="Texture2D" uid="uid://rwa4g611d7uk" path="res://Sprites/Spaceships/Mini boss 0/Body_Caged_1.png" id="2_osxkp"]
+[ext_resource type="Texture2D" uid="uid://d3k33gs2f7wxf" path="res://Sprites/Spaceships/Mini boss 0/Body_Caged_2.png" id="3_vxp55"]
+[ext_resource type="Texture2D" uid="uid://d1pv3grry88fs" path="res://Sprites/Spaceships/Mini boss 0/Eye_Open.png" id="4_v032y"]
+[ext_resource type="Texture2D" uid="uid://rm448n3mm7ot" path="res://Sprites/Spaceships/Mini boss 0/Eye_Closed.png" id="5_54goq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qbux"]
+size = Vector2(8, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0trc"]
+size = Vector2(8, 21)
+
+[sub_resource type="Animation" id="Animation_jcb8b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_1dygq")]
+}
+
+[sub_resource type="Animation" id="Animation_kecww"]
+resource_name = "anim_miniboss_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_1dygq"), ExtResource("2_osxkp"), ExtResource("3_vxp55"), ExtResource("2_osxkp"), ExtResource("1_1dygq")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wj442"]
+_data = {
+&"RESET": SubResource("Animation_jcb8b"),
+&"anim_miniboss_idle": SubResource("Animation_kecww")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_delpl"]
+size = Vector2(8, 5)
+
+[sub_resource type="Animation" id="Animation_0qwik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_v032y")]
+}
+
+[sub_resource type="Animation" id="Animation_bm3fs"]
+resource_name = "anim_minibos_eye_idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_54goq"), ExtResource("4_v032y"), ExtResource("5_54goq"), ExtResource("4_v032y"), ExtResource("4_v032y"), ExtResource("5_54goq")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h0n1r"]
+_data = {
+&"RESET": SubResource("Animation_0qwik"),
+&"anim_minibos_eye_idle": SubResource("Animation_bm3fs")
+}
+
+[node name="MiniBoss" type="Node2D" unique_id=1235705987]
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1983583175]
+texture_filter = 1
+texture = ExtResource("1_1dygq")
+
+[node name="CollisionArea" type="Area2D" parent="Body" unique_id=813108608]
+
+[node name="Solid_Collider" type="CollisionShape2D" parent="Body/CollisionArea" unique_id=44016567]
+position = Vector2(-8, -4.5)
+shape = SubResource("RectangleShape2D_8qbux")
+
+[node name="Solid_Collider2" type="CollisionShape2D" parent="Body/CollisionArea" unique_id=548438558]
+position = Vector2(8, -4.5)
+shape = SubResource("RectangleShape2D_v0trc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body" unique_id=786314804]
+libraries/ = SubResource("AnimationLibrary_wj442")
+
+[node name="Eye" type="Sprite2D" parent="." unique_id=482430836]
+texture_filter = 1
+position = Vector2(0, -2)
+texture = ExtResource("4_v032y")
+
+[node name="CollisionArea" type="Area2D" parent="Eye" unique_id=1503199038]
+
+[node name="TriggerCollider" type="CollisionShape2D" parent="Eye/CollisionArea" unique_id=582653509]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_delpl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Eye" unique_id=1324254844]
+libraries/ = SubResource("AnimationLibrary_h0n1r")

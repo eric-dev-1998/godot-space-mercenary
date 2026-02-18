@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dcvllp3wtywul"]
+
+[ext_resource type="Script" uid="uid://cjtwq3h02nfav" path="res://Scripts/Interactables/Obstacle.gd" id="1_qascw"]
+[ext_resource type="Texture2D" uid="uid://dhgihiewbv1bk" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_0.png" id="2_k3dpb"]
+[ext_resource type="Texture2D" uid="uid://ccuqh3rko0gff" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_1.png" id="3_sim0y"]
+[ext_resource type="Texture2D" uid="uid://b8tpkmuffke50" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_2.png" id="4_bajgm"]
+[ext_resource type="Texture2D" uid="uid://c43ljo0ftbipp" path="res://Sprites/Obstacles/Spaceship parts/Spaceship_Angle_3.png" id="5_qkovs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvo54"]
+size = Vector2(29, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w1ue"]
+size = Vector2(9, 11)
+
+[sub_resource type="Animation" id="Animation_2t6gs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_k3dpb")]
+}
+
+[sub_resource type="Animation" id="Animation_2w28x"]
+resource_name = "anim_spaceship_part_angle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_k3dpb"), ExtResource("3_sim0y"), ExtResource("4_bajgm"), ExtResource("5_qkovs")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg4nb"]
+_data = {
+&"RESET": SubResource("Animation_2t6gs"),
+&"anim_spaceship_part_angle": SubResource("Animation_2w28x")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lmxeq"]
+animation = &"anim_spaceship_part_angle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yl72c"]
+graph_offset = Vector2(-68.9771, 80.9416)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_lmxeq")
+nodes/Animation/position = Vector2(-25, 141.667)
+node_connections = [&"output", 0, &"Animation"]
+
+[node name="Spaceship_part_angle" type="Node2D" unique_id=2041603881]
+script = ExtResource("1_qascw")
+solid = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=25099289]
+texture_filter = 1
+texture = ExtResource("2_k3dpb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1860593652]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=777631524]
+position = Vector2(-1.5, 8)
+shape = SubResource("RectangleShape2D_gvo54")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1549197706]
+position = Vector2(-11.5, -4.5)
+shape = SubResource("RectangleShape2D_7w1ue")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1069495289]
+libraries/ = SubResource("AnimationLibrary_wg4nb")
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=1496788146]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendTree_yl72c")
+anim_player = NodePath("..")

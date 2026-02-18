@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cjbmekkanyj77"]
+
+[ext_resource type="PackedScene" uid="uid://ds3uhlc8haxup" path="res://Scenes/Projectiles/rocket.tscn" id="1_l3ris"]
+[ext_resource type="Texture2D" uid="uid://ddg717nvpjqvd" path="res://Sprites/Spaceships/Player/Idle_1.png" id="2_i4c53"]
+
+[node name="Node2D" type="Node2D" unique_id=1543413596]
+
+[node name="Rocket" parent="." unique_id=1326117044 instance=ExtResource("1_l3ris")]
+position = Vector2(77, 5)
+follow_player = true
+speed = 10.0
+
+[node name="Player" type="Sprite2D" parent="." unique_id=453821877]
+texture_filter = 1
+position = Vector2(57, 109)
+texture = ExtResource("2_i4c53")
