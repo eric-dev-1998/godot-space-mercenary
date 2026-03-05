@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bqr5js7kb004j" path="res://SFX/Lazer1.wav" id="2_pofvk"]
 [ext_resource type="Texture2D" uid="uid://b1d3mnqa1o0j4" path="res://Sprites/Backgrounds/Stars_Full.png" id="3_d6xhv"]
 [ext_resource type="AudioStream" uid="uid://bw6vv47xf3q1f" path="res://SFX/HyperLazer.wav" id="3_gdoj4"]
+[ext_resource type="PackedScene" uid="uid://ciw51dtjfr3sm" path="res://Scenes/Enemies/mini_boss.tscn" id="3_oocbh"]
 [ext_resource type="AudioStream" uid="uid://dmhnkewaivq3j" path="res://SFX/LmHit1.wav" id="4_hb0s4"]
 [ext_resource type="Texture2D" uid="uid://clauak45fxmyc" path="res://Sprites/Backgrounds/Stars_Particles.png" id="4_oocbh"]
 [ext_resource type="AudioStream" uid="uid://cjisbwqku1peb" path="res://SFX/Explosion3.wav" id="5_ujs34"]
@@ -32,6 +33,12 @@
 script = ExtResource("1_ijyww")
 
 [node name="Level" type="Node2D" parent="." unique_id=538129122]
+
+[node name="MiniBoss" parent="Level" unique_id=1235705987 instance=ExtResource("3_oocbh")]
+position = Vector2(80, 30)
+health_high = 60
+health_mid = 35
+health_low = 20
 
 [node name="Content" type="Node2D" parent="Level" unique_id=884834167]
 script = ExtResource("1_7221l")

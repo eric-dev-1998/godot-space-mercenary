@@ -1,10 +1,6 @@
-res://Scenes/Enemies/battlefied_boss.tscn
-res://Level 2.md
-res://Scenes/Projectiles/rocket.tscn
-res://Scripts/Interactables/Rocket.gd
-res://Scenes/rocket_lab.tscn
-res://Scripts/devlog.md
+res://Scenes/Enemies/mini_boss.tscn
 res://Scenes/Levels/level_battlefield.tscn
-res://Scripts/Interactables/Obstacle.gd
-res://Scenes/Projectiles/blast.tscn
-res://Scenes/Obstacles/spaceship_part_angle.tscn
+res://Scripts/Interactables/EnemyAttack.gd
+res://Scripts/Interactables/EnemyBehavior.gd
+res://Scripts/Interactables/CagedCreature.gd
+res://Scripts/devlog.md

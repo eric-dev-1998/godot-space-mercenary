@@ -68,3 +68,11 @@ func collide(body: Area2D) -> void:
 					hit_object.play_sfx(0)
 				
 				queue_free()
+
+func explode() -> void:
+	var hit = fx_hit.instantiate()
+	var hit_object: Hit = hit as Hit
+	hit.position = position
+	get_parent().add_child(hit)
+	hit_object.play_sfx(2)
+	queue_free()

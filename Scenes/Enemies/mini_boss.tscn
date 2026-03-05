@@ -1,16 +1,33 @@
 [gd_scene format=3 uid="uid://ciw51dtjfr3sm"]
 
 [ext_resource type="Texture2D" uid="uid://c5rhs4awnle60" path="res://Sprites/Spaceships/Mini boss 0/Body_Caged_0.png" id="1_1dygq"]
+[ext_resource type="Script" uid="uid://gx4437fhrjnm" path="res://Scripts/Interactables/CagedCreature.gd" id="1_osxkp"]
+[ext_resource type="PackedScene" uid="uid://u3xys6qpr6gh" path="res://Scenes/Projectiles/Projectile_CagedCreature.tscn" id="2_54goq"]
 [ext_resource type="Texture2D" uid="uid://rwa4g611d7uk" path="res://Sprites/Spaceships/Mini boss 0/Body_Caged_1.png" id="2_osxkp"]
+[ext_resource type="Script" uid="uid://hjvlc74ikg8y" path="res://Scripts/Interactables/EnemyAttack.gd" id="2_v032y"]
 [ext_resource type="Texture2D" uid="uid://d3k33gs2f7wxf" path="res://Sprites/Spaceships/Mini boss 0/Body_Caged_2.png" id="3_vxp55"]
+[ext_resource type="Script" uid="uid://3smhdj47vhq5" path="res://Scripts/Interactables/EnemyBehavior.gd" id="4_8qbux"]
 [ext_resource type="Texture2D" uid="uid://d1pv3grry88fs" path="res://Sprites/Spaceships/Mini boss 0/Eye_Open.png" id="4_v032y"]
 [ext_resource type="Texture2D" uid="uid://rm448n3mm7ot" path="res://Sprites/Spaceships/Mini boss 0/Eye_Closed.png" id="5_54goq"]
+[ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="7_vxp55"]
+
+[sub_resource type="Resource" id="Resource_54goq"]
+script = ExtResource("2_v032y")
+blastNode = ExtResource("2_54goq")
+power = 3
+reloadCooldown = 5.0
+singleShotSpeed = 0.2
+maxAmmo = 10
+metadata/_custom_type_script = "uid://hjvlc74ikg8y"
+
+[sub_resource type="Resource" id="Resource_v0trc"]
+script = ExtResource("4_8qbux")
+type = 2
+followSpeed = 50.0
+metadata/_custom_type_script = "uid://3smhdj47vhq5"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qbux"]
-size = Vector2(8, 21)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0trc"]
-size = Vector2(8, 21)
+size = Vector2(24, 15)
 
 [sub_resource type="Animation" id="Animation_jcb8b"]
 length = 0.001
@@ -25,6 +42,57 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_1dygq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Eye:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_osxkp"]
+resource_name = "anim_miniboss_damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3005632, 0.4, 0.5027277, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.8421446, 0, 0.20482299, 1), Color(0.7906219, 0.21676284, 1.92523e-07, 1), Color(0.8421446, 0, 0.20482299, 1), Color(0.7906219, 0.21676284, 1.92523e-07, 1), Color(0.8421446, 0, 0.20482299, 1), Color(0.7906219, 0.21676284, 1.92523e-07, 1), Color(0.8421446, 0, 0.20482299, 1), Color(0.7906219, 0.21676284, 1.92523e-07, 1), Color(0.8421446, 0, 0.20482299, 1), Color(0.7906219, 0.21676284, 1.92523e-07, 1), Color(0.8421446, 0, 0.20482299, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Eye:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.7921569, 0.21568628, 0, 1), Color(0.84313726, 0, 0.20392157, 1), Color(0.7921569, 0.21568628, 0, 1), Color(0.84313726, 0, 0.20392157, 1), Color(0.7921569, 0.21568628, 0, 1), Color(0.84313726, 0, 0.20392157, 1), Color(0.7921569, 0.21568628, 0, 1), Color(0.84313726, 0, 0.20392157, 1), Color(0.7921569, 0.21568628, 0, 1), Color(0.84313726, 0, 0.20392157, 1), Color(0.7921569, 0.21568628, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_kecww"]
@@ -46,11 +114,22 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wj442"]
 _data = {
 &"RESET": SubResource("Animation_jcb8b"),
+&"anim_miniboss_damaged": SubResource("Animation_osxkp"),
 &"anim_miniboss_idle": SubResource("Animation_kecww")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_delpl"]
-size = Vector2(8, 5)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v032y"]
+animation = &"anim_miniboss_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_osxkp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jcb8b"]
+states/End/position = Vector2(832, 131)
+states/Start/position = Vector2(194, 89)
+states/anim_miniboss_idle/node = SubResource("AnimationNodeAnimation_v032y")
+states/anim_miniboss_idle/position = Vector2(407, 89)
+transitions = ["Start", "anim_miniboss_idle", SubResource("AnimationNodeStateMachineTransition_osxkp")]
 
 [sub_resource type="Animation" id="Animation_0qwik"]
 length = 0.001
@@ -90,35 +169,168 @@ _data = {
 &"anim_minibos_eye_idle": SubResource("Animation_bm3fs")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vxp55"]
+animation = &"anim_minibos_eye_idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_v032y"]
+graph_offset = Vector2(-161.25, 33.229996)
+nodes/output/position = Vector2(400, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_vxp55")
+nodes/Animation/position = Vector2(100, 140)
+node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="Animation" id="Animation_vxp55"]
+resource_name = "anim_miniboss_damaged"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2, 0.3, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.8421446, 0, 0.20482299, 1), Color(0.9999998, 0.35582128, 0.17277673, 1), Color(0.8421446, 0, 0.20482299, 1), Color(1, 0.35686275, 0.17254902, 1), Color(0.8421446, 0, 0.20482299, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Eye:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2, 0.3, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.35686275, 0.17254902, 1), Color(0.84313726, 0, 0.20392157, 1), Color(1, 0.35686275, 0.17254902, 1), Color(0.84313726, 0, 0.20392157, 1), Color(1, 0.35686275, 0.17254902, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v032y"]
+_data = {
+&"anim_miniboss_damaged": SubResource("Animation_vxp55")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v032y"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_54goq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8qbux"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.57009345)
+colors = PackedColorArray(0.65293133, 0.24566436, 0.5739565, 1, 0.69135684, 0.6913568, 0.69135684, 1)
+
 [node name="MiniBoss" type="Node2D" unique_id=1235705987]
+script = ExtResource("1_osxkp")
+health = 70
+attack = SubResource("Resource_54goq")
+behavior = SubResource("Resource_v0trc")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1983583175]
 texture_filter = 1
 texture = ExtResource("1_1dygq")
 
 [node name="CollisionArea" type="Area2D" parent="Body" unique_id=813108608]
+collision_layer = 14
+collision_mask = 14
 
 [node name="Solid_Collider" type="CollisionShape2D" parent="Body/CollisionArea" unique_id=44016567]
-position = Vector2(-8, -4.5)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_8qbux")
 
-[node name="Solid_Collider2" type="CollisionShape2D" parent="Body/CollisionArea" unique_id=548438558]
-position = Vector2(8, -4.5)
-shape = SubResource("RectangleShape2D_v0trc")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Body" unique_id=786314804]
+[node name="IdleAnim" type="AnimationPlayer" parent="Body" unique_id=786314804]
 libraries/ = SubResource("AnimationLibrary_wj442")
+
+[node name="AnimationTree" type="AnimationTree" parent="Body" unique_id=983617915]
+tree_root = SubResource("AnimationNodeStateMachine_jcb8b")
+anim_player = NodePath("../IdleAnim")
 
 [node name="Eye" type="Sprite2D" parent="." unique_id=482430836]
 texture_filter = 1
 position = Vector2(0, -2)
 texture = ExtResource("4_v032y")
 
-[node name="CollisionArea" type="Area2D" parent="Eye" unique_id=1503199038]
-
-[node name="TriggerCollider" type="CollisionShape2D" parent="Eye/CollisionArea" unique_id=582653509]
-position = Vector2(0, -2.5)
-shape = SubResource("RectangleShape2D_delpl")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Eye" unique_id=1324254844]
 libraries/ = SubResource("AnimationLibrary_h0n1r")
+
+[node name="AnimationTree" type="AnimationTree" parent="Eye" unique_id=81964667]
+tree_root = SubResource("AnimationNodeBlendTree_v032y")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimDamage" type="AnimationPlayer" parent="." unique_id=919103991]
+libraries/ = SubResource("AnimationLibrary_v032y")
+
+[node name="Damage" type="CPUParticles2D" parent="." unique_id=434232224]
+modulate = Color(1, 0.77254903, 0, 1)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_v032y")
+position = Vector2(0, -3)
+emitting = false
+amount = 2
+texture = ExtResource("7_vxp55")
+emission_shape = 3
+emission_rect_extents = Vector2(16, 15)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="DamageMid" type="CPUParticles2D" parent="." unique_id=1344859154]
+modulate = Color(1, 0.77254903, 0, 1)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_v032y")
+position = Vector2(0, -3)
+emitting = false
+amount = 4
+texture = ExtResource("7_vxp55")
+emission_shape = 3
+emission_rect_extents = Vector2(16, 15)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="DamageSevere" type="CPUParticles2D" parent="." unique_id=1499073727]
+modulate = Color(1, 0.77254903, 0, 1)
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_v032y")
+position = Vector2(0, -3)
+emitting = false
+texture = ExtResource("7_vxp55")
+emission_shape = 3
+emission_rect_extents = Vector2(16, 15)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Explosion" type="CPUParticles2D" parent="." unique_id=507888971]
+position = Vector2(0, -3)
+emitting = false
+amount = 100
+lifetime = 15.0
+one_shot = true
+speed_scale = 20.0
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_54goq")
+color_initial_ramp = SubResource("Gradient_8qbux")
+
+[node name="BlastPosition" type="Node2D" parent="." unique_id=1503857944]
+position = Vector2(0, -2)
+
+[connection signal="area_entered" from="Body/CollisionArea" to="." method="onBodyHit"]
+[connection signal="finished" from="Explosion" to="." method="onExplosionFinished"]

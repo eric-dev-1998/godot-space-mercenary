@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://u3xys6qpr6gh"]
+
+[ext_resource type="Script" uid="uid://l5nigmr73t8y" path="res://Scripts/FX/Projectile.gd" id="1_2jaqs"]
+[ext_resource type="Texture2D" uid="uid://dnikaop56v664" path="res://Sprites/Blasts/Projectile_CagedCreature.png" id="2_2jaqs"]
+[ext_resource type="AudioStream" uid="uid://bqr5js7kb004j" path="res://SFX/Lazer1.wav" id="3_uffbp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gs1e"]
+size = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_abx3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uffbp"]
+resource_name = "projectile_caged_beast_idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_va6oj"]
+_data = {
+&"RESET": SubResource("Animation_abx3t"),
+&"projectile_caged_beast_idle": SubResource("Animation_uffbp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w4ngn"]
+animation = &"projectile_caged_beast_idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w5r4n"]
+nodes/output/position = Vector2(300, 160)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_w4ngn")
+nodes/Animation/position = Vector2(80, 160)
+node_connections = [&"output", 0, &"Animation"]
+
+[node name="Blast" type="Node2D" unique_id=910948986]
+script = ExtResource("1_2jaqs")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1378592992]
+texture_filter = 1
+texture = ExtResource("2_2jaqs")
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2010905401]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1947813566]
+shape = SubResource("RectangleShape2D_6gs1e")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1889184676]
+stream = ExtResource("3_uffbp")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=235448106]
+libraries/ = SubResource("AnimationLibrary_va6oj")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=224646682]
+tree_root = SubResource("AnimationNodeBlendTree_w5r4n")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="area_entered" from="Area2D" to="." method="collide"]
