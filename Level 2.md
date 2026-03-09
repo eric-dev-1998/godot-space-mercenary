@@ -66,5 +66,26 @@ Missile attack -> Launch missiles desperately.
 This creature moves around trying to hit the player, but its not too fast.
 
 ### Battle sequence:
-1. Slime: Moves slowly around, first comes the slime attack and then the slime rain.
-2. Without slime: Moves around a little faster, fires missiles desperately to protect itself.
+Stage 1:
+	If there are still eyes healthy:
+		Do slime attack.
+	else:
+		Hide.
+		Do slime rain.
+Stage 2:
+	If there are still eyes healthy:
+		Do slime attack.
+	else:
+		Hide.
+		Do slime rain.
+Stage 3:
+	If there are still eyes healthy:
+		Do slime attack.
+	else:
+		Expose mechanical body.
+		Do missile attack.
+Stage 4:
+	If there are still eyes healthy:
+		Do missile attack.
+	else:
+		Explode.
