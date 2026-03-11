@@ -57,23 +57,23 @@ Level 1 is finished, some details need to be polished in the future:
 Level 1 is finished and polished. The BGM is still pending though.
 Level 2 design stage has started.
 
-## Next:
+### Next:
 1. [Done] Add BGM to level 1 before continuing with level 2.
 	
 # 2/11/2026 16:47pm:
 Level 1 is finished.
 
-## Next:
+### Next:
 Continue with level 2 design.
 
-## Notes:
+### Notes:
 1. Fix player engine sfx, its not reaction to input.
 2. Enemy groups should despawn when the group animation ends.
 		
 # 2/18/2026 11:51pm:
 Missile motion logic has been coded.
 
-## Next:
+### Next:
 1. [Done] Implement collision detection with player and other obstacles.
 1. [Done] Begin obstacles logic implementation.
 
@@ -81,11 +81,11 @@ Missile motion logic has been coded.
 Level 2 obstacles have been coded.
 Level 2 common enemies have been coded.
 
-## Next:
+### Next:
 1. [Done] Code miniboss logic.
 
 # 3/4/2026 19:21pm:
 Battlefield minibos has been coded.
 
-## Next:
+### Next:
 1. Code battlefield boss logic.
