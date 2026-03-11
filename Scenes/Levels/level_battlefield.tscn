@@ -6,11 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://bqr5js7kb004j" path="res://SFX/Lazer1.wav" id="2_pofvk"]
 [ext_resource type="Texture2D" uid="uid://b1d3mnqa1o0j4" path="res://Sprites/Backgrounds/Stars_Full.png" id="3_d6xhv"]
 [ext_resource type="AudioStream" uid="uid://bw6vv47xf3q1f" path="res://SFX/HyperLazer.wav" id="3_gdoj4"]
-[ext_resource type="PackedScene" uid="uid://ciw51dtjfr3sm" path="res://Scenes/Enemies/mini_boss.tscn" id="3_oocbh"]
 [ext_resource type="AudioStream" uid="uid://dmhnkewaivq3j" path="res://SFX/LmHit1.wav" id="4_hb0s4"]
 [ext_resource type="Texture2D" uid="uid://clauak45fxmyc" path="res://Sprites/Backgrounds/Stars_Particles.png" id="4_oocbh"]
 [ext_resource type="AudioStream" uid="uid://cjisbwqku1peb" path="res://SFX/Explosion3.wav" id="5_ujs34"]
 [ext_resource type="AudioStream" uid="uid://cemqa6icdj3v0" path="res://SFX/Shieldlow.wav" id="6_7221l"]
+[ext_resource type="PackedScene" uid="uid://dn5d6hjl3a7ev" path="res://Scenes/Enemies/battlefied_boss.tscn" id="6_oocbh"]
 [ext_resource type="AudioStream" uid="uid://b2kc5m0q57gt1" path="res://SFX/ShieldCritical.wav" id="7_ijyww"]
 [ext_resource type="AudioStream" uid="uid://otl6ancs00ng" path="res://SFX/Engine.ogg" id="8_on733"]
 [ext_resource type="AudioStream" uid="uid://0oftcm4m0228" path="res://SFX/Boost.wav" id="9_d6xhv"]
@@ -33,12 +33,6 @@
 script = ExtResource("1_ijyww")
 
 [node name="Level" type="Node2D" parent="." unique_id=538129122]
-
-[node name="MiniBoss" parent="Level" unique_id=1235705987 instance=ExtResource("3_oocbh")]
-position = Vector2(80, 30)
-health_high = 60
-health_mid = 35
-health_low = 20
 
 [node name="Content" type="Node2D" parent="Level" unique_id=884834167]
 script = ExtResource("1_7221l")
@@ -69,6 +63,9 @@ current = true
 
 [node name="Player" parent="Level" unique_id=1963346676 instance=ExtResource("1_w0k26")]
 position = Vector2(80, 86)
+
+[node name="BattlefiedBoss" parent="Level" unique_id=1279041414 instance=ExtResource("6_oocbh")]
+position = Vector2(80, 80)
 
 [node name="SFX" type="Node2D" parent="." unique_id=1230934074]
 

@@ -68,7 +68,7 @@ func showDamage() -> void:
 		damageSev.emitting = true
 
 func recieveDamage(projectile: Projectile) -> void:
-	projectile.explode()
+	projectile.explode(2)
 	
 	if invinsible:
 		return

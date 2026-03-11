@@ -1,2 +1,6 @@
+res://Scenes/Enemies/battlefied_boss.tscn
+res://Scripts/Interactables/BatlefieldBoss.gd
+res://Scenes/Enemies/mini_boss.tscn
 res://Scenes/Levels/level_battlefield.tscn
-res://Scripts/devlog.md
+res://Scripts/FX/Projectile.gd
+res://Scripts/Interactables/CagedCreature.gd

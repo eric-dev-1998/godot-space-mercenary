@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Spaceships2D")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6dfd6eff061bd23b03c4c07f9bdd6067bef2542d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7bce1fb570914d6e14577ae40c7b41f5acddb7f5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Spaceships2D")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Spaceships2D")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
