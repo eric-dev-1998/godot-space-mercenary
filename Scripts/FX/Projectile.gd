@@ -4,7 +4,7 @@ class_name Projectile
 
 @export var power: int = 1
 @export var isEnemy: bool = false
-var speed: float = 4
+@export var speed: float = 4
 var timeToAutoDestruction: float = 3
 var timer: float = 0
 var fx_hit

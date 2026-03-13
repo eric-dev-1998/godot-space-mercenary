@@ -7,8 +7,12 @@ class_name EnemyAttack
 @export var reloadCooldown: float = 3
 @export var singleShotSpeed: float = 0.75
 @export var maxAmmo: int = 4
+@export var spawn_randomly_over_x: bool = false
+@export var spawn_min_x: int = 0
+@export var spawn_max_x: int = 20
 
 var parent: EnemyCore
+var parent_path: String
 var blastSpawnPoint: Node2D
 
 var autoProtect: bool = false
@@ -22,10 +26,12 @@ var projectileTimer: float = 0.0
 var fireTimer: float = 0.0
 
 func onReady() -> void:
-	blastSpawnPoint = parent.get_node("BlastPosition")
-	if !blastSpawnPoint:
-		print("No blast spawn point was found for: '" + parent.name + "'.")
-
+	if parent != null:
+		blastSpawnPoint = parent.get_node("BlastPosition")
+		if !blastSpawnPoint:
+			print("No blast spawn point was found for: '" + parent.name + "'.")
+	else:
+		print("No enemy core parent was found for this enemy projectile.")
 func fire(delta: float) -> void:
 	if canFire:
 		if !alreadyFired:
@@ -73,5 +79,8 @@ func spawn_blast() -> void:
 	blast.speed = blastSpeed
 	blast.power = self.power
 	blast.isEnemy = true
-	blast.position = blastSpawnPoint.global_position
+	if !spawn_randomly_over_x:
+		blast.position = blastSpawnPoint.global_position
+	else:
+		blast.position = Vector2i(10, randi_range(spawn_min_x, spawn_max_x))
 	parent.get_parent().add_child(blast)

@@ -5,7 +5,8 @@ enum BehaviorType {
 	Still,
 	Follow,
 	Follow_Protect,
-	Follow_Fire_Protect
+	Follow_Fire_Protect,
+	Boss,
 }
 
 @export var type: BehaviorType = BehaviorType.Still
