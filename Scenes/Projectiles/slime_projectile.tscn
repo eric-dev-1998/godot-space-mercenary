@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://gibbtettbawe"]
+
+[ext_resource type="Script" uid="uid://l5nigmr73t8y" path="res://Scripts/FX/Projectile.gd" id="1_0g48u"]
+[ext_resource type="Texture2D" uid="uid://cd8a3kl3lfjly" path="res://Sprites/Blasts/SlimeBall.png" id="1_4rlau"]
+[ext_resource type="AudioStream" uid="uid://bqr5js7kb004j" path="res://SFX/Lazer1.wav" id="3_kf1do"]
+
+[sub_resource type="Curve" id="Curve_0g48u"]
+_data = [Vector2(0, 0.43124998), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kf1do"]
+size = Vector2(12, 12)
+
+[node name="SlimeProjectile" type="Node2D" unique_id=1793297460]
+script = ExtResource("1_0g48u")
+isEnemy = true
+speed = 1.75
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1456344327]
+texture_filter = 1
+texture = ExtResource("1_4rlau")
+emission_shape = 3
+emission_rect_extents = Vector2(4, 4)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_0g48u")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=140188608]
+texture_filter = 1
+texture = ExtResource("1_4rlau")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=494315889]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=311542607]
+shape = SubResource("RectangleShape2D_kf1do")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=371246886]
+stream = ExtResource("3_kf1do")
