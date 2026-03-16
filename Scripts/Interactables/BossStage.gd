@@ -15,6 +15,8 @@ enum AttackType
 	Special
 }
 
+# A stage should have its own wp or shield damage counter.
+
 @export var advance_condition: AdvanceCondition
 @export var weak_points_afected: Array[int]
 @export var attack_type: AttackType
@@ -22,14 +24,33 @@ enum AttackType
 @export var has_enter_animation = false
 @export var has_advance_animation = false
 
+var parent: BossCore
+var wp_health: Array[int]
+var shield_health: int
+
+func set_parent(parent: BossCore)-> void:
+	self.parent = parent
+	
+	if advance_condition == AdvanceCondition.Weak_Points or advance_condition == AdvanceCondition.Weak_Points_And_Shield:
+		for i in range(len(weak_points_afected)):
+			wp_health.append(parent.weak_point_health)
+	
+	if advance_condition == AdvanceCondition.Shield or advance_condition == AdvanceCondition.Weak_Points_And_Shield:
+		shield_health = parent.shield_health
+
 func check() -> bool:
+	# Check parent:
+	if parent == null:
+		print("\t[Boss stage]: Parent is null.")
+		return false
+	
 	# Check weak points:
 	if advance_condition == AdvanceCondition.Weak_Points or advance_condition == AdvanceCondition.Weak_Points_And_Shield:
 		if len(weak_points_afected) <= 0:
 			print("\t[Boss stage]: Advance condition requires weak points to be destroyed, but no weak points were defined in this stage.")
 			return false
 
-	print("\n\t[Boss stage]: Advance condition: " + str(advance_condition) + ".")
+	print("\t[Boss stage]: Advance condition: " + str(advance_condition) + ".")
 	print("\t[Boss stage]: Weak points affected: " + str(weak_points_afected) + ".")
 	print("\t[Boss stage]: Attack type: " + str(attack_type) + ".")
 	print("\t[Boss stage]: Inmmunity: " + str(inmmunity) + ".")
@@ -37,3 +58,33 @@ func check() -> bool:
 	print("\t[Boss stage]: Advance animation: " + str(has_advance_animation) + ".")
 	
 	return true
+
+func check_status() -> bool:
+	match advance_condition:
+		AdvanceCondition.Weak_Points:
+			return check_weak_points()
+		AdvanceCondition.Shield:
+			return check_shield()
+		AdvanceCondition.Weak_Points_And_Shield:
+			return check_weak_points() and check_shield()
+		AdvanceCondition.Wait_For_Animation:
+			pass
+	return false
+
+func check_weak_points() -> bool:
+	for i in range(len(weak_points_afected)):
+		if wp_health[i] >= 1:
+			return false
+	return true
+
+func check_shield() -> bool:
+	if shield_health <= 0:
+		return true
+	else:
+		return false
+
+func inflict_wp_damage(damage: int, weak_point: int) -> void:
+	wp_health[weak_point] -= damage
+
+func inflict_shield_damage(damage: int) -> void:
+	shield_health -= damage

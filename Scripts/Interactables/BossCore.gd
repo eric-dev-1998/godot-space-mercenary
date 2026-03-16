@@ -67,10 +67,12 @@ func _ready() -> void:
 			if stages[i] == null:
 				print("[Boss core]["+ name +"]: Null boss stage data found at index: " + str(i))
 				return
+			stages[i].set_parent(self)
 			if !stages[i].check():
 				return
 	
-	print("\n[Boss core]["+ name +"]: Boss ready.")
+	stage = 0
+	print("[Boss core]["+ name +"]: Boss ready.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -88,4 +90,16 @@ func weak_point_hit(area: Area2D, index: int) -> void:
 	if area.get_parent() is Projectile:
 		var p = area.get_parent() as Projectile
 		if !p.isEnemy:
-			print("[Boss core]["+ name +"]: Hit on weak point no: " + str(index))
+			#print("[Boss core]["+ name +"]: Hit on weak point no: " + str(index))
+			stages[stage].inflict_wp_damage(p.power, index)
+			if stages[stage].check_status():
+				# Advance if current stage conditions are met.
+				print("Stage completed.")
+
+func shield_hit(area: Area2D) -> void:
+	if area.get_parent() is Projectile:
+		var p = area.get_parent() as Projectile
+		if !p.isEnemy:
+			stages[stage].inflict_shield_damage(p.power)
+			if stages[stage].check_status():
+				print("Stage completed.")
