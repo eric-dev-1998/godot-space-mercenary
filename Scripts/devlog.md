@@ -95,3 +95,6 @@ A boss core code was created and designed to be reusable.
 
 # 3/16/2026 12:04pm:
 A boss can now advance a stage for these cases: Weak point damage, shield damage and both.
+
+# 3/16/2026 15:23pm:
+A boss can now advance trough any stage type.
