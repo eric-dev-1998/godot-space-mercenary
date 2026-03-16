@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dso3420dxyf8" path="res://Sprites/Spaceships/BattlefieldBoss/MechanicalBody.png" id="1_k3csp"]
 [ext_resource type="Script" uid="uid://hjvlc74ikg8y" path="res://Scripts/Interactables/EnemyAttack.gd" id="2_hbwgm"]
 [ext_resource type="Texture2D" uid="uid://b3wjl5lqyaygb" path="res://Sprites/Spaceships/BattlefieldBoss/EyeBase.png" id="2_qa6gh"]
+[ext_resource type="Script" uid="uid://cko2e7kvkguhd" path="res://Scripts/Interactables/BossStage.gd" id="3_33fgn"]
 [ext_resource type="Texture2D" uid="uid://c36xepe266xqp" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_0.png" id="3_en15r"]
 [ext_resource type="Texture2D" uid="uid://t30s1nvoal8d" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_1.png" id="4_hbwgm"]
 [ext_resource type="Texture2D" uid="uid://ddanj3s7e3cx0" path="res://Sprites/Spaceships/BattlefieldBoss/Slime_2.png" id="5_33fgn"]
@@ -24,6 +25,22 @@ metadata/_custom_type_script = "uid://hjvlc74ikg8y"
 script = ExtResource("2_hbwgm")
 metadata/_custom_type_script = "uid://hjvlc74ikg8y"
 
+[sub_resource type="Resource" id="Resource_6t5as"]
+script = ExtResource("3_33fgn")
+weak_points_afected = Array[int]([0, 1, 2])
+metadata/_custom_type_script = "uid://cko2e7kvkguhd"
+
+[sub_resource type="Resource" id="Resource_4dl8v"]
+script = ExtResource("3_33fgn")
+advance_condition = 3
+animation = "anim_bfboss_atest"
+metadata/_custom_type_script = "uid://cko2e7kvkguhd"
+
+[sub_resource type="Resource" id="Resource_bna7f"]
+script = ExtResource("3_33fgn")
+weak_points_afected = Array[int]([0, 1, 2])
+metadata/_custom_type_script = "uid://cko2e7kvkguhd"
+
 [sub_resource type="Animation" id="Animation_en15r"]
 length = 0.001
 tracks/0/type = "value"
@@ -37,6 +54,36 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6t5as"]
+resource_name = "anim_bfboss_atest"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Whole body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -80), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"advance_stage"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xmja6"]
@@ -70,10 +117,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, -60), Vector2(0, -60), Vector2(0, 0)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"advance_stage"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6t5as"]
 _data = {
 &"RESET": SubResource("Animation_en15r"),
+&"anim_bfboss_atest": SubResource("Animation_6t5as"),
 &"anim_bfboss_hide": SubResource("Animation_xmja6"),
 &"anim_bfboss_show": SubResource("Animation_yniue")
 }
@@ -248,13 +310,16 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_hbwgm")
 nodes/Animation/position = Vector2(0, 160)
 node_connections = [&"output", 0, &"Animation"]
 
-[node name="BattlefiedBoss" type="Node2D" unique_id=1279041414]
+[node name="BattlefiedBoss" type="Node2D" unique_id=1279041414 node_paths=PackedStringArray("weak_points")]
 script = ExtResource("1_en15r")
 attack_primary = SubResource("Resource_33fgn")
 attack_secondary = SubResource("Resource_xmja6")
 attack_special = SubResource("Resource_yniue")
+weak_points = [NodePath("Whole body/Eye_0/Area2D"), NodePath("Whole body/Eye_1/Area2D"), NodePath("Whole body/Eye_2/Area2D")]
+enter_animation = "anim_bfboss_show"
+stages = Array[ExtResource("3_33fgn")]([SubResource("Resource_6t5as"), SubResource("Resource_4dl8v"), SubResource("Resource_bna7f")])
 
-[node name="Anim_S&H" type="AnimationPlayer" parent="." unique_id=1894714651]
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=1894714651]
 libraries/ = SubResource("AnimationLibrary_6t5as")
 
 [node name="Whole body" type="Node2D" parent="." unique_id=787200334]
