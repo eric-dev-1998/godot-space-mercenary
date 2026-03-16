@@ -11,6 +11,7 @@ class_name BossCore
 @export var weak_point_health: int = 10
 @export var shield: Area2D
 @export var shield_health: int = 20
+@export var enter_animation: String
 @export var stages: Array[BossStage]
 
 var stage: int = -1 # Stage -1 means the boss is wating to be spawned.
@@ -18,9 +19,20 @@ var enable_pimary_attack: bool = false
 var enable_secondary_attack: bool = false
 var enable_special_attack: bool = false
 var weak_points_health: Array[int]
+var anim: AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Check enter animation:
+	anim = get_node("Anim")
+	if anim == null:
+		print("[Boss core]["+ name +"]: No animation player was found.")
+		return
+	
+	if enter_animation == null or enter_animation.length() <= 0:
+		print("[Boss core]["+ name +"]: No enter animation was specified.")
+		return
+	
 	# Check attacks:
 	if attack_primary == null:
 		print("[Boss core]["+ name +"]: No primary attack was defined.")
@@ -69,10 +81,12 @@ func _ready() -> void:
 				return
 			stages[i].set_parent(self)
 			if !stages[i].check():
+				print("[Boss core][" + name + "]: A stage did not pass the check.")
 				return
 	
-	stage = 0
 	print("[Boss core]["+ name +"]: Boss ready.")
+	
+	spawn()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -80,11 +94,11 @@ func _process(delta: float) -> void:
 
 func spawn() -> void:
 	# Start boss spawn animation.
-	pass
+	anim.play(enter_animation)
 
 func start() -> void:
 	# Called at the end of the boss spawn animation.
-	pass
+	advance_stage()
 
 func weak_point_hit(area: Area2D, index: int) -> void:
 	if area.get_parent() is Projectile:
@@ -94,7 +108,7 @@ func weak_point_hit(area: Area2D, index: int) -> void:
 			stages[stage].inflict_wp_damage(p.power, index)
 			if stages[stage].check_status():
 				# Advance if current stage conditions are met.
-				print("Stage completed.")
+				advance_stage()
 
 func shield_hit(area: Area2D) -> void:
 	if area.get_parent() is Projectile:
@@ -102,4 +116,20 @@ func shield_hit(area: Area2D) -> void:
 		if !p.isEnemy:
 			stages[stage].inflict_shield_damage(p.power)
 			if stages[stage].check_status():
-				print("Stage completed.")
+				advance_stage()
+
+func advance_stage() -> void:
+	print("Advanced...")
+	
+	if stage == len(stages) - 1:
+		# It was the last stage, just play advance animation if any and then return.
+		if stages[stage].advance_animation.length() != 0:
+			anim.play(stages[stage].advance_animation)
+	else:
+		# Play enter animation if any and if stage is not an wait_for_animation stage.
+		if stages[stage].advance_animation.length() != 0 and stages[stage].advance_condition != BossStage.AdvanceCondition.Wait_For_Animation:
+			anim.play(stages[stage].advance_animation)
+		
+		# Advance:
+		stage += 1
+		stages[stage].trigger()

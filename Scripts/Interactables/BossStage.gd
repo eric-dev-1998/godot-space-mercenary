@@ -21,8 +21,11 @@ enum AttackType
 @export var weak_points_afected: Array[int]
 @export var attack_type: AttackType
 @export var inmmunity: bool = false
+@export var animation: String
 @export var has_enter_animation = false
+@export var enter_animation: String
 @export var has_advance_animation = false
+@export var advance_animation: String
 
 var parent: BossCore
 var wp_health: Array[int]
@@ -44,12 +47,17 @@ func check() -> bool:
 		print("\t[Boss stage]: Parent is null.")
 		return false
 	
+	if advance_condition == AdvanceCondition.Wait_For_Animation:
+		if animation == null or animation.length() <= 0:
+			print("\t[Boss stage]: Stage advance condition is set to 'Wait for animation' but no animation was specified.")
+			return false
+	
 	# Check weak points:
 	if advance_condition == AdvanceCondition.Weak_Points or advance_condition == AdvanceCondition.Weak_Points_And_Shield:
 		if len(weak_points_afected) <= 0:
 			print("\t[Boss stage]: Advance condition requires weak points to be destroyed, but no weak points were defined in this stage.")
 			return false
-
+	
 	print("\t[Boss stage]: Advance condition: " + str(advance_condition) + ".")
 	print("\t[Boss stage]: Weak points affected: " + str(weak_points_afected) + ".")
 	print("\t[Boss stage]: Attack type: " + str(attack_type) + ".")
@@ -84,7 +92,18 @@ func check_shield() -> bool:
 		return false
 
 func inflict_wp_damage(damage: int, weak_point: int) -> void:
-	wp_health[weak_point] -= damage
+	if advance_condition == AdvanceCondition.Weak_Points or advance_condition == AdvanceCondition.Weak_Points_And_Shield:
+		wp_health[weak_point] -= damage
 
 func inflict_shield_damage(damage: int) -> void:
-	shield_health -= damage
+	if advance_condition == AdvanceCondition.Shield or advance_condition == AdvanceCondition.Weak_Points_And_Shield:
+		shield_health -= damage
+
+func trigger() -> void:
+	if advance_condition == AdvanceCondition.Wait_For_Animation:
+		# Just play the specified stage animation.
+		parent.anim.play(animation)
+		pass
+	else:
+		if has_enter_animation:
+			parent.anim.play(enter_animation)
