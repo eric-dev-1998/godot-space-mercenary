@@ -1,9 +1,5 @@
 res://Scenes/Enemies/battlefied_boss.tscn
-res://Scripts/Interactables/BatlefieldBoss.gd
-res://Scenes/Projectiles/slime_projectile.tscn
-res://Scripts/FX/Projectile.gd
-res://Scripts/Interactables/EnemyAttack.gd
-res://Scenes/Levels/level_battlefield.tscn
-res://Scripts/Interactables/EnemyBehavior.gd
-res://Scripts/BossCore.gd
 res://Scripts/Interactables/BossStage.gd
+res://Scripts/Interactables/BossCore.gd
+res://Scenes/Levels/level_battlefield.tscn
+res://Scripts/devlog.md
