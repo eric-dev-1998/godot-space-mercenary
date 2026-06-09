@@ -11,7 +11,7 @@ var player_node: Node2D
 var cooldown: float = 0.2
 var cooldownCount: float = 0
 
-@onready var blast = preload("res://Scenes/Projectiles/blast.tscn")
+@onready var blast = load("res://Scenes/Projectiles/blast.tscn")
 
 func _init(player_node) -> void:
 	self.player_node = player_node
@@ -24,7 +24,8 @@ func _cooldown(delta: float) -> void:
 		cooldownCount += delta
 
 # Main fire function:
-func fire(position) -> void:	
+func fire(position) -> void:
+	
 	if InputManager.isPrimaryPressed && canFire:
 		playerPosition = position
 		match(mode):
@@ -42,7 +43,7 @@ func fire(position) -> void:
 		cooldownCount = 0
 
 func fire_single() -> void:
-	var blast = preload("res://Scenes/Projectiles/blast.tscn").instantiate()
+	var blast = load("res://Scenes/Projectiles/blast.tscn").instantiate()
 	
 	if secondShot:
 		# Fire from left.
@@ -56,8 +57,8 @@ func fire_single() -> void:
 	player_node.get_parent().add_child(blast)
 
 func fire_double() -> void:
-	var left_blast = preload("res://Scenes/Projectiles/blast_1.tscn").instantiate()
-	var right_blast = preload("res://Scenes/Projectiles/blast_1.tscn").instantiate()
+	var left_blast = load("res://Scenes/Projectiles/blast_1.tscn").instantiate()
+	var right_blast = load("res://Scenes/Projectiles/blast_1.tscn").instantiate()
 	
 	left_blast.position = Vector2(playerPosition.x - 4, playerPosition.y)
 	right_blast.position = Vector2(playerPosition.x + 4, playerPosition.y)
@@ -69,8 +70,8 @@ func fire_double() -> void:
 	blast_data.sfx.stop();
 
 func fire_double_max() -> void:
-	var left_blast = preload("res://Scenes/Projectiles/blast_upgraded.tscn").instantiate()
-	var right_blast = preload("res://Scenes/Projectiles/blast_upgraded.tscn").instantiate()
+	var left_blast = load("res://Scenes/Projectiles/blast_upgraded.tscn").instantiate()
+	var right_blast = load("res://Scenes/Projectiles/blast_upgraded.tscn").instantiate()
 	
 	left_blast.power = 2
 	right_blast.power = 2

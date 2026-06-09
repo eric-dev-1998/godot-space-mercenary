@@ -1,5 +1,6 @@
-res://Scenes/Enemies/battlefied_boss.tscn
-res://Scripts/Interactables/BossStage.gd
-res://Scripts/Interactables/BossCore.gd
-res://Scenes/Levels/level_battlefield.tscn
-res://Scripts/devlog.md
+res://Scenes/UI/controls.tscn
+res://Scripts/FX/Projectile.gd
+res://Scenes/Projectiles/blast.tscn
+res://Scenes/Projectiles/blast_1.tscn
+res://Scenes/Projectiles/blast_upgraded.tscn
+res://Scenes/Projectiles/enemy_blast.tscn

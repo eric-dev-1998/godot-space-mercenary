@@ -14,6 +14,7 @@ var dark: ColorRect
 var light: ColorRect
 var anim: AnimationPlayer
 var finished: bool = true
+var canEmit: bool = false
 
 signal ended
 
@@ -24,6 +25,8 @@ func _ready() -> void:
 	
 	dark.visible = true
 	light.visible = false
+	
+	queue.append(FX_Type.Dark_out)
 
 func _process(delta: float) -> void:
 	if queue.size() != 0:
@@ -51,4 +54,7 @@ func play(fx: FX_Type) -> void:
 func onFinish() -> void:
 	finished = true;
 	queue.remove_at(0)
-	emit_signal("ended")
+	if !canEmit:
+		canEmit = true
+	else:
+		emit_signal("ended")

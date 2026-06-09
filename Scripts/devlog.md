@@ -98,3 +98,46 @@ A boss can now advance a stage for these cases: Weak point damage, shield damage
 
 # 3/16/2026 15:23pm:
 A boss can now advance trough any stage type.
+
+# 5/15/2026 17:17pm:
+Im finally back to development on this project.
+The main boss core logic is working, but damage indicator such as animations and sfx are missing.
+
+### Next:
+See if calling the boss animations and sfx by a common name is possible. If not, then do more research about overrideable functions.
+If none of that works, then complex bosses could be keep out of the final game.
+
+# 5/18/2026 14:20pm:
+A boss can now attack and the attack can vary on each stage.
+
+### Next:
+Find a way to make the weak points get back to normal.
+
+# 5/18/2026 14:20pm:
+The battlefield boss is now compete, i just need to make it play the proper sfx when a player projectile hits it.
+
+# 5/19/2026 12:33pm:
+The battlefield boss is now fully complete.
+The dialogue system was improved and it works without problems.
+
+### Next:
+Start level 2 design.
+
+# 5/20/2026: 17:48pm:
+Level 2 is almost finished, the boss projectiles are not beign spawned in the right position and projectiles are affecting the player for a while after beign destroyed.
+
+# Next:
+1. [Done] Fix the bug with the projectile collision sfx.
+2. [Done] Add a explosion sfx to rockets.
+3. [Done] Make the boss projectiles spawn at the right position.     
+4. [Done] Fix audio problem when hitting the miniboss.
+5. [Done] Add an explosion sfx to minibos death animation.
+6. [Done] Make the boss rockets explode.
+
+# 5/22/2026 11:39am:
+Level 2 full cycle is now complete.
+
+# Next:
+1. [Fixed] Some projectiles sfx are beign played when no projectile interaction is seen on screen. Fix it.
+2. [Omited for now] Enemy spaceships still fire after beign destroyed.
+2. Start with Level 3 design.

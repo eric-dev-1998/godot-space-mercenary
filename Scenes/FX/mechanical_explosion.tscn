@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://uh7uvm84teef"]
+
+[ext_resource type="PackedScene" uid="uid://cnynml0rt1fjv" path="res://Scenes/FX/explosion_bits.tscn" id="1_umj0x"]
+[ext_resource type="PackedScene" uid="uid://cdijdwuk7gdh5" path="res://Scenes/FX/explosion.tscn" id="2_uaxbt"]
+
+[node name="Mechanical_explosion" type="Node2D" unique_id=874266727]
+
+[node name="Explosion_Bits" parent="." unique_id=1524740106 instance=ExtResource("1_umj0x")]
+emitting = true
+one_shot = false
+
+[node name="Explosion" parent="." unique_id=1839382558 instance=ExtResource("2_uaxbt")]
+emitting = true
+one_shot = false
+
+[connection signal="finished" from="Explosion_Bits" to="." method="queue_free"]

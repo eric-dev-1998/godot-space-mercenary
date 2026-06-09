@@ -12,3 +12,9 @@ func _process(delta: float) -> void:
 
 func scroll(delta) -> void:
 	position.y += speed * delta
+
+func resume_movement() -> void:
+	move = true
+
+func stop_movement() -> void:
+	move = false

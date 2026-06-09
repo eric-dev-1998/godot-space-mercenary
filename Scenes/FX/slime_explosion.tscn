@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://liwxa1tg02nd"]
+
+[ext_resource type="PackedScene" uid="uid://bbtum4u7ryx37" path="res://Scenes/FX/organic_explosion_bits.tscn" id="1_0wagl"]
+[ext_resource type="PackedScene" uid="uid://doi3t1pw8qmvl" path="res://Scenes/FX/organic_explosion.tscn" id="2_5ef7q"]
+
+[node name="Slime_explosion" type="Node2D" unique_id=1546434054]
+
+[node name="Explosion_Bits" parent="." unique_id=676607474 instance=ExtResource("1_0wagl")]
+emitting = true
+one_shot = false
+
+[node name="Explosion" parent="." unique_id=385375602 instance=ExtResource("2_5ef7q")]
+emitting = true
+one_shot = false
+
+[connection signal="finished" from="Explosion_Bits" to="." method="queue_free"]

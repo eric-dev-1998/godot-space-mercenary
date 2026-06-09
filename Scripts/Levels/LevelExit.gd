@@ -2,7 +2,7 @@ extends Area2D
 
 # Level exit dialogue.
 @export var dialogue_lines: Array[String]
-var dialogue: Array[DialogueSystem.DialogueLine]
+var level_sequence: LevelSequence
 
 # Dialogue node.
 var dialogueSystem: DialogueSystem
@@ -11,24 +11,23 @@ var center: bool = false
 
 func _ready() -> void:
 	# Get dialogue system.
-	dialogueSystem = get_node("/root/Main/CanvasLayer/UI/Dialogue")
-	hud = get_node("/root/Main/CanvasLayer/UI/HUD/AnimationPlayer");
+	dialogueSystem = get_node("/root/Main/CanvasLayer/Main_UI/Dialogue")
+	hud = get_node("/root/Main/CanvasLayer/Main_UI/HUD/AnimationPlayer")
+	level_sequence = get_parent().get_parent().get_parent() as LevelSequence
 
 func _process(delta: float) -> void:
 	if center:
 		CenterPlayer(delta);
 
 func SetDialogue() -> void:
-	# Convert input lines to a dialogue.
-	for line in dialogue_lines:
-		dialogue.append(DialogueSystem.DialogueLine.new(line, null))
-	
-	# Parse output dialogue to dialogue system.
-	dialogueSystem.set_dialogue(dialogue, 2.0)
+	dialogueSystem.set_dialogue(level_sequence.exit_dialogue)
 
 func StartDialogue(_area: Area2D) -> void:
 	# This method is called when player collides with this Area2D instance.
 	GameData.levels_unlocked += 1
+	print("Projectiles spawned: " + str(GameData.projectiles_spawned) + 
+	"\nProjectiles killed: " + str(GameData.projectiles_killed) +
+	"\nProjectiles alive: " + str(GameData.projectiles_spawned - GameData.projectiles_killed))
 	
 	# Prepare dialogue.
 	SetDialogue()
@@ -38,6 +37,7 @@ func StartDialogue(_area: Area2D) -> void:
 	
 	# Show dialogue.
 	dialogueSystem.show_dialogue()
+	dialogueSystem.exit_level = true
 	
 	# Disable player movement.
 	dialogueSystem.player.movement.canMove = false

@@ -38,8 +38,8 @@ var total_score: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sprite = get_node("PlayerSprite")
-	health_bar = get_node("/root/Main/CanvasLayer/UI/HUD/Health/Fill")
-	score_label = get_node("/root/Main/CanvasLayer/UI/HUD/Score")
+	health_bar = get_node("/root/Main/CanvasLayer/Main_UI/HUD/Health/Fill")
+	score_label = get_node("/root/Main/CanvasLayer/Main_UI/HUD/Score")
 	anim = get_node("AnimationPlayer/AnimationTree")
 	movement = PlayerMovement.new(anim)
 	blast = Player_Blast.new(self)
@@ -79,7 +79,7 @@ func _process(delta: float) -> void:
 	
 	# Update blast:
 	blast._cooldown(delta)
-	if collision.canRecieveDamage:
+	if collision.canRecieveDamage and !collision.dead:
 		if movement.canMove:
 			blast.fire(position)
 	
@@ -94,6 +94,15 @@ func _process(delta: float) -> void:
 		sfx_damage_severe.stop()
 	if health > 6:
 		sfx_damage.stop()
+		
+	if collision.dead:
+		if collision.death_timer >= collision.death_cooldown:
+			var screen_fx = get_node("/root/Main/CanvasLayer/Main_UI/ScreenFX") as Screen_FX
+			screen_fx.connect("ended", get_tree().reload_current_scene)
+			screen_fx.queue.append(Screen_FX.FX_Type.Dark_in)
+			collision.dead = false
+		else:
+			collision.death_timer += delta
 
 func update_hud_info() -> void:
 	var targetSize: float = 32 * (float(health) / float(health_max))

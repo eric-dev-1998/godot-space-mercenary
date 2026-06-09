@@ -25,6 +25,8 @@ var projectileTimer: float = 0
 var fireTimer: float = 0
 var blastNode
 
+var health_core: PackedScene
+
 # Visual fx:
 var particles_smoke: CPUParticles2D
 var particles_bits: CPUParticles2D
@@ -43,6 +45,7 @@ func _ready() -> void:
 	player = get_node("/root/Main/Level/Player")
 	blastNode = load("res://Scenes/Projectiles/enemy_blast.tscn")
 	sfx_death = get_node("/root/Main/SFX/Obstacles/Enemy_Death")
+	health_core = preload("res://Scenes/Pickups/Health_Core_Small.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -67,7 +70,7 @@ func _process(delta: float) -> void:
 		clear()
 
 func onHit(area: Area2D) -> void:
-	if global_position.y < 4:
+	if is_above_screen():
 		return
 	
 	for a in area2d.get_overlapping_areas():
@@ -110,13 +113,12 @@ func hit_blaster(projectileData: Projectile) -> void:
 	if health <= 0:
 		# This enemy ran out of health, destroy it.
 		explode()
-		pass
+		return
 	
 	if health <= healthToShowDamage:
 		# This enemy is badly damaged, init smoke particles.
 		particles_smoke.emitting = true
-		pass
-	pass
+		return
 
 func explode() -> void:
 	# Init enemy explotion sequence.
@@ -128,7 +130,15 @@ func explode() -> void:
 	
 	# Add score to player local scrore:
 	player.local_score += 1
-	pass
+	
+	var rnd = randi_range(0, 100)
+	if rnd > 30 and rnd < 70:
+		var core = health_core.instantiate()
+		core.position = position
+		if !in_group:
+			get_parent().call_deferred("add_child", core)
+		else:
+			get_parent().get_parent().call_deferred("add_child", core)
 
 func clear() -> void:
 	# Remove this enemy instance from scene.
@@ -179,8 +189,8 @@ func spawn_blast() -> void:
 	blast.position = position
 	get_parent().add_child(blast)
 
+func is_above_screen() -> bool:
+	return global_position.y < 8
+
 func is_out_of_screen() -> bool:
-	if global_position.y > 168:
-		return true
-	else:
-		return false
+	return global_position.y > 168

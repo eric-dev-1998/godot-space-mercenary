@@ -56,6 +56,7 @@ node_connections = [&"output", 0, &"Animation"]
 
 [node name="Blast" type="Node2D" unique_id=910948986]
 script = ExtResource("1_2jaqs")
+isEnemy = true
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1378592992]
 texture_filter = 1

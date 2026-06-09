@@ -2,17 +2,6 @@ extends Control
 
 class_name DialogueSystem
 
-# Dialogue lines properties:
-class DialogueLine:	
-	var text: String
-	var texture
-	var auto: bool = false
-	var autoTime: float = 1.0
-	
-	func _init(text: String, texture) -> void:
-		self.text = text
-		self.texture = texture
-
 # Nodes:
 var text: Label
 var picture: TextureRect
@@ -20,6 +9,9 @@ var anim: AnimationPlayer
 var anim_picture: AnimationPlayer
 var player: Player
 var screenFx: Screen_FX
+var sfx: AudioStreamPlayer2D
+var sfx_end: AudioStreamPlayer2D
+var exit_level: bool = false
 
 # Dialogue system properties:
 var previous_pic: Texture
@@ -28,9 +20,11 @@ var show: bool = false
 signal onEnd
 
 # Dialogue content:
+var _dialogue_lines: Array[DialogueLine]
 var lines: Array
 var isAutomatic: bool = false;
 var autoDelay: float = 0
+var lastPicture: Texture2D
 
 func GoToLevelSelection() -> void:
 	get_tree().change_scene_to_file("res://Scenes/UI/level_selection.tscn")
@@ -41,7 +35,9 @@ func _ready() -> void:
 	anim = get_node("AnimationPlayer")
 	anim_picture = get_node("Picture/AnimationPlayer")
 	player = get_node("/root/Main/Level/Player")
-	screenFx = get_node("/root/Main/CanvasLayer/UI/ScreenFX")
+	screenFx = get_node("/root/Main/CanvasLayer/Main_UI/ScreenFX")
+	sfx = get_node("SFX")
+	sfx_end = get_node("SFX_END")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -50,30 +46,16 @@ func _input(event: InputEvent) -> void:
 				if !anim.is_playing() && show:
 					anim.play("anim_dialogue_fade")
 					
-					var pic
-					if lineCounter < lines.size() - 1:
-						pic = lines[lineCounter + 1].texture
-					
-					if pic is Texture:
-						if pic != previous_pic:
-							anim_picture.play("anim_dialogue_picture_fade")
-					elif pic is String:
-						if pic == "none":
-							lines[lineCounter + 1].texture = null
-							anim_picture.play("anim_dialogue_picture_fade")
-						elif pic == "same":
-							return
-
-func _set_dialogue(lines: Array) -> void:
-	self.lines = lines
-	show = true
-	isAutomatic = false
-	
-func set_dialogue(lines: Array, delay: float):
-	self.lines = lines
-	isAutomatic = true
-	autoDelay = 1 + delay
-	show = true
+					if lineCounter < _dialogue_lines.size() - 1:
+						var picture: Texture2D = _dialogue_lines[lineCounter + 1].texture
+						if picture != null:
+							if lastPicture != null and lastPicture.resource_name == picture.resource_name:
+								return
+							else:
+								anim_picture.play("anim_dialogue_picture_fade")
+						
+func set_dialogue(dialogue: Array[DialogueLine]):
+	_dialogue_lines = dialogue
 
 func auto_dialogue_loop() -> void:
 	while show and isAutomatic:
@@ -89,7 +71,6 @@ func auto_dialogue_loop() -> void:
 
 func show_dialogue() -> void:
 	# Start dialogue:
-	
 	anim.play("anim_dialogue_fade")
 	picture.texture = null
 	show = true
@@ -104,14 +85,21 @@ func show_dialogue() -> void:
 
 func writeNextLine() -> void:
 	# Write the next dialogue line if available:
-	if lineCounter >= (lines.size() - 1):
+	if lineCounter >= (_dialogue_lines.size() - 1):
 		endDialogue()
 	else:
+		if lineCounter == -1:
+			sfx.play()
 		lineCounter += 1
-		text.text = lines[lineCounter].text
+		text.text = _dialogue_lines[lineCounter].text
+		exit_level = _dialogue_lines[lineCounter].exit_level
+		
+		if exit_level:
+			sfx_end.connect("finished", GoToLevelSelection)
 
 func changePicture() -> void:
-	picture.texture = lines[lineCounter +1].texture
+	picture.texture = _dialogue_lines[lineCounter + 1].texture
+	lastPicture = picture.texture
 
 func endDialogue() -> void:
 	# End dialogue:
@@ -122,5 +110,9 @@ func endDialogue() -> void:
 	if player != null:
 		player.movement.canMove = true
 		player.blast.canFire = true
-	
 	emit_signal("onEnd")
+	
+	if exit_level:
+		screenFx.queue.append(Screen_FX.FX_Type.Dark_in)
+	
+	sfx_end.play()

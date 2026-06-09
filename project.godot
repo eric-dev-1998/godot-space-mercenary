@@ -14,10 +14,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Spaceships2D"
-run/main_scene="uid://cl5fymo801kcj"
+config/name="Space Pilot"
+config/version="0.7"
+run/main_scene="uid://cijntq8php6c5"
 config/features=PackedStringArray("4.6", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://b8j7eg7go73xp"
 
 [autoload]
 
@@ -29,6 +30,8 @@ _GameData="*res://Scripts/Globals/GameData.gd"
 window/size/viewport_width=160
 window/size/viewport_height=160
 window/size/resizable=false
+window/size/window_width_override=480
+window/size/window_height_override=480
 window/stretch/mode="canvas_items"
 
 [dotnet]

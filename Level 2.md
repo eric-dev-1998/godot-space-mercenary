@@ -18,10 +18,9 @@ The player destroys the enemy boss and then reaches the lab facilities.
 
 ## **Enemies:**
 1. Beetle.
-2. Weak enemy spaceship.
-3. Alpha enemy spaceship.
-4. Mini boss
-5. Boss
+2. Spaceship
+3. Mini boss
+4. Boss
 
 ## **Obstacles:**
 1. Small missiles: These come in to a straight line.
@@ -30,13 +29,13 @@ The player destroys the enemy boss and then reaches the lab facilities.
 4. Spaceship parts.
 
 ## **Level stages:**
-1. Some damaged spaceships appear followed by some beetles.
-2. A few small missiles and a horde of weak enemy spaceships.
-3. A few alpha spaceships attack.
-4. Mini boss
-5. Rain of auto aimed missiles.
-6. Pieces of the lab starts to show up followed by more weak spaceships.
-7. A horde of alpha spaceships appears.
+1. [Done] Some damaged spaceships appear followed by some beetles.
+2. [Done] A few small missiles and a horde of weak enemy spaceships.
+3. [Done] A few alpha spaceships attack.
+4. [Done] Mini boss
+5. [Done] Rain of auto aimed missiles.
+6. [Done] Pieces of the lab starts to show up followed by more weak spaceships.
+7. [Omitted] A horde of alpha spaceships appears.
 8. Boss
 
 ## Mini boss:

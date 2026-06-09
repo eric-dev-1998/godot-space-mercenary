@@ -128,7 +128,7 @@ func spawnItem() -> void:
 		var spawn: bool = false
 		var n = randi_range(0, 100)
 		
-		if n > 20 and n < 35:
+		if n > 20 and n < 45:
 			spawn = true
 		else:
 			item_spawned = true
@@ -149,10 +149,12 @@ func spawnItem() -> void:
 			if spawn:
 				if item_id == 0:
 					item_node = item_health.instantiate()
-				#elif item_id == 1:
+				elif item_id == 1:
 					#item_node = item_upgrade.instantiate()
+					return
 				else:
-					item_node = item_health_max.instantiate()
+					#item_node = item_health_max.instantiate()
+					return
 				
 				get_parent().add_child(item_node)
 			item_node.global_position = global_position

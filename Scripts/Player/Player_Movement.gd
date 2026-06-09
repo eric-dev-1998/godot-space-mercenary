@@ -6,7 +6,7 @@ var player: Player
 
 # Movement properties:
 var sideSpeed: float = 1.5
-var forwardSpeed: float = -0.75
+var forwardSpeed: float = -1.15
 var brakeSpeed: float = 0.75
 var moveVector: Vector2 = Vector2.ZERO
 var canMove = false
@@ -21,6 +21,9 @@ func _init(anim: AnimationTree) -> void:
 	animationTree = anim
 
 func move(parent: Player) -> void:
+	if parent.collision.dead:
+		return
+	
 	# Side movement:
 	if InputManager.isRightPressed and !InputManager.isLeftPressed:
 		moveVector.x = sideSpeed

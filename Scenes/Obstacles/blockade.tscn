@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bf28jah5gviqt"]
+
+[ext_resource type="Texture2D" uid="uid://dpipoarjs2bio" path="res://Sprites/Obstacles/Breakable_Debri_2.png" id="1_2f7bi"]
+[ext_resource type="Script" uid="uid://cjtwq3h02nfav" path="res://Scripts/Interactables/Obstacle.gd" id="1_hka64"]
+[ext_resource type="Texture2D" uid="uid://cyuukyqau4vqo" path="res://Sprites/Obstacles/Breakable_Debri.png" id="2_hka64"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4j3wy"]
+radius = 11.0
+height = 32.0
+
+[node name="Blockade" type="Node2D" unique_id=965534317]
+script = ExtResource("1_hka64")
+health = 20
+item = 3
+
+[node name="Debri_B" type="Sprite2D" parent="." unique_id=1199148576]
+texture_filter = 1
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B2" type="Sprite2D" parent="." unique_id=1864424789]
+texture_filter = 1
+position = Vector2(5, -6)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B3" type="Sprite2D" parent="." unique_id=935938875]
+texture_filter = 1
+position = Vector2(-3, -5)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B4" type="Sprite2D" parent="." unique_id=357424219]
+texture_filter = 1
+position = Vector2(-7, -1)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B5" type="Sprite2D" parent="." unique_id=932296229]
+texture_filter = 1
+position = Vector2(-4, 4)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B6" type="Sprite2D" parent="." unique_id=708324984]
+texture_filter = 1
+position = Vector2(3, 3)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B7" type="Sprite2D" parent="." unique_id=1215170594]
+texture_filter = 1
+position = Vector2(7, -1)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B8" type="Sprite2D" parent="." unique_id=1908234324]
+texture_filter = 1
+position = Vector2(1, -11)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B9" type="Sprite2D" parent="." unique_id=1500848882]
+texture_filter = 1
+position = Vector2(-6, -9)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B10" type="Sprite2D" parent="." unique_id=914710282]
+texture_filter = 1
+position = Vector2(-11, -5)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B11" type="Sprite2D" parent="." unique_id=364447731]
+texture_filter = 1
+position = Vector2(-11, 2)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B12" type="Sprite2D" parent="." unique_id=2008303606]
+texture_filter = 1
+position = Vector2(-14, 0)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B13" type="Sprite2D" parent="." unique_id=1467779348]
+texture_filter = 1
+position = Vector2(7, -10)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B14" type="Sprite2D" parent="." unique_id=1244997041]
+texture_filter = 1
+position = Vector2(11, -6)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_B15" type="Sprite2D" parent="." unique_id=1379601328]
+texture_filter = 1
+position = Vector2(9, 2)
+texture = ExtResource("1_2f7bi")
+
+[node name="Debri_A" type="Sprite2D" parent="." unique_id=865933012]
+texture_filter = 1
+position = Vector2(-11, -3)
+rotation = -0.6048277
+texture = ExtResource("2_hka64")
+
+[node name="Debri_A2" type="Sprite2D" parent="." unique_id=388942926]
+texture_filter = 1
+position = Vector2(6.000002, -8.000001)
+rotation = 0.5015174
+texture = ExtResource("2_hka64")
+
+[node name="Debri_A3" type="Sprite2D" parent="." unique_id=1935696462]
+texture_filter = 1
+position = Vector2(3, 5)
+rotation = -0.3453564
+texture = ExtResource("2_hka64")
+
+[node name="Debri_A4" type="Sprite2D" parent="." unique_id=1254250832]
+texture_filter = 1
+position = Vector2(1, -2.9999995)
+rotation = -1.9068837
+texture = ExtResource("2_hka64")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1834992173]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1460011891]
+position = Vector2(0, -3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4j3wy")

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name BossCore
 
 # Most motions will be built into animation clips.
@@ -21,6 +21,11 @@ var enable_special_attack: bool = false
 var weak_points_health: Array[int]
 var anim: AnimationPlayer
 
+var spawned: bool = false
+var level: LevelContent
+
+var _attack: EnemyAttack = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Check enter animation:
@@ -31,7 +36,6 @@ func _ready() -> void:
 	
 	if enter_animation == null or enter_animation.length() <= 0:
 		print("[Boss core]["+ name +"]: No enter animation was specified.")
-		return
 	
 	# Check attacks:
 	if attack_primary == null:
@@ -86,26 +90,57 @@ func _ready() -> void:
 	
 	print("[Boss core]["+ name +"]: Boss ready.")
 	
-	spawn()
+	level = get_node("/root/Main/Level/Content") as LevelContent
+	if !level:
+		print("No level content node was found.")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if !spawned:
+		if global_position.y >= 80:
+			spawn()
+			level.stop_movement()
+			spawned = true
+	
+	if _attack != null:
+		_attack.fire(delta);
 
 func spawn() -> void:
 	# Start boss spawn animation.
-	anim.play(enter_animation)
-
+	if enter_animation.length() > 0:
+		anim.play(enter_animation)
+	else:
+		advance_stage()
 func start() -> void:
 	# Called at the end of the boss spawn animation.
 	advance_stage()
 
 func weak_point_hit(area: Area2D, index: int) -> void:
+	if stages[stage].weak_points_afected.size() <= 0:
+		return
+	
 	if area.get_parent() is Projectile:
 		var p = area.get_parent() as Projectile
 		if !p.isEnemy:
-			#print("[Boss core]["+ name +"]: Hit on weak point no: " + str(index))
+			if stages[stage].wp_health[index] <= 0:
+				return;
+			
+			# Inflict damage to the weak point and play the hit fx:
 			stages[stage].inflict_wp_damage(p.power, index)
+			
+			var hitfx = weak_points[index].get_parent().get_node("HitFX") as AnimationPlayer
+			
+			if stages[stage].wp_health[index] <= 0:
+				# Play weak point destruction animation.
+				var idle_anim = weak_points[index].get_parent().get_node("Idle") as AnimationPlayer
+				var tree = idle_anim.get_node("Tree") as AnimationTree
+				tree.active = false;
+				
+				hitfx.play("destroy")
+			else:
+				# Play weak point hit animation.
+				hitfx.play("damage")
+				
 			if stages[stage].check_status():
 				# Advance if current stage conditions are met.
 				advance_stage()
@@ -125,6 +160,8 @@ func advance_stage() -> void:
 		# It was the last stage, just play advance animation if any and then return.
 		if stages[stage].advance_animation.length() != 0:
 			anim.play(stages[stage].advance_animation)
+		else:
+			advance_level()
 	else:
 		# Play enter animation if any and if stage is not an wait_for_animation stage.
 		if stages[stage].advance_animation.length() != 0 and stages[stage].advance_condition != BossStage.AdvanceCondition.Wait_For_Animation:
@@ -132,4 +169,30 @@ func advance_stage() -> void:
 		
 		# Advance:
 		stage += 1
+		
+		# Load stage attack data:
+		match stages[stage].attack_type:
+			BossStage.AttackType.None: _attack = null
+			BossStage.AttackType.Primary: _attack = attack_primary
+			BossStage.AttackType.Secondary: _attack = attack_secondary
+			BossStage.AttackType.Special: _attack = attack_special
+		
+		if _attack != null and _attack.parent_node == null:
+			_attack.parent_node = get_node(get_path())
+		
+		# Reset weak points animations:
+		if stages[stage].weak_points_afected.size() > 0:
+			for wp in weak_points:
+				var hitfx = wp.get_parent().get_node("HitFX") as AnimationPlayer
+				hitfx.play("RESET");
+				
+				# Play weak point destruction animation.
+				var idle_anim = wp.get_parent().get_node("Idle") as AnimationPlayer
+				var tree = idle_anim.get_node("Tree") as AnimationTree
+				tree.active = true;
+		
 		stages[stage].trigger()
+
+func advance_level() -> void:
+	level.resume_movement()
+	queue_free()

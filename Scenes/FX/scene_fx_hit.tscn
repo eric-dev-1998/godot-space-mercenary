@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://h7r34iexkpr3"]
+[gd_scene format=3 uid="uid://h7r34iexkpr3"]
 
 [ext_resource type="Script" uid="uid://wdyrfj6bm3he" path="res://Scripts/FX/Hit.gd" id="1_bv1p3"]
 [ext_resource type="Texture2D" uid="uid://btn5bomdfm1cn" path="res://Sprites/FX/Hit_0.png" id="1_srhd7"]
@@ -70,28 +70,26 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_srhd7")
 nodes/Animation/position = Vector2(150, 91.6667)
 node_connections = [&"output", 0, &"Animation"]
 
-[node name="FX_Hit" type="Node2D"]
+[node name="FX_Hit" type="Node2D" unique_id=227160659]
 script = ExtResource("1_bv1p3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2018496046]
 z_index = 1
 texture_filter = 1
 texture = ExtResource("1_srhd7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5yei0")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1660121755]
+libraries/ = SubResource("AnimationLibrary_5yei0")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=454340027]
 tree_root = SubResource("AnimationNodeBlendTree_8c3uj")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Hit_Asteroid" type="AudioStreamPlayer2D" parent="."]
+[node name="Hit_Asteroid" type="AudioStreamPlayer2D" parent="." unique_id=53760795]
 stream = ExtResource("6_8c3uj")
 
-[node name="Hit_Solid" type="AudioStreamPlayer2D" parent="."]
+[node name="Hit_Solid" type="AudioStreamPlayer2D" parent="." unique_id=1266274714]
 stream = ExtResource("7_8rqlv")
 
-[node name="Hit_Enemy" type="AudioStreamPlayer2D" parent="."]
+[node name="Hit_Enemy" type="AudioStreamPlayer2D" parent="." unique_id=1319061808]
 stream = ExtResource("9_bv1p3")

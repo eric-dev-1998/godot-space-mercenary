@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://doi3t1pw8qmvl"]
+
+[ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="1_m78rd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3u4ym"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 10
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Explosion" type="CPUParticles2D" unique_id=385375602]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_3u4ym")
+emitting = false
+amount = 10
+texture = ExtResource("1_m78rd")
+one_shot = true
+explosiveness = 1.0
+randomness = 0.69
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+color = Color(0.317647, 0.729412, 1, 1)
+anim_speed_min = 1.0
+anim_speed_max = 4.0

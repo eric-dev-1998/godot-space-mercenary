@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name EnemyCore
 
@@ -16,11 +16,14 @@ var damage: CPUParticles2D
 var damageMid: CPUParticles2D
 var damageSev: CPUParticles2D
 var explosion_particles: CPUParticles2D
+var death_sfx: AudioStreamPlayer2D
+
+var level: LevelContent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	attack.parent = get_node(get_path())
-	attack.onReady()
+	attack.load();
 	
 	behavior.parent = get_node(get_path())
 	behavior.parentAttack = attack
@@ -31,8 +34,16 @@ func _ready() -> void:
 	damageMid = get_node("DamageMid")
 	damageSev = get_node("DamageSevere")
 	explosion_particles = get_node("Explosion")
+	death_sfx = get_node("DeathSFX");
+	
+	level = get_parent().get_parent() as LevelContent
 
 func _process(delta: float) -> void:
+	if global_position.y > 32:
+		level.stop_movement()
+	else:
+		return
+	
 	if attack:
 		attack.fire(delta)
 	
@@ -56,6 +67,7 @@ func destroy() -> void:
 	eye.visible = false
 	
 	explosion_particles.emitting = true;
+	death_sfx.play()
 
 func showDamage() -> void:
 	if health < health_high and health >= health_mid:
@@ -68,6 +80,9 @@ func showDamage() -> void:
 		damageSev.emitting = true
 
 func recieveDamage(projectile: Projectile) -> void:
+	if global_position.y < 8:
+		return;
+		
 	projectile.explode(2)
 	
 	if invinsible:
@@ -84,4 +99,5 @@ func recieveDamage(projectile: Projectile) -> void:
 		destroy()
 
 func onExplosionFinished() -> void:
+	level.resume_movement()
 	queue_free()

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cxxqo3cu4hu65" path="res://Scripts/UI/Dialogue.gd" id="1_d5t14"]
 [ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="1_y701c"]
+[ext_resource type="AudioStream" uid="uid://cd4bqir41ugtf" path="res://SFX/RadioTransmissionOff.wav" id="3_0nvb7"]
+[ext_resource type="AudioStream" uid="uid://cpqnrcryj6sgp" path="res://SFX/RadioTransmissionon.wav" id="3_15aj3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d5t14"]
 font = ExtResource("1_y701c")
@@ -155,3 +157,9 @@ libraries/ = SubResource("AnimationLibrary_tg5y5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1903008591]
 libraries/ = SubResource("AnimationLibrary_0nvb7")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1320577525]
+stream = ExtResource("3_15aj3")
+
+[node name="SFX_END" type="AudioStreamPlayer2D" parent="." unique_id=898555620]
+stream = ExtResource("3_0nvb7")

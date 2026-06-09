@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rffesr1hh60q"]
+[gd_scene format=3 uid="uid://rffesr1hh60q"]
 
 [ext_resource type="Script" uid="uid://bv4se2yxioua6" path="res://Scripts/UI/Screen_FX.gd" id="1_u7md3"]
 
@@ -88,6 +88,10 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_u7md3"]
+resource_name = "anim_screenfx_dark_snap"
+length = 0.01
+
 [sub_resource type="Animation" id="Animation_6bp64"]
 resource_name = "anim_screenfx_light_in"
 tracks/0/type = "value"
@@ -147,10 +151,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_u7md3"]
-resource_name = "anim_screenfx_dark_snap"
-length = 0.01
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ynf5e"]
 _data = {
 &"RESET": SubResource("Animation_kry3j"),
@@ -161,7 +161,7 @@ _data = {
 &"anim_screenfx_light_out": SubResource("Animation_344ge")
 }
 
-[node name="ScreenFX" type="Control"]
+[node name="ScreenFX" type="Control" unique_id=1064669576]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -170,7 +170,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u7md3")
 
-[node name="Dark" type="ColorRect" parent="."]
+[node name="Dark" type="ColorRect" parent="." unique_id=716265578]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,7 +179,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Light" type="ColorRect" parent="."]
+[node name="Light" type="ColorRect" parent="." unique_id=1469154794]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,7 +187,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ynf5e")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798847403]
+libraries/ = SubResource("AnimationLibrary_ynf5e")

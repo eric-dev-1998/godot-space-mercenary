@@ -67,10 +67,13 @@ func behave_follow_and_stop(delta: float, protect: bool) -> void:
 				parent.invinsible = false
 
 func follow(delta: float) -> void:
+	if parent.global_position.y < 8:
+		return
+	
 	var player: Node2D = parent.get_node("/root/Main/Level/Player")
 	if player == null:
 		print("No player node was found.")
 		type = BehaviorType.Still
 		
 	var targetPosition = Vector2(player.global_position.x, parent.global_position.y)
-	parent.global_position = parent.position.move_toward(targetPosition, delta * followSpeed)
+	parent.global_position = parent.global_position.move_toward(targetPosition, delta * followSpeed)

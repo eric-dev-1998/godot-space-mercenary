@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dafpc0abnfpey"]
+
+[ext_resource type="Script" uid="uid://hjvlc74ikg8y" path="res://Scripts/Interactables/EnemyAttack.gd" id="1_mdbeq"]
+[ext_resource type="Script" uid="uid://bcnr7wsswclwu" path="res://Scripts/Interactables/AttackData.gd" id="1_v1426"]
+[ext_resource type="PackedScene" uid="uid://u3xys6qpr6gh" path="res://Scenes/Projectiles/Projectile_CagedCreature.tscn" id="2_v1426"]
+
+[sub_resource type="Resource" id="Resource_7mhtj"]
+script = ExtResource("1_mdbeq")
+blastNode = ExtResource("2_v1426")
+spawn_randomly_over_x = true
+spawn_min_x = 8
+spawn_max_x = 152
+metadata/_custom_type_script = "uid://hjvlc74ikg8y"
+
+[node name="Primary" type="Node2D" unique_id=984594745]
+script = ExtResource("1_v1426")
+attack_data = SubResource("Resource_7mhtj")

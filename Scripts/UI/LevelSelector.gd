@@ -10,7 +10,10 @@ var arrow_left: TextureRect
 var arrow_right: TextureRect
 var label: Label
 var top_label: Label
+var boss_label: Label
 var sfx: Screen_FX
+var select_sfx: AudioStreamPlayer2D
+var switch_sfx: AudioStreamPlayer2D
 
 # Camera properties:
 var camera: Camera2D
@@ -21,10 +24,14 @@ var camera_target: Vector2
 var currentPosition: int = 0
 var lockMovement: bool = false
 var onPosition: bool = false
+var canSelect: bool = false
+var selectEnabled: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sfx = get_node("CanvasLayer/UI/ScreenFX")
+	select_sfx = get_node("SelectSFX")
+	switch_sfx = get_node("SwitchSFX")
 	asteroids = get_node("Stages/Asteroids")
 	battlefield = get_node("Stages/Battlefield")
 	lab = get_node("Stages/LAB")
@@ -33,9 +40,18 @@ func _ready() -> void:
 	arrow_right = get_node("CanvasLayer/UI/Arrow_Right")
 	label = get_node("CanvasLayer/UI/Label")
 	top_label = get_node("CanvasLayer/UI/Label2")
+	boss_label = get_node("CanvasLayer/UI/Label3")
 	
-	sfx.queue.append(sfx.FX_Type.Dark_out)
+	#sfx.queue.append(sfx.FX_Type.Dark_out)
 	camera_target = asteroids.position
+	
+	if InputManager.isSpacePressed:
+		canSelect = false
+		print("awa")
+	else:
+		selectEnabled = true
+		canSelect = true
+		print("ewe")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,11 +60,20 @@ func _process(delta: float) -> void:
 		onPosition = true
 		label.visible = true
 		top_label.visible = true
+		if currentPosition < 2:
+			top_label.text = "Press space to\nstart"
+		else:
+			top_label.text = "This level is not included on this demo."
+		
+		if currentPosition > 0:
+			boss_label.visible = true
+			
 		manage_arrows()
 	else:
 		onPosition = false
 		label.visible = false
 		top_label.visible = false
+		boss_label.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -56,11 +81,21 @@ func _input(event: InputEvent) -> void:
 			if onPosition:
 				match event.keycode:
 					KEY_SPACE:
-						select_stage()
+						if canSelect:
+							if currentPosition != 2:
+								selectEnabled = true
+								canSelect = false
+								select_sfx.play()
+								print("owo")
 					KEY_LEFT:
 						switch_stage(clampIndex(currentPosition - 1))
 					KEY_RIGHT:
 						switch_stage(clampIndex(currentPosition + 1))
+		elif event.is_released():
+			match event.keycode:
+				KEY_SPACE:
+					if !selectEnabled:
+						canSelect = true
 
 func clampIndex(index: int) -> int:
 	if GameData.levels_unlocked == 0:
@@ -104,6 +139,8 @@ func manage_arrows() -> void:
 			arrow_right.visible = false
 
 func switch_stage(index: int) -> void:
+	switch_sfx.play()
+	
 	match index:
 		0:
 			camera_target = asteroids.global_position
@@ -113,7 +150,7 @@ func switch_stage(index: int) -> void:
 			label.text = "Battlefield"
 		2:
 			camera_target = lab.global_position
-			label.text = "The LAB"
+			label.text = "The L.A.B."
 
 func select_stage() -> void:
 	
@@ -122,10 +159,14 @@ func select_stage() -> void:
 			0:
 				# Load asteroids level.
 				get_tree().change_scene_to_file("res://Scenes/Levels/level_asteroids.tscn")
+				canSelect = false
 				pass
 			1:
 				# Load batteflield level.
+				canSelect = false
+				get_tree().change_scene_to_file("res://Scenes/Levels/level_battlefield.tscn")
 				pass
 			2:
 				# Load LAB level.
+				canSelect = true
 				pass

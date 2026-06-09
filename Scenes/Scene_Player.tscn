@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bbrpb1q5y2f3m"]
+[gd_scene format=3 uid="uid://bbrpb1q5y2f3m"]
 
 [ext_resource type="Script" uid="uid://dfw4dnmgn1eqf" path="res://Scripts/Player/Player.gd" id="1_ojqh0"]
 [ext_resource type="Texture2D" uid="uid://dh1lp4d1oko3r" path="res://Sprites/Spaceships/Player/Idle_0.png" id="2_rdiiy"]
@@ -218,32 +218,30 @@ particles_anim_h_frames = 10
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" unique_id=705637146]
 script = ExtResource("1_ojqh0")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1239735203]
 unique_name_in_owner = true
 texture_filter = 1
 texture = ExtResource("2_rdiiy")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 14
-collision_mask = 14
+[node name="Area2D" type="Area2D" parent="." unique_id=1104912649]
+collision_layer = 94
+collision_mask = 94
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=750660841]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_ojqh0")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1908867126]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_rdiiy")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_y3g31")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=490906578]
+libraries/ = SubResource("AnimationLibrary_y3g31")
 
-[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=269455608]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeBlendTree_x1arp")
 anim_player = NodePath("..")
@@ -253,9 +251,9 @@ parameters/Motion/conditions/dead = false
 parameters/Motion/conditions/idle = false
 parameters/Motion/conditions/no_damage = false
 
-[node name="VFX" type="Node2D" parent="."]
+[node name="VFX" type="Node2D" parent="." unique_id=1612664510]
 
-[node name="Particles_Damage" type="CPUParticles2D" parent="VFX"]
+[node name="Particles_Damage" type="CPUParticles2D" parent="VFX" unique_id=1300078582]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_eu8hu")
 emitting = false
@@ -265,10 +263,12 @@ lifetime = 2.0
 emission_shape = 1
 emission_sphere_radius = 6.0
 gravity = Vector2(0, 40)
+scale_amount_min = 0.65
+scale_amount_max = 0.65
 anim_speed_min = 1.0
 anim_speed_max = 2.0
 
-[node name="Particles_Fire" type="CPUParticles2D" parent="VFX"]
+[node name="Particles_Fire" type="CPUParticles2D" parent="VFX" unique_id=1555194515]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_qoh13")
 emitting = false
@@ -278,11 +278,13 @@ lifetime = 2.0
 emission_shape = 1
 emission_sphere_radius = 6.0
 gravity = Vector2(0, 40)
+scale_amount_min = 0.7
+scale_amount_max = 0.7
 color = Color(1, 1, 0.33333334, 1)
 anim_speed_min = 1.0
 anim_speed_max = 2.0
 
-[node name="Explosion_Bits" type="CPUParticles2D" parent="VFX"]
+[node name="Explosion_Bits" type="CPUParticles2D" parent="VFX" unique_id=685167718]
 emitting = false
 amount = 16
 one_shot = true
@@ -296,7 +298,7 @@ scale_amount_curve = SubResource("Curve_a7kud")
 color = Color(0.768098, 0.768098, 0.768098, 1)
 color_ramp = SubResource("Gradient_eu8hu")
 
-[node name="Explosion" type="CPUParticles2D" parent="VFX"]
+[node name="Explosion" type="CPUParticles2D" parent="VFX" unique_id=348468172]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_ssxd6")
 emitting = false

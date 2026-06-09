@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5g4kj5mle64o" path="res://Scripts/Levels/level_sequence.gd" id="1_5btj4"]
 [ext_resource type="Script" uid="uid://ckhmgj0mtfh5v" path="res://Scripts/Levels/LevelContent.gd" id="1_vi18i"]
+[ext_resource type="Script" uid="uid://c1b0uhqy1shd" path="res://Scripts/UI/DialogueLine.gd" id="2_w8tu0"]
 [ext_resource type="PackedScene" uid="uid://bbrpb1q5y2f3m" path="res://Scenes/Scene_Player.tscn" id="3_6pt6a"]
 [ext_resource type="PackedScene" uid="uid://dvk2owd63rg41" path="res://Scenes/Obstacles/obstacle_asteroid.tscn" id="3_upqjl"]
 [ext_resource type="PackedScene" uid="uid://clpyr2gpodqs7" path="res://Scenes/UI/dialogue.tscn" id="4_6hh74"]
@@ -35,11 +36,49 @@
 [ext_resource type="AudioStream" uid="uid://bpaw7ugokf2it" path="res://SFX/BGM/Meteo_intro.ogg" id="30_wihdv"]
 [ext_resource type="AudioStream" uid="uid://cdv43v04yjmex" path="res://SFX/BGM/Meteo_loop.ogg" id="31_w8tu0"]
 
+[sub_resource type="Resource" id="Resource_qofaa"]
+script = ExtResource("2_w8tu0")
+text = "I wont make it in time if i go around the asteroids field"
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_0sxug"]
+script = ExtResource("2_w8tu0")
+text = "In need to go trough"
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_i1o5h"]
+script = ExtResource("2_w8tu0")
+text = "I better be careful"
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_w8tu0"]
+script = ExtResource("2_w8tu0")
+text = "Huh?..."
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_m5i0n"]
+script = ExtResource("2_w8tu0")
+text = "Those damaged ships are not a good signal."
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_ln1mr"]
+script = ExtResource("2_w8tu0")
+text = "Seems there is a battlefield ahead."
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_rt4ms"]
+script = ExtResource("2_w8tu0")
+text = "Let's go."
+exit_level = true
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi0ri"]
 size = Vector2(160, 20)
 
 [node name="Main" type="Node" unique_id=50621081]
 script = ExtResource("1_5btj4")
+enter_dialogue = Array[ExtResource("2_w8tu0")]([SubResource("Resource_qofaa"), SubResource("Resource_0sxug"), SubResource("Resource_i1o5h")])
+exit_dialogue = Array[ExtResource("2_w8tu0")]([SubResource("Resource_w8tu0"), SubResource("Resource_m5i0n"), SubResource("Resource_ln1mr"), SubResource("Resource_rt4ms")])
 
 [node name="Level" type="Node2D" parent="." unique_id=1854563071]
 
@@ -597,47 +636,36 @@ position = Vector2(46, -6072)
 
 [node name="Creature" parent="Level/Content/Enemies" unique_id=1402480493 instance=ExtResource("4_jagr1")]
 position = Vector2(79, -800)
-maxAmmo = 2
 
 [node name="Creature2" parent="Level/Content/Enemies" unique_id=406359637 instance=ExtResource("4_jagr1")]
 position = Vector2(54, -1052)
-maxAmmo = 2
 
 [node name="Creature3" parent="Level/Content/Enemies" unique_id=659496459 instance=ExtResource("4_jagr1")]
 position = Vector2(106, -1052)
-maxAmmo = 2
 
 [node name="Creature4" parent="Level/Content/Enemies" unique_id=416892894 instance=ExtResource("4_jagr1")]
 position = Vector2(125, -2658)
-maxAmmo = 2
 
 [node name="Creature5" parent="Level/Content/Enemies" unique_id=9986288 instance=ExtResource("4_jagr1")]
 position = Vector2(31, -2846)
-maxAmmo = 2
 
 [node name="Creature6" parent="Level/Content/Enemies" unique_id=1650746350 instance=ExtResource("4_jagr1")]
 position = Vector2(118, -3027)
-maxAmmo = 2
 
 [node name="Creature7" parent="Level/Content/Enemies" unique_id=1661194884 instance=ExtResource("4_jagr1")]
 position = Vector2(120, -3276)
-maxAmmo = 2
 
 [node name="Creature8" parent="Level/Content/Enemies" unique_id=1346103319 instance=ExtResource("4_jagr1")]
 position = Vector2(25, -3532)
-maxAmmo = 2
 
 [node name="Creature9" parent="Level/Content/Enemies" unique_id=1417239561 instance=ExtResource("4_jagr1")]
 position = Vector2(62, -3555)
-maxAmmo = 2
 
 [node name="Creature10" parent="Level/Content/Enemies" unique_id=471430553 instance=ExtResource("4_jagr1")]
 position = Vector2(135, -3521)
-maxAmmo = 2
 
 [node name="Creature11" parent="Level/Content/Enemies" unique_id=1552775206 instance=ExtResource("4_jagr1")]
 position = Vector2(107, -3555)
-maxAmmo = 2
 
 [node name="Meteor" parent="Level/Content" unique_id=1108700919 instance=ExtResource("6_506n4")]
 position = Vector2(80, -3978)
@@ -744,7 +772,7 @@ loopAudio = ExtResource("31_w8tu0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1329905867]
 
-[node name="UI" type="Control" parent="CanvasLayer" unique_id=2110849337]
+[node name="Main_UI" type="Control" parent="CanvasLayer" unique_id=2110849337]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -752,13 +780,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Dialogue" parent="CanvasLayer/UI" unique_id=1898620052 instance=ExtResource("4_6hh74")]
+[node name="Dialogue" parent="CanvasLayer/Main_UI" unique_id=1898620052 instance=ExtResource("4_6hh74")]
 layout_mode = 1
 
-[node name="HUD" parent="CanvasLayer/UI" unique_id=1492411568 instance=ExtResource("5_upqjl")]
+[node name="HUD" parent="CanvasLayer/Main_UI" unique_id=1492411568 instance=ExtResource("5_upqjl")]
 layout_mode = 1
 
-[node name="ScreenFX" parent="CanvasLayer/UI" unique_id=172808286 instance=ExtResource("7_6pt6a")]
+[node name="ScreenFX" parent="CanvasLayer/Main_UI" unique_id=172808286 instance=ExtResource("7_6pt6a")]
 layout_mode = 1
 
 [connection signal="area_entered" from="Level/Content/Exit" to="Level/Content/Exit" method="StartDialogue"]

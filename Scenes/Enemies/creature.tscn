@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bstuvwxb76r5e" path="res://Sprites/Asteroids/WingCreature_1.png" id="3_1erwc"]
 [ext_resource type="Texture2D" uid="uid://rnj38lsntxdk" path="res://Sprites/Asteroids/Wing_Creature_2.png" id="4_r51ou"]
 [ext_resource type="Texture2D" uid="uid://clctxh4q2kyif" path="res://Sprites/FX/Smoke.png" id="5_s5qky"]
+[ext_resource type="PackedScene" uid="uid://doi3t1pw8qmvl" path="res://Scenes/FX/organic_explosion.tscn" id="6_1erwc"]
 [ext_resource type="AudioStream" uid="uid://c7ymk23yyf2x4" path="res://SFX/Explosion2.wav" id="6_o4ebf"]
+[ext_resource type="PackedScene" uid="uid://bbtum4u7ryx37" path="res://Scenes/FX/organic_explosion_bits.tscn" id="6_r51ou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3jpl"]
 size = Vector2(14, 13)
@@ -64,26 +66,12 @@ particles_anim_h_frames = 10
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Curve" id="Curve_pnln5"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.740591, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_pddu7"]
-offsets = PackedFloat32Array(0, 0.72827, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.729412, 0.729412, 0.729412, 1, 1, 1, 1, 0)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3u4ym"]
-blend_mode = 1
-particles_animation = true
-particles_anim_h_frames = 10
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
 [node name="Creature" type="Node2D" unique_id=886237777]
 script = ExtResource("1_b0aq1")
-health = 10
+health = 8
 healthToShowDamage = 4
 power = 3
+maxAmmo = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=739464114]
 z_index = 1
@@ -120,39 +108,9 @@ gravity = Vector2(0, 0)
 color = Color(0.852312, 0.900945, 1, 1)
 anim_speed_max = 4.0
 
-[node name="Explosion_Bits" type="CPUParticles2D" parent="FX" unique_id=2095841821]
-emitting = false
-amount = 16
-one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_max = 40.0
-scale_amount_curve = SubResource("Curve_pnln5")
-color = Color(0.768098, 0.768098, 0.768098, 1)
-color_ramp = SubResource("Gradient_pddu7")
+[node name="Explosion_Bits" parent="FX" unique_id=676607474 instance=ExtResource("6_r51ou")]
 
-[node name="Explosion" type="CPUParticles2D" parent="FX" unique_id=1396083838]
-texture_filter = 1
-material = SubResource("CanvasItemMaterial_3u4ym")
-emitting = false
-amount = 10
-texture = ExtResource("5_s5qky")
-one_shot = true
-explosiveness = 1.0
-randomness = 0.69
-emission_shape = 1
-emission_sphere_radius = 8.0
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 15.0
-initial_velocity_max = 15.0
-color = Color(0.317647, 0.729412, 1, 1)
-anim_speed_min = 1.0
-anim_speed_max = 4.0
+[node name="Explosion" parent="FX" unique_id=385375602 instance=ExtResource("6_1erwc")]
 
 [node name="SFX_Death" type="AudioStreamPlayer2D" parent="." unique_id=1278102122]
 stream = ExtResource("6_o4ebf")

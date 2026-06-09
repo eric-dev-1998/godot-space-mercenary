@@ -22,3 +22,6 @@ func Start() -> void:
 	intro.play(0.0)
 	await intro.finished
 	loop.play()
+
+func Stop() -> void:
+	loop.stop()

@@ -10,6 +10,7 @@ enum AdvanceCondition
 }
 enum AttackType 
 {
+	None,
 	Primary,
 	Secondary,
 	Special

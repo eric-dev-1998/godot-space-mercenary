@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bmjtyej8a1lw"]
+
+[ext_resource type="Script" uid="uid://cjtwq3h02nfav" path="res://Scripts/Interactables/Obstacle.gd" id="1_w2pbc"]
+[ext_resource type="Texture2D" uid="uid://cyuukyqau4vqo" path="res://Sprites/Obstacles/Breakable_Debri.png" id="2_3ulhf"]
+[ext_resource type="PackedScene" uid="uid://cnynml0rt1fjv" path="res://Scenes/FX/explosion_bits.tscn" id="3_k2kc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsjjd"]
+size = Vector2(16, 7)
+
+[node name="BreackableDebris_A" type="Node2D" unique_id=1059399621]
+script = ExtResource("1_w2pbc")
+health = 2
+rotate = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=149829245]
+texture_filter = 1
+texture = ExtResource("2_3ulhf")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1318384638]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1609031541]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_rsjjd")
+
+[node name="Particles" parent="." unique_id=1524740106 instance=ExtResource("3_k2kc4")]

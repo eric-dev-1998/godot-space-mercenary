@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cuex2h5spnft5"]
+[gd_scene format=3 uid="uid://cuex2h5spnft5"]
 
 [ext_resource type="Script" uid="uid://c7qqjtwpl4w2s" path="res://Scripts/UI/LevelSelector.gd" id="1_inlox"]
 [ext_resource type="Texture2D" uid="uid://dgd45qltem6lp" path="res://Sprites/Dialogues/AsteroidField.png" id="1_s0bea"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bbohp7rggpspy" path="res://Sprites/UI/Arrow_Right.png" id="8_trxpt"]
 [ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="9_uhjcu"]
 [ext_resource type="PackedScene" uid="uid://rffesr1hh60q" path="res://Scenes/UI/screen_fx.tscn" id="10_trxpt"]
+[ext_resource type="AudioStream" uid="uid://bqkiawcqkhipt" path="res://SFX/Select.wav" id="11_uhjcu"]
+[ext_resource type="AudioStream" uid="uid://cf2jynofssn6v" path="res://SFX/Move2.wav" id="12_lrgdr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_inlox"]
 particles_animation = true
@@ -118,14 +120,19 @@ _data = {
 animation = &"anim_arrow_right"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ng7dk"]
+nodes/output/position = Vector2(350, 75)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_w4qc5")
 nodes/Animation/position = Vector2(133.333, 66.6667)
-nodes/output/position = Vector2(350, 75)
 node_connections = [&"output", 0, &"Animation"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lrgdr"]
 font = ExtResource("9_uhjcu")
 font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hhrk"]
+font = ExtResource("9_uhjcu")
+font_size = 6
+font_color = Color(1, 0.15294118, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_56p52"]
 font = ExtResource("9_uhjcu")
@@ -178,21 +185,21 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_3obiw")
 nodes/Animation/position = Vector2(25, 141.667)
 node_connections = [&"output", 0, &"Animation"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=492835780]
 script = ExtResource("1_inlox")
 
-[node name="Stages" type="Node2D" parent="."]
+[node name="Stages" type="Node2D" parent="." unique_id=282930519]
 
-[node name="Asteroids" type="Sprite2D" parent="Stages"]
+[node name="Asteroids" type="Sprite2D" parent="Stages" unique_id=138404733]
 texture_filter = 1
 position = Vector2(80, 80)
 scale = Vector2(2, 2)
 texture = ExtResource("1_s0bea")
 
-[node name="Battlefield" type="Node2D" parent="Stages"]
+[node name="Battlefield" type="Node2D" parent="Stages" unique_id=138587959]
 position = Vector2(240, 80)
 
-[node name="Explosions" type="CPUParticles2D" parent="Stages/Battlefield"]
+[node name="Explosions" type="CPUParticles2D" parent="Stages/Battlefield" unique_id=2045664958]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_inlox")
 amount = 4
@@ -205,7 +212,7 @@ gravity = Vector2(0, 0)
 anim_speed_min = 1.5
 anim_speed_max = 2.0
 
-[node name="Blasters_Right" type="CPUParticles2D" parent="Stages/Battlefield"]
+[node name="Blasters_Right" type="CPUParticles2D" parent="Stages/Battlefield" unique_id=1397381576]
 position = Vector2(24, 0)
 amount = 2
 lifetime = 0.5
@@ -218,7 +225,7 @@ initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 color_ramp = SubResource("Gradient_ufpwq")
 
-[node name="Blasters_Left" type="CPUParticles2D" parent="Stages/Battlefield"]
+[node name="Blasters_Left" type="CPUParticles2D" parent="Stages/Battlefield" unique_id=2047231115]
 position = Vector2(-24, 0)
 amount = 2
 lifetime = 0.5
@@ -230,14 +237,14 @@ initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 color_ramp = SubResource("Gradient_0hppw")
 
-[node name="LAB" type="Node2D" parent="Stages"]
+[node name="LAB" type="Node2D" parent="Stages" unique_id=561611240]
 position = Vector2(400, 80)
 
-[node name="Sprite2D" type="Sprite2D" parent="Stages/LAB"]
+[node name="Sprite2D" type="Sprite2D" parent="Stages/LAB" unique_id=375155542]
 texture_filter = 1
 texture = ExtResource("3_inlox")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Stages/LAB"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Stages/LAB" unique_id=1242031709]
 material = SubResource("CanvasItemMaterial_t4xus")
 position = Vector2(0, -8)
 amount = 6
@@ -250,20 +257,20 @@ gravity = Vector2(0, 0)
 anim_speed_min = 1.5
 anim_speed_max = 1.5
 
-[node name="Camera2D" type="Camera2D" parent="Stages"]
+[node name="Camera2D" type="Camera2D" parent="Stages" unique_id=289751175]
 position = Vector2(80, 80)
 
-[node name="Starts" type="Sprite2D" parent="Stages/Camera2D"]
+[node name="Starts" type="Sprite2D" parent="Stages/Camera2D" unique_id=979424600]
 texture_filter = 1
 texture = ExtResource("2_ufpwq")
 
-[node name="Stars_Detail" type="Sprite2D" parent="Stages/Camera2D"]
+[node name="Stars_Detail" type="Sprite2D" parent="Stages/Camera2D" unique_id=1356749732]
 texture_filter = 1
 texture = ExtResource("3_0hppw")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1133850826]
 
-[node name="UI" type="Control" parent="CanvasLayer"]
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=251881512]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,32 +278,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Arrow_Left" type="TextureRect" parent="CanvasLayer/UI"]
+[node name="Arrow_Left" type="TextureRect" parent="CanvasLayer/UI" unique_id=1642130402]
 visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 3.16717
 offset_top = -16.0
-offset_right = 35.1672
+offset_right = 32.000023
 offset_bottom = 16.0
 grow_vertical = 2
 texture = ExtResource("7_56p52")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Arrow_Left"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Arrow_Left" unique_id=182311160]
 root_node = NodePath("AnimationTree")
-libraries = {
-&"": SubResource("AnimationLibrary_uhjcu")
-}
+libraries/ = SubResource("AnimationLibrary_uhjcu")
 
-[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Arrow_Left/AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Arrow_Left/AnimationPlayer" unique_id=310491128]
 root_node = NodePath(".")
 tree_root = SubResource("AnimationNodeBlendTree_trxpt")
 anim_player = NodePath("..")
 
-[node name="Arrow_Right" type="TextureRect" parent="CanvasLayer/UI"]
+[node name="Arrow_Right" type="TextureRect" parent="CanvasLayer/UI" unique_id=465026881]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 6
@@ -304,25 +308,23 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -35.1672
+offset_left = -32.0
 offset_top = -16.0
-offset_right = -3.16714
+offset_right = 0.00045776367
 offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("8_trxpt")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Arrow_Right"]
-libraries = {
-&"": SubResource("AnimationLibrary_8hhrk")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Arrow_Right" unique_id=1163820854]
+libraries/ = SubResource("AnimationLibrary_8hhrk")
 
-[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Arrow_Right/AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Arrow_Right/AnimationPlayer" unique_id=1548301904]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeBlendTree_ng7dk")
 anim_player = NodePath("..")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI"]
+[node name="Label" type="Label" parent="CanvasLayer/UI" unique_id=1066640484]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
@@ -341,7 +343,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Label2" type="Label" parent="CanvasLayer/UI"]
+[node name="Label3" type="Label" parent="CanvasLayer/UI" unique_id=98551356]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -34.0
+offset_right = 80.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Boss
+Battle!"
+label_settings = SubResource("LabelSettings_8hhrk")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI" unique_id=1365263244]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
@@ -358,15 +382,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Label2"]
-libraries = {
-&"": SubResource("AnimationLibrary_ng7dk")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Label2" unique_id=131634023]
+libraries/ = SubResource("AnimationLibrary_ng7dk")
 
-[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Label2/AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="CanvasLayer/UI/Label2/AnimationPlayer" unique_id=1378106083]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeBlendTree_7xxgs")
 anim_player = NodePath("..")
 
-[node name="ScreenFX" parent="CanvasLayer/UI" instance=ExtResource("10_trxpt")]
+[node name="ScreenFX" parent="CanvasLayer/UI" unique_id=1762140941 instance=ExtResource("10_trxpt")]
 layout_mode = 1
+
+[node name="SelectSFX" type="AudioStreamPlayer2D" parent="." unique_id=1969413128]
+stream = ExtResource("11_uhjcu")
+
+[node name="SwitchSFX" type="AudioStreamPlayer2D" parent="." unique_id=955258260]
+stream = ExtResource("12_lrgdr")
+
+[connection signal="finished" from="SelectSFX" to="." method="select_stage"]

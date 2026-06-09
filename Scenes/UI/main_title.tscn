@@ -1,12 +1,62 @@
-[gd_scene load_steps=19 format=3 uid="uid://dcu7hxoxusa78"]
+[gd_scene format=3 uid="uid://dcu7hxoxusa78"]
 
 [ext_resource type="Script" uid="uid://bxpwrxrsecwn1" path="res://Scripts/UI/MainTitle.gd" id="1_kajcq"]
 [ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="1_wy0tr"]
 [ext_resource type="Texture2D" uid="uid://dh1lp4d1oko3r" path="res://Sprites/Spaceships/Player/Idle_0.png" id="2_okbhr"]
+[ext_resource type="Script" uid="uid://c1b0uhqy1shd" path="res://Scripts/UI/DialogueLine.gd" id="2_vtiwe"]
+[ext_resource type="Texture2D" uid="uid://jx3s8qmbrc68" path="res://Sprites/Dialogues/LAB_Destroyed.png" id="3_duq3r"]
 [ext_resource type="Texture2D" uid="uid://ddg717nvpjqvd" path="res://Sprites/Spaceships/Player/Idle_1.png" id="3_kajcq"]
 [ext_resource type="Texture2D" uid="uid://dugjo3ljah6yr" path="res://Sprites/Spaceships/Player/Idle_2.png" id="4_ihcp8"]
 [ext_resource type="Texture2D" uid="uid://csx64yml225rw" path="res://Sprites/Spaceships/Player/Idle_3.png" id="5_vtiwe"]
 [ext_resource type="Texture2D" uid="uid://b4xwgxtf5csae" path="res://Sprites/Spaceships/Player/Idle_4.png" id="6_duq3r"]
+[ext_resource type="PackedScene" uid="uid://rffesr1hh60q" path="res://Scenes/UI/screen_fx.tscn" id="10_duq3r"]
+[ext_resource type="AudioStream" uid="uid://bqkiawcqkhipt" path="res://SFX/Select.wav" id="11_rsx44"]
+[ext_resource type="AudioStream" uid="uid://cf2jynofssn6v" path="res://SFX/Move2.wav" id="12_2r4o7"]
+
+[sub_resource type="Resource" id="Resource_n1bjw"]
+script = ExtResource("2_vtiwe")
+text = "Incomming message from head quarters."
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_rsx44"]
+script = ExtResource("2_vtiwe")
+text = "Attention to all pilots."
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_2r4o7"]
+script = ExtResource("2_vtiwe")
+text = "This is a serious emergency"
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_iqiwb"]
+script = ExtResource("2_vtiwe")
+text = "The LAB is under attack and has suffered severe damages already."
+texture = ExtResource("3_duq3r")
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_ox07c"]
+script = ExtResource("2_vtiwe")
+text = "Every pilot in the surounding areas must go and defend."
+texture = ExtResource("3_duq3r")
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_yqwbs"]
+script = ExtResource("2_vtiwe")
+text = "I repeat, this is a serious emergency."
+texture = ExtResource("3_duq3r")
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_ran6w"]
+script = ExtResource("2_vtiwe")
+text = "All pilots on the surroundng areas must go and defend the LAB."
+texture = ExtResource("3_duq3r")
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
+
+[sub_resource type="Resource" id="Resource_cuaad"]
+script = ExtResource("2_vtiwe")
+text = "NOW."
+exit_level = true
+metadata/_custom_type_script = "uid://c1b0uhqy1shd"
 
 [sub_resource type="LabelSettings" id="LabelSettings_wjgkq"]
 font = ExtResource("1_wy0tr")
@@ -67,6 +117,21 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_kajcq")
 nodes/Animation/position = Vector2(91.6667, 133.333)
 node_connections = [&"output", 0, &"Animation"]
 
+[sub_resource type="Animation" id="Animation_ihcp8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_kajcq"]
 resource_name = "anim_main_title_fade"
 length = 0.2
@@ -83,28 +148,13 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ihcp8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vtiwe"]
 _data = {
 &"RESET": SubResource("Animation_ihcp8"),
 &"anim_main_title_fade": SubResource("Animation_kajcq")
 }
 
-[node name="MainTitle" type="Control"]
+[node name="MainTitle" type="Control" unique_id=1579601360]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,15 +162,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kajcq")
+intro_dialogue = Array[ExtResource("2_vtiwe")]([SubResource("Resource_n1bjw"), SubResource("Resource_rsx44"), SubResource("Resource_2r4o7"), SubResource("Resource_iqiwb"), SubResource("Resource_ox07c"), SubResource("Resource_yqwbs"), SubResource("Resource_ran6w"), SubResource("Resource_cuaad")])
 
-[node name="Title" type="Control" parent="."]
+[node name="Title" type="Control" parent="." unique_id=782380639]
 anchors_preset = 0
 offset_left = 20.0
 offset_top = 32.0
 offset_right = 140.0
 offset_bottom = 72.0
 
-[node name="Space" type="Label" parent="Title"]
+[node name="Space" type="Label" parent="Title" unique_id=445005672]
 texture_filter = 1
 layout_mode = 0
 offset_right = 120.0
@@ -128,7 +179,7 @@ offset_bottom = 24.0
 text = "Space"
 label_settings = SubResource("LabelSettings_wjgkq")
 
-[node name="Pilot" type="Label" parent="Title"]
+[node name="Pilot" type="Label" parent="Title" unique_id=1001553511]
 texture_filter = 1
 layout_mode = 0
 offset_top = 26.0
@@ -137,7 +188,7 @@ offset_bottom = 49.0
 text = "Pilot"
 label_settings = SubResource("LabelSettings_sbtst")
 
-[node name="Start" type="Label" parent="."]
+[node name="Start" type="Label" parent="." unique_id=837357306]
 texture_filter = 1
 layout_mode = 0
 offset_left = 60.0
@@ -147,7 +198,7 @@ offset_bottom = 120.0
 text = "Start"
 label_settings = SubResource("LabelSettings_faei1")
 
-[node name="Exit" type="Label" parent="."]
+[node name="Exit" type="Label" parent="." unique_id=557818891]
 texture_filter = 1
 layout_mode = 0
 offset_left = 60.0
@@ -157,7 +208,7 @@ offset_bottom = 136.0
 text = "Exit"
 label_settings = SubResource("LabelSettings_faei1")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=1702694060]
 texture_filter = 1
 layout_mode = 0
 offset_left = 56.0
@@ -167,17 +218,25 @@ offset_bottom = 124.0
 rotation = 1.5708
 texture = ExtResource("2_okbhr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Icon"]
-libraries = {
-&"": SubResource("AnimationLibrary_2r4o7")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Icon" unique_id=1238277546]
+libraries/ = SubResource("AnimationLibrary_2r4o7")
 
-[node name="AnimationTree" type="AnimationTree" parent="Icon/AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="Icon/AnimationPlayer" unique_id=1215007707]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeBlendTree_ihcp8")
 anim_player = NodePath("..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vtiwe")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1510543536]
+libraries/ = SubResource("AnimationLibrary_vtiwe")
+
+[node name="ScreenFX" parent="." unique_id=327503165 instance=ExtResource("10_duq3r")]
+visible = false
+layout_mode = 1
+
+[node name="Select" type="AudioStreamPlayer2D" parent="." unique_id=1392084351]
+stream = ExtResource("11_rsx44")
+
+[node name="Switch" type="AudioStreamPlayer2D" parent="." unique_id=932162677]
+stream = ExtResource("12_2r4o7")
+
+[connection signal="finished" from="Select" to="." method="start"]

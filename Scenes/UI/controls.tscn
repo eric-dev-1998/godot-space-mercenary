@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cijntq8php6c5"]
+
+[ext_resource type="Script" uid="uid://dr2l3q5lkk3vp" path="res://Scripts/UI/Controls.gd" id="1_dylvw"]
+[ext_resource type="Texture2D" uid="uid://baau845q4tin6" path="res://Sprites/UI/KeyUp.png" id="1_yr5wo"]
+[ext_resource type="Texture2D" uid="uid://6i4fq2c3o5wo" path="res://Sprites/UI/KeyDown.png" id="2_ypsqd"]
+[ext_resource type="Texture2D" uid="uid://cgls6f37mpbns" path="res://Sprites/UI/KeyLeft.png" id="3_dylvw"]
+[ext_resource type="Texture2D" uid="uid://co6bgc627volh" path="res://Sprites/UI/KeyRight.png" id="4_xspwv"]
+[ext_resource type="Texture2D" uid="uid://cwfho1cntl75i" path="res://Sprites/UI/KeySpace.png" id="5_jjte5"]
+[ext_resource type="Texture2D" uid="uid://o4ok4o3k8sak" path="res://Sprites/UI/KeyX.png" id="6_ehacy"]
+[ext_resource type="FontFile" uid="uid://2217rp6ofkfh" path="res://Sprites/PressStart2P.ttf" id="7_ggslx"]
+[ext_resource type="PackedScene" uid="uid://rffesr1hh60q" path="res://Scenes/UI/screen_fx.tscn" id="8_ypsqd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q01xu"]
+font = ExtResource("7_ggslx")
+font_size = 8
+
+[node name="Node" type="Node" unique_id=801817926]
+script = ExtResource("1_dylvw")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1990577077]
+
+[node name="Keys" type="Node2D" parent="Node2D" unique_id=1052347977]
+position = Vector2(16, 16)
+
+[node name="Up" type="Sprite2D" parent="Node2D/Keys" unique_id=362490954]
+texture_filter = 1
+position = Vector2(16, 0)
+texture = ExtResource("1_yr5wo")
+offset = Vector2(8, 8)
+
+[node name="Down" type="Sprite2D" parent="Node2D/Keys" unique_id=116113423]
+texture_filter = 1
+position = Vector2(16, 16)
+texture = ExtResource("2_ypsqd")
+offset = Vector2(8, 8)
+
+[node name="Left" type="Sprite2D" parent="Node2D/Keys" unique_id=1664928615]
+texture_filter = 1
+position = Vector2(0, 16)
+texture = ExtResource("3_dylvw")
+offset = Vector2(8, 8)
+
+[node name="Right" type="Sprite2D" parent="Node2D/Keys" unique_id=838166588]
+texture_filter = 1
+position = Vector2(32, 16)
+texture = ExtResource("4_xspwv")
+offset = Vector2(8, 8)
+
+[node name="Space" type="Sprite2D" parent="Node2D" unique_id=1391643085]
+texture_filter = 1
+position = Vector2(16, 80)
+texture = ExtResource("5_jjte5")
+offset = Vector2(32, 8)
+
+[node name="X" type="Sprite2D" parent="Node2D" unique_id=1569349282]
+texture_filter = 1
+position = Vector2(16, 128)
+texture = ExtResource("6_ehacy")
+offset = Vector2(8, 8)
+
+[node name="Move" type="Label" parent="Node2D" unique_id=1107363907]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 32.0
+offset_right = 136.0
+offset_bottom = 55.0
+text = "Move"
+label_settings = SubResource("LabelSettings_q01xu")
+
+[node name="Select" type="Label" parent="Node2D" unique_id=639076792]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 84.0
+offset_right = 144.0
+offset_bottom = 107.0
+text = "Select"
+label_settings = SubResource("LabelSettings_q01xu")
+
+[node name="Shoot" type="Label" parent="Node2D" unique_id=630244468]
+texture_filter = 1
+offset_left = 96.0
+offset_top = 132.0
+offset_right = 136.0
+offset_bottom = 155.0
+text = "Shoot"
+label_settings = SubResource("LabelSettings_q01xu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=226013623]
+
+[node name="Main_UI" type="Control" parent="CanvasLayer" unique_id=611196145]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScreenFX" parent="CanvasLayer/Main_UI" unique_id=1064669576 instance=ExtResource("8_ypsqd")]
+layout_mode = 1

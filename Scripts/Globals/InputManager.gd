@@ -6,6 +6,7 @@ class_name InputManager
 static var isPrimaryPressed: bool = false
 static var isSecondaryPressed: bool = false;
 static var isPausePressed: bool = false;
+static var isSpacePressed: bool = false;
 static var isUpPressed: bool = false;
 static var isDownPressed: bool = false;
 static var isLeftPressed: bool = false;
@@ -19,6 +20,7 @@ func _input(event: InputEvent) -> void:
 				KEY_X: isPrimaryPressed = true
 				KEY_C: isSecondaryPressed = true
 				KEY_ENTER: isPausePressed = true
+				KEY_SPACE: isSpacePressed = true
 				KEY_UP: isUpPressed = true
 				KEY_DOWN: isDownPressed = true
 				KEY_LEFT: isLeftPressed = true
@@ -30,6 +32,7 @@ func _input(event: InputEvent) -> void:
 				KEY_X: isPrimaryPressed = false
 				KEY_C: isSecondaryPressed = false
 				KEY_ENTER: isPausePressed = false
+				KEY_SPACE: isSpacePressed = false
 				KEY_UP: isUpPressed = false
 				KEY_DOWN: isDownPressed = false
 				KEY_LEFT: isLeftPressed = false
