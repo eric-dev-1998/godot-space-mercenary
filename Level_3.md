@@ -32,7 +32,7 @@ I got it!!
 1. [Done] Damaged spaceships
 2. [Done] Solid debris
 3. [Done] Breakable debri
-4. Debri blockade
+4. [Omited] Debri blockade
 5. [Done] Debri bits
 6. [Done] Fire
 7. [Done] Smoke
@@ -40,9 +40,9 @@ I got it!!
 ## Stages
 1. [Done] Entering with debris.
 2. [Done] Horde of enemy spaceships.
-3. First blockade with enemies.
-4. More big floating debris and enemies along with damaged spaceships.
-5. Second blockade with enemies and debris.
+3. [Omited] First blockade with enemies.
+4. [Done] More big floating debris and enemies along with damaged spaceships.
+5. [Done] Second blockade with enemies and debris.
 6. The boss
 
 ## Boss
@@ -60,10 +60,10 @@ A big eye with a protection shield.
 This boss can follow the player.
 
 ### Battle sequence
-1. The creatures defense: The boss will spawn a horde of creatures to attack the player. During this, the player will be able to attack the boss shield.
-2. The counter attack: The boss recovers its shield and launches a rain of fast rockets.
-3. Creature defense again
-4. The beam: The boss loses its shield and launches a big beam to attack.
+1. [Done] The creatures defense: The boss will spawn a horde of creatures to attack the player. During this, the player will be able to attack the boss shield.
+2. [Done] The counter attack: The boss recovers its shield and launches a rain of fast rockets.
+3. [Omit] Creature defense again
+4. [Done] The beam: The boss loses its shield and launches a big beam to attack.
 5. The boss hides again and launches another rain of rockets.
 6. The boss shows up attacks with the beam again, but this time the player can attack between each beam attack.
 7. Boss death.

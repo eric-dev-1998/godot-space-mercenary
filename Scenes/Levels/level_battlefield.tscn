@@ -770,15 +770,18 @@ stream = ExtResource("3_gdoj4")
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1406443581]
 stream = ExtResource("4_hb0s4")
+volume_db = -10.0
 
 [node name="Collision" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=141902369]
 stream = ExtResource("5_ujs34")
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1661271495]
 stream = ExtResource("6_7221l")
+volume_db = -5.0
 
 [node name="Damage_Severe" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=737197182]
 stream = ExtResource("7_ijyww")
+volume_db = -7.5
 
 [node name="Death" type="AudioStreamPlayer2D" parent="SFX/Player" unique_id=1470634538]
 stream = ExtResource("24_o4rms")
@@ -807,6 +810,7 @@ stream = ExtResource("13_fr1r3")
 
 [node name="Solid" type="AudioStreamPlayer2D" parent="SFX/Obstacles" unique_id=273614376]
 stream = ExtResource("14_pabi8")
+volume_db = -10.0
 
 [node name="Non_Solid" type="AudioStreamPlayer2D" parent="SFX/Obstacles" unique_id=844413256]
 stream = ExtResource("15_cjcp1")

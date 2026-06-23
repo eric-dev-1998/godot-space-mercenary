@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Space Pilot"
-config/version="0.7"
+config/version="1.0"
 run/main_scene="uid://cijntq8php6c5"
 config/features=PackedStringArray("4.6", "C#", "Mobile")
 config/icon="uid://b8j7eg7go73xp"

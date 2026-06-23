@@ -8,6 +8,7 @@ var content: LevelContent
 var sfx: Screen_FX
 var hud: AnimationPlayer
 var bgm: BGM
+var player: Player
 
 # Properties:
 enum Level {
@@ -25,6 +26,7 @@ func _ready() -> void:
 	# Get screen fx manager:
 	sfx = get_node("CanvasLayer/Main_UI/ScreenFX")
 	bgm = get_node("BGM")
+	player = get_node("Level/Player")
 	
 	# Set intro dialogue:
 	dialogue_system = get_node("CanvasLayer/Main_UI/Dialogue")

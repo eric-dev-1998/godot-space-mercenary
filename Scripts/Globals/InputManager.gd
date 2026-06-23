@@ -3,19 +3,22 @@ extends Node
 class_name InputManager
 
 # Button state properties:
+static var isAnyPressed: bool = false
 static var isPrimaryPressed: bool = false
-static var isSecondaryPressed: bool = false;
-static var isPausePressed: bool = false;
-static var isSpacePressed: bool = false;
-static var isUpPressed: bool = false;
-static var isDownPressed: bool = false;
-static var isLeftPressed: bool = false;
-static var isRightPressed: bool = false;
+static var isSecondaryPressed: bool = false
+static var isPausePressed: bool = false
+static var isSpacePressed: bool = false
+static var isUpPressed: bool = false
+static var isDownPressed: bool = false
+static var isLeftPressed: bool = false
+static var isRightPressed: bool = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.pressed:
 			# A key was pressed.
+			isAnyPressed = true
+			
 			match(event.keycode):
 				KEY_X: isPrimaryPressed = true
 				KEY_C: isSecondaryPressed = true
@@ -28,6 +31,8 @@ func _input(event: InputEvent) -> void:
 			pass
 		else:
 			# key was released.
+			isAnyPressed = false
+			
 			match(event.keycode):
 				KEY_X: isPrimaryPressed = false
 				KEY_C: isSecondaryPressed = false

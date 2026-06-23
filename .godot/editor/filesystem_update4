@@ -1,6 +1,2 @@
-res://Scenes/UI/controls.tscn
-res://Scripts/FX/Projectile.gd
-res://Scenes/Projectiles/blast.tscn
-res://Scenes/Projectiles/blast_1.tscn
-res://Scenes/Projectiles/blast_upgraded.tscn
-res://Scenes/Projectiles/enemy_blast.tscn
+res://Scenes/Enemies/final_boss.tscn
+res://Scenes/Levels/level_lab.tscn

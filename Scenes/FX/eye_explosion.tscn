@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c05j2hyx37yml"]
+
+[ext_resource type="PackedScene" uid="uid://bbtum4u7ryx37" path="res://Scenes/FX/organic_explosion_bits.tscn" id="1_ncf0l"]
+[ext_resource type="PackedScene" uid="uid://doi3t1pw8qmvl" path="res://Scenes/FX/organic_explosion.tscn" id="2_rohkg"]
+
+[node name="Eye_explosion" type="Node2D" unique_id=1546434054]
+
+[node name="BigExplosion_Bits" parent="." unique_id=676607474 instance=ExtResource("1_ncf0l")]
+amount = 48
+lifetime = 4.0
+speed_scale = 4.0
+
+[node name="BigExplosion" parent="." unique_id=385375602 instance=ExtResource("2_rohkg")]
+amount = 48
+emission_sphere_radius = 48.0
+
+[connection signal="finished" from="BigExplosion_Bits" to="." method="queue_free"]

@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://d2bujb5jqoybv" path="res://Scenes/Enemies/creature.tscn" id="9_jpokl"]
 [ext_resource type="Texture2D" uid="uid://nmu55ve4fcwj" path="res://Sprites/Spaceships/LAB/LAB_Middle.png" id="10_tdews"]
 [ext_resource type="PackedScene" uid="uid://bbwcareavf6af" path="res://Scenes/Enemies/enemy_0.tscn" id="10_ufgr7"]
+[ext_resource type="Texture2D" uid="uid://cerlrw7bf6wur" path="res://Sprites/Spaceships/LAB/LAB_Exit.png" id="11_tdews"]
 [ext_resource type="Script" uid="uid://b5lr0sqn0a0ij" path="res://Scripts/Levels/LevelExit.gd" id="14_yn003"]
+[ext_resource type="PackedScene" uid="uid://2gvyc02cvwa5" path="res://Scenes/Enemies/final_boss.tscn" id="15_b6kf2"]
 [ext_resource type="Texture2D" uid="uid://b1d3mnqa1o0j4" path="res://Sprites/Backgrounds/Stars_Full.png" id="15_wle3e"]
 [ext_resource type="Texture2D" uid="uid://clauak45fxmyc" path="res://Sprites/Backgrounds/Stars_Particles.png" id="16_kwxht"]
 [ext_resource type="PackedScene" uid="uid://bbrpb1q5y2f3m" path="res://Scenes/Scene_Player.tscn" id="17_8t7r2"]
@@ -57,7 +59,7 @@ metadata/_custom_type_script = "uid://c1b0uhqy1shd"
 
 [sub_resource type="Resource" id="Resource_cjcp1"]
 script = ExtResource("2_b6kf2")
-text = "What were those creatures?"
+text = "Finally! I got him!"
 metadata/_custom_type_script = "uid://c1b0uhqy1shd"
 
 [sub_resource type="Resource" id="Resource_ixhma"]
@@ -67,7 +69,7 @@ metadata/_custom_type_script = "uid://c1b0uhqy1shd"
 
 [sub_resource type="Resource" id="Resource_kgyv6"]
 script = ExtResource("2_b6kf2")
-text = "I can see the lab from here, let's go."
+text = "But i don't think the L.A.B. can recover from this..."
 exit_level = true
 metadata/_custom_type_script = "uid://c1b0uhqy1shd"
 
@@ -76,6 +78,7 @@ size = Vector2(160, 20)
 
 [node name="Main" type="Node" unique_id=1846037353]
 script = ExtResource("1_tdews")
+level = 1
 enter_dialogue = Array[ExtResource("2_b6kf2")]([SubResource("Resource_fr1r3"), SubResource("Resource_pabi8"), SubResource("Resource_3r1nu")])
 exit_dialogue = Array[ExtResource("2_b6kf2")]([SubResource("Resource_cjcp1"), SubResource("Resource_ixhma"), SubResource("Resource_kgyv6")])
 
@@ -488,6 +491,12 @@ position = Vector2(150, -2923)
 [node name="Spaceship_part_angle50" parent="Level/Content/Obstacles" unique_id=1168221757 instance=ExtResource("8_di6lv")]
 position = Vector2(25, -3287)
 
+[node name="Spaceship_part_angle53" parent="Level/Content/Obstacles" unique_id=2140991416 instance=ExtResource("8_di6lv")]
+position = Vector2(48, -3410)
+
+[node name="Spaceship_part_angle54" parent="Level/Content/Obstacles" unique_id=1300214667 instance=ExtResource("8_di6lv")]
+position = Vector2(119, -3539)
+
 [node name="Spaceship_part_angle51" parent="Level/Content/Obstacles" unique_id=599659092 instance=ExtResource("7_62y13")]
 position = Vector2(41, -3071)
 
@@ -495,6 +504,50 @@ position = Vector2(41, -3071)
 position = Vector2(95, -3127)
 rotation = 3.1415927
 scale = Vector2(1, -1)
+
+[node name="Spaceship_part_angle55" parent="Level/Content/Obstacles" unique_id=231332122 instance=ExtResource("7_62y13")]
+position = Vector2(80, -3562)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Spaceship_part_angle57" parent="Level/Content/Obstacles" unique_id=674311668 instance=ExtResource("8_di6lv")]
+position = Vector2(65, -3758)
+
+[node name="Spaceship_part_angle59" parent="Level/Content/Obstacles" unique_id=682713262 instance=ExtResource("8_di6lv")]
+position = Vector2(105, -3980)
+
+[node name="Spaceship_part_angle60" parent="Level/Content/Obstacles" unique_id=2008898165 instance=ExtResource("8_di6lv")]
+position = Vector2(30, -4226)
+
+[node name="Spaceship_part_angle58" parent="Level/Content/Obstacles" unique_id=1420840634 instance=ExtResource("7_62y13")]
+position = Vector2(26, -3781)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Spaceship_part_angle61" parent="Level/Content/Obstacles" unique_id=408771188 instance=ExtResource("7_62y13")]
+position = Vector2(52, -4078)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Spaceship_part_angle62" parent="Level/Content/Obstacles" unique_id=555104600 instance=ExtResource("7_62y13")]
+position = Vector2(91, -4185)
+rotation = 3.1415927
+scale = Vector2(-1, -1)
+
+[node name="Spaceship_part_angle63" parent="Level/Content/Obstacles" unique_id=786108291 instance=ExtResource("7_62y13")]
+position = Vector2(33, -4492)
+rotation = 3.1415927
+scale = Vector2(-1, -1)
+
+[node name="Spaceship_part_angle64" parent="Level/Content/Obstacles" unique_id=45904325 instance=ExtResource("7_62y13")]
+position = Vector2(133, -4596)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+
+[node name="Spaceship_part_angle56" parent="Level/Content/Obstacles" unique_id=1004882549 instance=ExtResource("7_62y13")]
+position = Vector2(57, -3669)
+rotation = 3.1415927
+scale = Vector2(-1, -1)
 
 [node name="BreackableDebris_A26" parent="Level/Content/Obstacles" unique_id=1084501450 instance=ExtResource("6_nq12g")]
 position = Vector2(39, -2583)
@@ -514,8 +567,296 @@ position = Vector2(21, -3030)
 [node name="BreackableDebris_A31" parent="Level/Content/Obstacles" unique_id=981031972 instance=ExtResource("6_nq12g")]
 position = Vector2(125, -3267)
 
+[node name="BreackableDebris_A32" parent="Level/Content/Obstacles" unique_id=564549063 instance=ExtResource("6_nq12g")]
+position = Vector2(116, -3673)
+
+[node name="BreackableDebris_A33" parent="Level/Content/Obstacles" unique_id=127519070 instance=ExtResource("6_nq12g")]
+position = Vector2(85, -3913)
+
+[node name="BreackableDebris_A34" parent="Level/Content/Obstacles" unique_id=1948178413 instance=ExtResource("6_nq12g")]
+position = Vector2(50, -3951)
+
+[node name="BreackableDebris_A37" parent="Level/Content/Obstacles" unique_id=1525606506 instance=ExtResource("6_nq12g")]
+position = Vector2(62, -3895)
+
+[node name="BreackableDebris_A36" parent="Level/Content/Obstacles" unique_id=1969612394 instance=ExtResource("6_nq12g")]
+position = Vector2(69, -3987)
+
 [node name="BreackableDebris_B29" parent="Level/Content/Obstacles" unique_id=921332707 instance=ExtResource("7_8baq4")]
 position = Vector2(57, -3158)
+
+[node name="BreackableDebris_B39" parent="Level/Content/Obstacles" unique_id=1473116440 instance=ExtResource("7_8baq4")]
+position = Vector2(78, -3466)
+item = 3
+
+[node name="BreackableDebris_B40" parent="Level/Content/Obstacles" unique_id=1919792383 instance=ExtResource("7_8baq4")]
+position = Vector2(60, -3489)
+item = 1
+
+[node name="BreackableDebris_B42" parent="Level/Content/Obstacles" unique_id=1316529592 instance=ExtResource("7_8baq4")]
+position = Vector2(101, -3691)
+item = 1
+
+[node name="BreackableDebris_B43" parent="Level/Content/Obstacles" unique_id=1061800554 instance=ExtResource("7_8baq4")]
+position = Vector2(25, -3896)
+item = 1
+
+[node name="BreackableDebris_B44" parent="Level/Content/Obstacles" unique_id=501584693 instance=ExtResource("7_8baq4")]
+position = Vector2(50, -3912)
+item = 1
+
+[node name="BreackableDebris_B50" parent="Level/Content/Obstacles" unique_id=1301209983 instance=ExtResource("7_8baq4")]
+position = Vector2(26, -3932)
+item = 1
+
+[node name="BreackableDebris_B45" parent="Level/Content/Obstacles" unique_id=1534208460 instance=ExtResource("7_8baq4")]
+position = Vector2(103, -3890)
+item = 1
+
+[node name="BreackableDebris_B46" parent="Level/Content/Obstacles" unique_id=1316639440 instance=ExtResource("7_8baq4")]
+position = Vector2(121, -3909)
+item = 1
+
+[node name="BreackableDebris_B47" parent="Level/Content/Obstacles" unique_id=2101782648 instance=ExtResource("7_8baq4")]
+position = Vector2(93, -3944)
+item = 1
+
+[node name="BreackableDebris_B48" parent="Level/Content/Obstacles" unique_id=2007822727 instance=ExtResource("7_8baq4")]
+position = Vector2(18, -3975)
+item = 1
+
+[node name="BreackableDebris_B49" parent="Level/Content/Obstacles" unique_id=841226983 instance=ExtResource("7_8baq4")]
+position = Vector2(133, -3985)
+item = 1
+
+[node name="BreackableDebris_A38" parent="Level/Content/Obstacles" unique_id=1798378668 instance=ExtResource("6_nq12g")]
+position = Vector2(84, -4030)
+
+[node name="BreackableDebris_A40" parent="Level/Content/Obstacles" unique_id=1691198150 instance=ExtResource("6_nq12g")]
+position = Vector2(61, -4012)
+
+[node name="BreackableDebris_A41" parent="Level/Content/Obstacles" unique_id=10203467 instance=ExtResource("6_nq12g")]
+position = Vector2(112, -4083)
+
+[node name="BreackableDebris_A42" parent="Level/Content/Obstacles" unique_id=1166494433 instance=ExtResource("6_nq12g")]
+position = Vector2(68, -4104)
+
+[node name="BreackableDebris_B51" parent="Level/Content/Obstacles" unique_id=384772759 instance=ExtResource("7_8baq4")]
+position = Vector2(24, -4013)
+item = 1
+
+[node name="BreackableDebris_B52" parent="Level/Content/Obstacles" unique_id=1270786926 instance=ExtResource("7_8baq4")]
+position = Vector2(49, -4029)
+item = 1
+
+[node name="BreackableDebris_B53" parent="Level/Content/Obstacles" unique_id=1741882040 instance=ExtResource("7_8baq4")]
+position = Vector2(25, -4049)
+item = 1
+
+[node name="BreackableDebris_B54" parent="Level/Content/Obstacles" unique_id=455817151 instance=ExtResource("7_8baq4")]
+position = Vector2(102, -4007)
+item = 1
+
+[node name="BreackableDebris_B55" parent="Level/Content/Obstacles" unique_id=278505068 instance=ExtResource("7_8baq4")]
+position = Vector2(120, -4026)
+item = 1
+
+[node name="BreackableDebris_B56" parent="Level/Content/Obstacles" unique_id=356554226 instance=ExtResource("7_8baq4")]
+position = Vector2(92, -4061)
+item = 1
+
+[node name="BreackableDebris_B57" parent="Level/Content/Obstacles" unique_id=1249540178 instance=ExtResource("7_8baq4")]
+position = Vector2(17, -4092)
+item = 1
+
+[node name="BreackableDebris_B58" parent="Level/Content/Obstacles" unique_id=21936052 instance=ExtResource("7_8baq4")]
+position = Vector2(132, -4102)
+item = 1
+
+[node name="BreackableDebris_A43" parent="Level/Content/Obstacles" unique_id=2060515281 instance=ExtResource("6_nq12g")]
+position = Vector2(82, -4150)
+
+[node name="BreackableDebris_A44" parent="Level/Content/Obstacles" unique_id=181256805 instance=ExtResource("6_nq12g")]
+position = Vector2(47, -4188)
+
+[node name="BreackableDebris_A45" parent="Level/Content/Obstacles" unique_id=501431651 instance=ExtResource("6_nq12g")]
+position = Vector2(59, -4132)
+
+[node name="BreackableDebris_A46" parent="Level/Content/Obstacles" unique_id=2026523066 instance=ExtResource("6_nq12g")]
+position = Vector2(110, -4203)
+
+[node name="BreackableDebris_A47" parent="Level/Content/Obstacles" unique_id=1970164797 instance=ExtResource("6_nq12g")]
+position = Vector2(66, -4224)
+
+[node name="BreackableDebris_B59" parent="Level/Content/Obstacles" unique_id=1390010164 instance=ExtResource("7_8baq4")]
+position = Vector2(22, -4133)
+item = 1
+
+[node name="BreackableDebris_B60" parent="Level/Content/Obstacles" unique_id=82255511 instance=ExtResource("7_8baq4")]
+position = Vector2(47, -4149)
+item = 1
+
+[node name="BreackableDebris_B61" parent="Level/Content/Obstacles" unique_id=186076748 instance=ExtResource("7_8baq4")]
+position = Vector2(23, -4169)
+item = 1
+
+[node name="BreackableDebris_B62" parent="Level/Content/Obstacles" unique_id=1620340126 instance=ExtResource("7_8baq4")]
+position = Vector2(100, -4127)
+item = 1
+
+[node name="BreackableDebris_B63" parent="Level/Content/Obstacles" unique_id=85364183 instance=ExtResource("7_8baq4")]
+position = Vector2(118, -4146)
+item = 1
+
+[node name="BreackableDebris_B66" parent="Level/Content/Obstacles" unique_id=1462131589 instance=ExtResource("7_8baq4")]
+position = Vector2(130, -4222)
+item = 1
+
+[node name="BreackableDebris_A48" parent="Level/Content/Obstacles" unique_id=1074176318 instance=ExtResource("6_nq12g")]
+position = Vector2(81, -4267)
+
+[node name="BreackableDebris_A49" parent="Level/Content/Obstacles" unique_id=474919739 instance=ExtResource("6_nq12g")]
+position = Vector2(46, -4305)
+
+[node name="BreackableDebris_A50" parent="Level/Content/Obstacles" unique_id=1190591120 instance=ExtResource("6_nq12g")]
+position = Vector2(58, -4249)
+
+[node name="BreackableDebris_A51" parent="Level/Content/Obstacles" unique_id=621575183 instance=ExtResource("6_nq12g")]
+position = Vector2(109, -4320)
+
+[node name="BreackableDebris_A52" parent="Level/Content/Obstacles" unique_id=144016611 instance=ExtResource("6_nq12g")]
+position = Vector2(65, -4341)
+
+[node name="BreackableDebris_B67" parent="Level/Content/Obstacles" unique_id=1133797028 instance=ExtResource("7_8baq4")]
+position = Vector2(21, -4250)
+item = 1
+
+[node name="BreackableDebris_B68" parent="Level/Content/Obstacles" unique_id=1175267371 instance=ExtResource("7_8baq4")]
+position = Vector2(46, -4266)
+item = 1
+
+[node name="BreackableDebris_B69" parent="Level/Content/Obstacles" unique_id=1099196251 instance=ExtResource("7_8baq4")]
+position = Vector2(22, -4286)
+item = 1
+
+[node name="BreackableDebris_B70" parent="Level/Content/Obstacles" unique_id=1483601779 instance=ExtResource("7_8baq4")]
+position = Vector2(99, -4244)
+item = 1
+
+[node name="BreackableDebris_B71" parent="Level/Content/Obstacles" unique_id=866988847 instance=ExtResource("7_8baq4")]
+position = Vector2(117, -4263)
+item = 1
+
+[node name="BreackableDebris_B72" parent="Level/Content/Obstacles" unique_id=419422859 instance=ExtResource("7_8baq4")]
+position = Vector2(89, -4298)
+item = 1
+
+[node name="BreackableDebris_B73" parent="Level/Content/Obstacles" unique_id=475101491 instance=ExtResource("7_8baq4")]
+position = Vector2(14, -4329)
+item = 1
+
+[node name="BreackableDebris_B74" parent="Level/Content/Obstacles" unique_id=2024566735 instance=ExtResource("7_8baq4")]
+position = Vector2(129, -4339)
+item = 1
+
+[node name="BreackableDebris_A53" parent="Level/Content/Obstacles" unique_id=1003221604 instance=ExtResource("6_nq12g")]
+position = Vector2(94, -4860)
+
+[node name="BreackableDebris_A54" parent="Level/Content/Obstacles" unique_id=37640186 instance=ExtResource("6_nq12g")]
+position = Vector2(59, -4898)
+
+[node name="BreackableDebris_A55" parent="Level/Content/Obstacles" unique_id=1996311482 instance=ExtResource("6_nq12g")]
+position = Vector2(71, -4842)
+
+[node name="BreackableDebris_A56" parent="Level/Content/Obstacles" unique_id=1012895945 instance=ExtResource("6_nq12g")]
+position = Vector2(122, -4913)
+
+[node name="BreackableDebris_A57" parent="Level/Content/Obstacles" unique_id=172949278 instance=ExtResource("6_nq12g")]
+position = Vector2(78, -4934)
+
+[node name="BreackableDebris_B75" parent="Level/Content/Obstacles" unique_id=54340554 instance=ExtResource("7_8baq4")]
+position = Vector2(34, -4843)
+item = 1
+
+[node name="BreackableDebris_B76" parent="Level/Content/Obstacles" unique_id=1259518253 instance=ExtResource("7_8baq4")]
+position = Vector2(59, -4859)
+item = 1
+
+[node name="BreackableDebris_B77" parent="Level/Content/Obstacles" unique_id=1273745181 instance=ExtResource("7_8baq4")]
+position = Vector2(35, -4879)
+item = 1
+
+[node name="BreackableDebris_B78" parent="Level/Content/Obstacles" unique_id=248906833 instance=ExtResource("7_8baq4")]
+position = Vector2(112, -4837)
+item = 1
+
+[node name="BreackableDebris_B79" parent="Level/Content/Obstacles" unique_id=1313316704 instance=ExtResource("7_8baq4")]
+position = Vector2(130, -4856)
+item = 1
+
+[node name="BreackableDebris_B80" parent="Level/Content/Obstacles" unique_id=802588066 instance=ExtResource("7_8baq4")]
+position = Vector2(102, -4891)
+item = 1
+
+[node name="BreackableDebris_B81" parent="Level/Content/Obstacles" unique_id=620493980 instance=ExtResource("7_8baq4")]
+position = Vector2(27, -4922)
+item = 1
+
+[node name="BreackableDebris_B82" parent="Level/Content/Obstacles" unique_id=1565574806 instance=ExtResource("7_8baq4")]
+position = Vector2(142, -4932)
+item = 1
+
+[node name="BreackableDebris_A58" parent="Level/Content/Obstacles" unique_id=1590325745 instance=ExtResource("6_nq12g")]
+position = Vector2(94, -5366)
+
+[node name="BreackableDebris_A59" parent="Level/Content/Obstacles" unique_id=1242376277 instance=ExtResource("6_nq12g")]
+position = Vector2(59, -5404)
+
+[node name="BreackableDebris_A60" parent="Level/Content/Obstacles" unique_id=128223933 instance=ExtResource("6_nq12g")]
+position = Vector2(71, -5348)
+
+[node name="BreackableDebris_A61" parent="Level/Content/Obstacles" unique_id=291822929 instance=ExtResource("6_nq12g")]
+position = Vector2(122, -5419)
+
+[node name="BreackableDebris_A62" parent="Level/Content/Obstacles" unique_id=499571318 instance=ExtResource("6_nq12g")]
+position = Vector2(78, -5440)
+item = 3
+
+[node name="BreackableDebris_B83" parent="Level/Content/Obstacles" unique_id=1435580492 instance=ExtResource("7_8baq4")]
+position = Vector2(34, -5349)
+item = 1
+
+[node name="BreackableDebris_B84" parent="Level/Content/Obstacles" unique_id=373634447 instance=ExtResource("7_8baq4")]
+position = Vector2(59, -5365)
+item = 3
+
+[node name="BreackableDebris_B85" parent="Level/Content/Obstacles" unique_id=1716315997 instance=ExtResource("7_8baq4")]
+position = Vector2(35, -5385)
+item = 1
+
+[node name="BreackableDebris_B86" parent="Level/Content/Obstacles" unique_id=657963203 instance=ExtResource("7_8baq4")]
+position = Vector2(112, -5343)
+item = 1
+
+[node name="BreackableDebris_B87" parent="Level/Content/Obstacles" unique_id=1276679439 instance=ExtResource("7_8baq4")]
+position = Vector2(130, -5362)
+item = 1
+
+[node name="BreackableDebris_B88" parent="Level/Content/Obstacles" unique_id=1727985014 instance=ExtResource("7_8baq4")]
+position = Vector2(102, -5397)
+item = 3
+
+[node name="BreackableDebris_B89" parent="Level/Content/Obstacles" unique_id=1648747190 instance=ExtResource("7_8baq4")]
+position = Vector2(27, -5428)
+item = 1
+
+[node name="BreackableDebris_B90" parent="Level/Content/Obstacles" unique_id=949116451 instance=ExtResource("7_8baq4")]
+position = Vector2(142, -5438)
+item = 1
+
+[node name="BreackableDebris_B41" parent="Level/Content/Obstacles" unique_id=7693552 instance=ExtResource("7_8baq4")]
+position = Vector2(97, -3489)
+item = 1
 
 [node name="BreackableDebris_B30" parent="Level/Content/Obstacles" unique_id=1639795966 instance=ExtResource("7_8baq4")]
 position = Vector2(148, -3127)
@@ -545,19 +886,99 @@ position = Vector2(100, -2535)
 position = Vector2(119, -2555)
 
 [node name="LabEntrance" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=752208730]
+show_behind_parent = true
 texture_filter = 1
 position = Vector2(80, -3436)
 texture = ExtResource("9_aswlr")
 
 [node name="LabMiddle" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=1480238027]
+show_behind_parent = true
 texture_filter = 1
 position = Vector2(80, -3596)
 texture = ExtResource("10_tdews")
+
+[node name="LabMiddle2" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=941664603]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -3756)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle3" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=1941111830]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -3916)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle4" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=949410599]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -4076)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle5" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=1330019557]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -4236)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle6" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=720909865]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -4396)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle7" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=934960297]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -4556)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle8" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=1693138009]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -4716)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle9" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=244952605]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -4876)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle10" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=1283911592]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -5036)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle11" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=787640439]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -5196)
+texture = ExtResource("10_tdews")
+
+[node name="LabMiddle12" type="Sprite2D" parent="Level/Content/Obstacles" unique_id=145735953]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(80, -5356)
+texture = ExtResource("11_tdews")
 
 [node name="Enemies" type="Node2D" parent="Level/Content" unique_id=256174282]
 
 [node name="Creature" parent="Level/Content/Enemies" unique_id=886237777 instance=ExtResource("9_jpokl")]
 position = Vector2(84, -841)
+followSpeed = 22.5
+
+[node name="Creature5" parent="Level/Content/Enemies" unique_id=817196567 instance=ExtResource("9_jpokl")]
+position = Vector2(81, -4449)
+followSpeed = 22.5
+
+[node name="Creature6" parent="Level/Content/Enemies" unique_id=1348355827 instance=ExtResource("9_jpokl")]
+position = Vector2(80, -4540)
+followSpeed = 22.5
+
+[node name="Creature7" parent="Level/Content/Enemies" unique_id=400663049 instance=ExtResource("9_jpokl")]
+position = Vector2(80, -4629)
 followSpeed = 22.5
 
 [node name="Creature2" parent="Level/Content/Enemies" unique_id=1801342100 instance=ExtResource("9_jpokl")]
@@ -653,6 +1074,57 @@ position = Vector2(135, -2975)
 [node name="Enemy_22" parent="Level/Content/Enemies" unique_id=55210919 instance=ExtResource("10_ufgr7")]
 position = Vector2(88, -3231)
 
+[node name="Enemy_27" parent="Level/Content/Enemies" unique_id=259692214 instance=ExtResource("10_ufgr7")]
+position = Vector2(69, -3636)
+
+[node name="Enemy_28" parent="Level/Content/Enemies" unique_id=1247715016 instance=ExtResource("10_ufgr7")]
+position = Vector2(72, -3776)
+
+[node name="Enemy_29" parent="Level/Content/Enemies" unique_id=1025467566 instance=ExtResource("10_ufgr7")]
+position = Vector2(31, -4756)
+
+[node name="Enemy_30" parent="Level/Content/Enemies" unique_id=1189853541 instance=ExtResource("10_ufgr7")]
+position = Vector2(80, -4756)
+
+[node name="Enemy_31" parent="Level/Content/Enemies" unique_id=2002515949 instance=ExtResource("10_ufgr7")]
+position = Vector2(128, -4756)
+
+[node name="Enemy_32" parent="Level/Content/Enemies" unique_id=507948329 instance=ExtResource("10_ufgr7")]
+position = Vector2(31, -5044)
+
+[node name="Enemy_33" parent="Level/Content/Enemies" unique_id=1277656591 instance=ExtResource("10_ufgr7")]
+position = Vector2(80, -5044)
+
+[node name="Enemy_34" parent="Level/Content/Enemies" unique_id=1095952182 instance=ExtResource("10_ufgr7")]
+position = Vector2(128, -5044)
+
+[node name="Enemy_35" parent="Level/Content/Enemies" unique_id=1108294723 instance=ExtResource("10_ufgr7")]
+position = Vector2(31, -5132)
+
+[node name="Enemy_36" parent="Level/Content/Enemies" unique_id=782139591 instance=ExtResource("10_ufgr7")]
+position = Vector2(80, -5132)
+
+[node name="Enemy_37" parent="Level/Content/Enemies" unique_id=1478619527 instance=ExtResource("10_ufgr7")]
+position = Vector2(128, -5132)
+
+[node name="Enemy_38" parent="Level/Content/Enemies" unique_id=89241052 instance=ExtResource("10_ufgr7")]
+position = Vector2(31, -5215)
+
+[node name="Enemy_39" parent="Level/Content/Enemies" unique_id=1474385216 instance=ExtResource("10_ufgr7")]
+position = Vector2(80, -5215)
+
+[node name="Enemy_40" parent="Level/Content/Enemies" unique_id=1751615216 instance=ExtResource("10_ufgr7")]
+position = Vector2(128, -5215)
+
+[node name="Enemy_41" parent="Level/Content/Enemies" unique_id=625594221 instance=ExtResource("10_ufgr7")]
+position = Vector2(31, -5215)
+
+[node name="Enemy_42" parent="Level/Content/Enemies" unique_id=1273504229 instance=ExtResource("10_ufgr7")]
+position = Vector2(80, -5215)
+
+[node name="Enemy_43" parent="Level/Content/Enemies" unique_id=33932744 instance=ExtResource("10_ufgr7")]
+position = Vector2(128, -5215)
+
 [node name="Enemy_23" parent="Level/Content/Enemies" unique_id=516479432 instance=ExtResource("10_ufgr7")]
 position = Vector2(63, -3217)
 
@@ -665,6 +1137,9 @@ position = Vector2(40, -3196)
 [node name="Enemy_26" parent="Level/Content/Enemies" unique_id=279836835 instance=ExtResource("10_ufgr7")]
 position = Vector2(135, -3196)
 
+[node name="FinalBoss" parent="Level/Content/Enemies" unique_id=1781909180 instance=ExtResource("15_b6kf2")]
+position = Vector2(80, -5715)
+
 [node name="Exit level" type="Area2D" parent="Level/Content" unique_id=700833030]
 position = Vector2(80, -4583)
 collision_layer = 8
@@ -672,6 +1147,7 @@ collision_mask = 8
 script = ExtResource("14_yn003")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Content/Exit level" unique_id=1334819357]
+position = Vector2(0, -1272)
 shape = SubResource("RectangleShape2D_mcjnq")
 
 [node name="Camera2D" type="Camera2D" parent="Level" unique_id=142050865]

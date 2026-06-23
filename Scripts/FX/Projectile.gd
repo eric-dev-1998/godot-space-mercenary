@@ -37,6 +37,13 @@ func setPosition(position) -> void:
 
 func collide(body: Area2D) -> void:
 	for a in area.get_overlapping_areas():
+		# Player can damage itself with its own projectiles.
+		if a.get_parent() is Player and !isEnemy:
+			return
+		
+		if a.get_parent() is BossCore and isEnemy:
+			return
+		
 		if a.get_parent().is_in_group("Damagables"):
 			var hit = fx_hit.instantiate()
 			var hit_object: Hit = hit as Hit
@@ -45,10 +52,6 @@ func collide(body: Area2D) -> void:
 			hit_object.play_sfx(2)
 			GameData.projectiles_killed += 1
 			queue_free()
-			return
-		
-		# Player can damage itself with its own projectiles.
-		if a.get_parent() is Player and !isEnemy:
 			return
 		
 		if a.get_parent() is Enemy:

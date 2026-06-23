@@ -181,7 +181,7 @@ D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRel
 D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\hostfxr.dll
 D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\hostpolicy.dll
 D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\mscordaccore.dll
-D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\mscordaccore_amd64_amd64_8.0.2726.22922.dll
+D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\mscordaccore_amd64_amd64_8.0.2826.26413.dll
 D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\mscordbi.dll
 D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\mscorrc.dll
 D:\dev\Linux\Godot\Projects\godot-space-mercenary\.godot\mono\temp\bin\ExportRelease\win-x64\msquic.dll

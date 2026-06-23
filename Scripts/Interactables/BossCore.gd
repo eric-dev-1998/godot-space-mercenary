@@ -20,6 +20,7 @@ var enable_secondary_attack: bool = false
 var enable_special_attack: bool = false
 var weak_points_health: Array[int]
 var anim: AnimationPlayer
+var shieldSprite: Sprite2D
 
 var spawned: bool = false
 var level: LevelContent
@@ -40,13 +41,13 @@ func _ready() -> void:
 	# Check attacks:
 	if attack_primary == null:
 		print("[Boss core]["+ name +"]: No primary attack was defined.")
-		return
+		
 	if attack_secondary == null:
 		print("[Boss core]["+ name +"]: No secondary attack was defined.")
-		return
+		
 	if attack_special == null:
 		print("[Boss core]["+ name +"]: No special attack was defined.")
-		return
+		
 	
 	# Check weak points:
 	if len(weak_points) <= 0:
@@ -88,6 +89,8 @@ func _ready() -> void:
 				print("[Boss core][" + name + "]: A stage did not pass the check.")
 				return
 	
+	shieldSprite = get_node("Shield")
+	
 	print("[Boss core]["+ name +"]: Boss ready.")
 	
 	level = get_node("/root/Main/Level/Content") as LevelContent
@@ -104,15 +107,26 @@ func _process(delta: float) -> void:
 	
 	if _attack != null:
 		_attack.fire(delta);
+	
+	if stages[stage] != null and stages[stage].follow_player:
+		if stage <= 0:
+			return
+		var player = get_node("/root/Main/Level/Player")
+		position.x = move_toward(position.x, player.position.x, delta * stages[stage].follow_speed)
+	else:
+		position.x = move_toward(position.x, 80, delta * 10)
 
 func spawn() -> void:
 	# Start boss spawn animation.
 	if enter_animation.length() > 0:
 		anim.play(enter_animation)
 	else:
+		print("Advanced from spawn.")
 		advance_stage()
+
 func start() -> void:
 	# Called at the end of the boss spawn animation.
+	print("Advanced from start.")
 	advance_stage()
 
 func weak_point_hit(area: Area2D, index: int) -> void:
@@ -125,6 +139,10 @@ func weak_point_hit(area: Area2D, index: int) -> void:
 			if stages[stage].wp_health[index] <= 0:
 				return;
 			
+			if stages[stage].advance_condition == BossStage.AdvanceCondition.Weak_Points_And_Shield:
+				if stages[stage].shield_health > 0:
+					return
+			
 			# Inflict damage to the weak point and play the hit fx:
 			stages[stage].inflict_wp_damage(p.power, index)
 			
@@ -133,24 +151,60 @@ func weak_point_hit(area: Area2D, index: int) -> void:
 			if stages[stage].wp_health[index] <= 0:
 				# Play weak point destruction animation.
 				var idle_anim = weak_points[index].get_parent().get_node("Idle") as AnimationPlayer
-				var tree = idle_anim.get_node("Tree") as AnimationTree
-				tree.active = false;
+				if idle_anim:
+					var tree = idle_anim.get_node("Tree") as AnimationTree
+					tree.active = false;
 				
-				hitfx.play("destroy")
+				if hitfx.has_animation("destroy"):
+					hitfx.play("destroy")
 			else:
 				# Play weak point hit animation.
-				hitfx.play("damage")
+				if hitfx.has_animation("damage"):
+					hitfx.play("damage")
 				
 			if stages[stage].check_status():
 				# Advance if current stage conditions are met.
+				print("Advanced from weak point.")
 				advance_stage()
 
 func shield_hit(area: Area2D) -> void:
+	if stage < 0:
+		return
+	
+	if stages[stage] == null or stages[stage].advance_condition == BossStage.AdvanceCondition.Weak_Points or stages[stage].advance_condition == BossStage.AdvanceCondition.Wait_For_Animation:
+		return
+	
+	if stages[stage].shield_health <= 0:
+		return
+	
 	if area.get_parent() is Projectile:
 		var p = area.get_parent() as Projectile
 		if !p.isEnemy:
 			stages[stage].inflict_shield_damage(p.power)
+			
+			# Play shield damage and destroy animation.
+			var shieldAnim = shield.get_node("Anim") as AnimationPlayer
+			if shieldAnim != null and shieldAnim.has_animation("damage"):
+				shieldAnim.play("damage")
+				
+			var damagePercent = float(stages[stage].shield_health) / float(shield_health)
+			if damagePercent < 0.3:
+				shieldSprite.texture = stages[stage].shield_damage_textures[3]
+			elif damagePercent >= 0.3 and damagePercent < 0.7:
+				shieldSprite.texture = stages[stage].shield_damage_textures[2]
+			elif damagePercent >= 0.7:
+				shieldSprite.texture = stages[stage].shield_damage_textures[1]
+
+			#print(str(shield_health) + "/" + str(stages[stage].shield_health) + " = " + str(damagePercent))
+				
+			if stages[stage].shield_health <= 0:
+				if stages[stage].advance_condition == BossStage.AdvanceCondition.Shield:
+					anim.play("shield_destroy")
+				elif stages[stage].advance_condition == BossStage.AdvanceCondition.Weak_Points_And_Shield:
+					anim.play("shield_destroy_noadvance")
+			
 			if stages[stage].check_status():
+				print("Advanced from shield.")
 				advance_stage()
 
 func advance_stage() -> void:
@@ -180,6 +234,10 @@ func advance_stage() -> void:
 		if _attack != null and _attack.parent_node == null:
 			_attack.parent_node = get_node(get_path())
 		
+		# Reset shield texture if any:
+		if len(stages[stage - 1].shield_damage_textures) > 0:
+			shieldSprite.texture = stages[stage - 1].shield_damage_textures[0]
+		
 		# Reset weak points animations:
 		if stages[stage].weak_points_afected.size() > 0:
 			for wp in weak_points:
@@ -188,8 +246,13 @@ func advance_stage() -> void:
 				
 				# Play weak point destruction animation.
 				var idle_anim = wp.get_parent().get_node("Idle") as AnimationPlayer
-				var tree = idle_anim.get_node("Tree") as AnimationTree
-				tree.active = true;
+				if idle_anim:
+					var tree = idle_anim.get_node("Tree") as AnimationTree
+					tree.active = true
+		
+		if _attack != null and !_attack.spawn_randomly_over_x:
+			_attack.load()
+			_attack.parent_node = get_parent().get_node(get_path())
 		
 		stages[stage].trigger()
 

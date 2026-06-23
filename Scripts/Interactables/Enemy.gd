@@ -18,6 +18,7 @@ var invinsible: bool = false
 var in_position: bool = false;
 var canFire: bool = true
 var alreadyFired: bool = false
+var moveIndependently: bool = false
 var distanceFromGameArea: float
 var forwardSpeed: float = 3
 var projectilesFired: int = 0
@@ -83,8 +84,11 @@ func onHit(area: Area2D) -> void:
 		
 		if a.get_parent() is Projectile:
 			var projectileData: Projectile = a.get_parent()
-			
+
 			if projectileData != null:
+				if projectileData.isEnemy:
+					return
+				
 				# Collider with player blast:
 				hit_blaster(projectileData)
 				pass
@@ -148,6 +152,8 @@ func clear() -> void:
 func follow_player(delta: float) -> void:
 	if follow:
 		position.x = move_toward(position.x, player.position.x, followSpeed * delta)
+		if moveIndependently:
+			position.y = move_toward(position.y, -32, followSpeed * 2.5 * delta)
 
 func fire(delta: float) -> void:
 	if canFire:

@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 		if currentPosition < 2:
 			top_label.text = "Press space to\nstart"
 		else:
-			top_label.text = "This level is not included on this demo."
+			top_label.text = "Press space to\nstart"
 		
 		if currentPosition > 0:
 			boss_label.visible = true
@@ -82,11 +82,10 @@ func _input(event: InputEvent) -> void:
 				match event.keycode:
 					KEY_SPACE:
 						if canSelect:
-							if currentPosition != 2:
-								selectEnabled = true
-								canSelect = false
-								select_sfx.play()
-								print("owo")
+							selectEnabled = true
+							canSelect = false
+							select_sfx.play()
+							print("owo")
 					KEY_LEFT:
 						switch_stage(clampIndex(currentPosition - 1))
 					KEY_RIGHT:
@@ -168,5 +167,7 @@ func select_stage() -> void:
 				pass
 			2:
 				# Load LAB level.
-				canSelect = true
+				canSelect = false
+				get_tree().change_scene_to_file("res://Scenes/Levels/level_lab.tscn")
+				print("uwu")
 				pass

@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 
 func SetDialogue() -> void:
 	dialogueSystem.set_dialogue(level_sequence.exit_dialogue)
+	GameData.score += level_sequence.player.local_score
 
 func StartDialogue(_area: Area2D) -> void:
 	# This method is called when player collides with this Area2D instance.

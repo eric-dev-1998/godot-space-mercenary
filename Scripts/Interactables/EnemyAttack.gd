@@ -3,7 +3,7 @@ class_name EnemyAttack
 
 @export var blastNode: PackedScene
 @export var power: int = 1
-@export var blastSpeed: int = 1
+@export var blastSpeed: float = 1
 @export var reloadCooldown: float = 3
 @export var singleShotSpeed: float = 0.75
 @export var maxAmmo: int = 4
@@ -30,6 +30,10 @@ var fireTimer: float = 0.0
 func load() -> void:
 	if parent != null:
 		blastSpawnPoint = parent.get_node("BlastPosition")
+		if !blastSpawnPoint:
+			print("No blast spawn point was found for: '" + parent.name + "'.")
+	elif parent_node != null:
+		blastSpawnPoint = parent_node.get_node("BlastPosition")
 		if !blastSpawnPoint:
 			print("No blast spawn point was found for: '" + parent.name + "'.")
 	else:
@@ -78,10 +82,19 @@ func cooldown(delta: float) -> void:
 		projectilesFired = 0
 
 func spawn_blast() -> void:
-	var blast = blastNode.instantiate() as Projectile
-	blast.speed = blastSpeed
-	blast.power = self.power
-	blast.isEnemy = true
+	var blast = blastNode.instantiate()
+	
+	if blast is Projectile:
+		blast.speed = blastSpeed
+		blast.power = self.power
+		blast.isEnemy = true
+	elif blast is Enemy:
+		blast.health = self.power
+		blast.follow = true
+		blast.followSpeed = blastSpeed
+		blast.moveIndependently = true
+		blast.maxAmmo = 1
+		blast.reloadCooldown = 4
 	
 	if parent:
 		level = parent.get_node("/root/Main/Level/Content") as LevelContent
@@ -98,6 +111,8 @@ func spawn_blast() -> void:
 			blast.position = Vector2i(randi_range(spawn_min_x, spawn_max_x), (parent.position.y + 10) - level.global_position.y)
 		else:
 			blast.position = Vector2i(randi_range(spawn_min_x, spawn_max_x), (parent_node.global_position.y - 80) - level.global_position.y)
+		if blast is Enemy:
+			blast.position.y += 10
 	if parent != null:
 		parent.get_parent().get_parent().add_child(blast)
 	else:

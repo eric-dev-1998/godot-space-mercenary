@@ -29,6 +29,9 @@ var lastPicture: Texture2D
 func GoToLevelSelection() -> void:
 	get_tree().change_scene_to_file("res://Scenes/UI/level_selection.tscn")
 
+func go_to_credits() -> void:
+	get_tree().change_scene_to_file("res://Scenes/EndGame.tscn")
+
 func _ready() -> void:
 	text = get_node("Text")
 	picture = get_node("Picture")
@@ -95,7 +98,11 @@ func writeNextLine() -> void:
 		exit_level = _dialogue_lines[lineCounter].exit_level
 		
 		if exit_level:
-			sfx_end.connect("finished", GoToLevelSelection)
+			if GameData.levels_unlocked >= 3:
+				# Go to credits.
+				sfx_end.connect("finished", go_to_credits)
+			else:
+				sfx_end.connect("finished", GoToLevelSelection)
 
 func changePicture() -> void:
 	picture.texture = _dialogue_lines[lineCounter + 1].texture
@@ -113,6 +120,6 @@ func endDialogue() -> void:
 	emit_signal("onEnd")
 	
 	if exit_level:
-		screenFx.queue.append(Screen_FX.FX_Type.Dark_in)
+		screenFx.ended.connect(go_to_credits)
 	
 	sfx_end.play()
